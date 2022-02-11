@@ -1,11 +1,10 @@
-# Front end scaffold
+# Polar view
 
-This is a project template which could be used to the creation of new projects. Some of the features included are:
+Some of the features included are:
 
 - Based on [Next.js](https://nextjs.org/)
 - [Tailwind](https://tailwindcss.com/) as CSS Framework
 - Reusable components such as forms, modals, icons, and other most use components
-- Authentication based on [Next-Auth](https://next-auth.js.org/) already implemented
 - [Redux](https://redux.js.org/) and [Redux-Toolkit](https://redux-toolkit.js.org/)
 - [Typescript](https://www.typescriptlang.org/) already configured
 - [Cypress](https://www.cypress.io/) as testing client
@@ -15,7 +14,7 @@ This is a project template which could be used to the creation of new projects. 
 
 ## Getting Started
 
-Check our [documentation](https://front-end-scaffold-docs.vercel.app/?path=/story/intro--page).
+Check the documentation (TBD)
 
 ### Quick start
 
@@ -26,8 +25,6 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
