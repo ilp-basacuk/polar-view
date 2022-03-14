@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { Story } from '@storybook/react/types-6-0';
 
-import FitBoundsControl from 'components/map/controls/fit-bounds';
-import ZoomControl from 'components/map/controls/zoom';
+import FitBoundsControl from 'components/map-legacy/controls/fit-bounds';
+import ZoomControl from 'components/map-legacy/controls/zoom';
 
 import Controls from './component';
 import { ControlsProps } from './types';
