@@ -8,27 +8,35 @@ export const getProjection = (projection: string, MAX_ZOOM, TILE_SIZE) => {
       .fill(null)
       .map((_, i) => extent / TILE_SIZE / Math.pow(2, i - 1));
 
-  const getProjectionAttributes = (extent) => ({
-    origin: [-extent, extent],
-    bounds: L.bounds(L.point(-extent, extent), L.point(extent, -extent)),
-    resolutions: getResolutions(extent),
-  });
-
   if (projection === 'artic') {
-    const extent = Math.sqrt(2) * 6371007.2;
     return new Proj.CRS(
-      'EPSG:3575',
-      '+proj=laea +lat_0=90 +lon_0=10 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs',
-      getProjectionAttributes(extent)
+      'EPSG:3413',
+      '+proj=stere +lat_0=90 +lat_ts=70 +lon_0=-45 +k=1 +x_0=0 +y_0=0 ' +
+        '+ellps=WGS84 +datum=WGS84 +units=m +no_defs',
+      {
+        origin: [-4194304, 4194304],
+        resolutions: getResolutions(4194304),
+        bounds: L.bounds([
+          [-4194304, -4194304],
+          [4194304, 4194304],
+        ]),
+      }
     );
   }
 
   if (projection === 'antarctic') {
-    const extent = -4194304;
     return new Proj.CRS(
       'EPSG:3031',
-      '+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs',
-      getProjectionAttributes(extent)
+      '+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 +k=1 +x_0=0 +y_0=0 ' +
+        '+ellps=WGS84 +datum=WGS84 +units=m +no_defs',
+      {
+        origin: [-4194304, 4194304],
+        resolutions: getResolutions(4194304),
+        bounds: L.bounds([
+          [-4194304, -4194304],
+          [4194304, 4194304],
+        ]),
+      }
     );
   }
 

@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "check-types": "tsc --noemit -p tsconfig.json",
@@ -49,6 +49,7 @@
     "@storybook/react": "^6.2.9",
     "@tailwindcss/forms": "^0.3.2",
     "@tippyjs/react": "^4.2.5",
+    "@types/react-leaflet": "^2.8.2",
     "@vizzuality/layer-manager-layers-deckgl": "^1.0.0-alpha.3",
     "@vizzuality/layer-manager-plugin-mapboxgl": "^1.0.0-alpha.3",
     "@vizzuality/layer-manager-provider-carto": "^1.0.0-alpha.3",
