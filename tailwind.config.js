@@ -34,7 +34,8 @@ module.exports = {
     fontWeight: {
       light: 300,
       regular: 400,
-      bold: 600
+      bold: 600,
+      bolder: 700
     },
     fontFamily: {
       sans: 'Niveau Grotesk',

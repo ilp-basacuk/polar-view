@@ -3,9 +3,9 @@ import { ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 import { LinkProps } from 'next/link';
 
 export interface AnchorButtonProps {
-  theme: 'primary' | 'primary-alt' | 'white' | 'secondary' | 'secondary-alt' | 'danger';
-  size: 'xs' | 's' | 'base' | 'l' | 'xl';
+  theme: 'primary' | 'secondary';
   className?: string;
+  cut?: 'right-bottom' | 'right-top' | 'left-top'
 }
 
 // Button props
