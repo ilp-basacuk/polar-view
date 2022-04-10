@@ -33,10 +33,10 @@ export const ConfirmationPrompt: FC<ConfirmationPromptProps> = ({
           'mt-8 sm:-mt-2': !!icon && !!description,
         })}
       >
-        <Button theme="secondary" size="base" className="flex-shrink-0 mr-5" onClick={onRefuse}>
+        <Button theme="secondary" size="medium" className="flex-shrink-0 mr-5" onClick={onRefuse}>
           No
         </Button>
-        <Button theme="primary" size="base" className="flex-shrink-0 sm:mr-5" onClick={onAccept}>
+        <Button theme="primary" size="medium" className="flex-shrink-0 sm:mr-5" onClick={onAccept}>
           Yes
         </Button>
 

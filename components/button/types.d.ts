@@ -6,6 +6,7 @@ export interface AnchorButtonProps {
   theme: 'primary' | 'secondary';
   className?: string;
   cut?: 'right-bottom' | 'right-top' | 'left-top' | 'none'
+  size?: 'small' | 'medium' | 'large'
 }
 
 // Button props
