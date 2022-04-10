@@ -14,6 +14,7 @@ const CUT_MAP = {
   'right-bottom': 'cut-r-b',
   'right-top': 'cut-r-t',
   'left-top': 'cut-l-t',
+  'none': '',
 };
 
 function buildClassName({ className, disabled, theme, cut }) {

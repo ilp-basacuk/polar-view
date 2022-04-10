@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+.root,
+#root,
+#docs-root {
+  --navyblue: #0B1D32;
+  --mainblue: #27A2F8;
+  --white: #FFFFFF;
+  --navybluesoft: rgba(11, 29, 50, 0.2);
+  --softerblue: rgba(39, 162, 248, 0.4);
+  --middleblue: #004869;
+  --cut-border-size: 16px;
+  --cut-border-pos: -9px;
+  --white-triangle-border: 4px solid white;
+}
+
+
 span.cut-r-b {
   position: absolute;
 }
@@ -11,8 +26,9 @@ span.cut-r-b:hover:after {
   right: 0px;
   bottom: 0px;
   border: 4px solid transparent;
-  border-right: 4px solid white;
-  border-bottom: 4px solid white;
+  border-right: var(--white-triangle-border);
+  border-bottom: var(--white-triangle-border);
+  z-index: -1;
 }
 button.cut-r-b {
   overflow: hidden;
@@ -21,15 +37,14 @@ button.cut-r-b {
 }
 button.cut-r-b:after {
   content: '';
-  width: 16px;
-  height: 16px;
+  width: var(--cut-border-size);
+  height: var(--cut-border-size);
   position: absolute;
-  bottom: -9px;
-  right: -9px;
+  bottom: var(--cut-border-pos);
+  right: var(--cut-border-pos);
   transform: rotate(45deg);
-  background-color: #27A2F8;
+  background-color: var(--mainblue);
 }
-
 
 span.cut-r-t {
   position: absolute;
@@ -40,8 +55,9 @@ span.cut-r-t:hover:after {
   right: 0px;
   top: 0px;
   border: 4px solid transparent;
-  border-right: 4px solid white;
-  border-top: 4px solid white;
+  border-right: var(--white-triangle-border);
+  border-top: var(--white-triangle-border);
+  z-index: -1;
 }
 button.cut-r-t {
   overflow: hidden;
@@ -50,15 +66,14 @@ button.cut-r-t {
 }
 button.cut-r-t:after {
   content: '';
-  width: 16px;
-  height: 16px;
+  width: var(--cut-border-size);
+  height: var(--cut-border-size);
   position: absolute;
-  top: -9px;
-  right: -9px;
+  top: var(--cut-border-pos);
+  right: var(--cut-border-pos);
   transform: rotate(45deg);
-  background-color: #27A2F8;
+  background-color: var(--mainblue);
 }
-
 
 span.cut-l-t {
   position: absolute;
@@ -69,26 +84,26 @@ span.cut-l-t:hover:after {
   left: 0px;
   top: 0px;
   border: 4px solid transparent;
-  border-left: 4px solid white;
-  border-top: 4px solid white;
+  border-left: var(--white-triangle-border);
+  border-top: var(--white-triangle-border);
+  z-index: -1;
 }
 
 button.cut-l-t {
   overflow: hidden;
   position: relative;
-  clip-path: polygon(10px 0%, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 10px)
+  clip-path: polygon(10px 0%, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 10px);
 }
 button.cut-l-t:after {
   content: '';
-  width: 16px;
-  height: 16px;
+  width: var(--cut-border-size);
+  height: var(--cut-border-size);
   position: absolute;
-  left: -9px;
-  top: -9px;
+  left: var(--cut-border-pos);
+  top: var(--cut-border-pos);
   transform: rotate(45deg);
-  background-color: #27A2F8;
+  background-color: var(--mainblue);
 }
-
 
 @-webkit-keyframes autofill {
   0%,
