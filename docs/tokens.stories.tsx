@@ -1,7 +1,7 @@
 import DOWNLOAD_SVG from 'svgs/ui/download.svg';
 
 export default {
-  title: 'Docs/Tokens',
+  title: 'Docs/Design System',
 };
 
 export const Colors = () => {
@@ -9,7 +9,7 @@ export const Colors = () => {
     <table className="table-auto text-white">
       <tbody>
         <tr>
-          <td className="border border-white p-3">Zeeshan navyblue</td>
+          <td className="border border-white p-3">navyblue</td>
           <td className="border border-white p-3">
             <div className="w-20 h-20 bg-navyblue"></div>
           </td>
