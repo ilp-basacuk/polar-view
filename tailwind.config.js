@@ -39,7 +39,6 @@ module.exports = {
     },
     fontFamily: {
       sans: 'Niveau Grotesk',
-      niveau: 'Niveau Grotesk',
     }
   },
   variants: {
