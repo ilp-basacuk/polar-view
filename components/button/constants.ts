@@ -1,4 +1,6 @@
-export const THEME = {
+const THEME = {
   primary: 'bg-none text-white border border-mainblue hover:bg-softerblue',
-  secondary:'bg-mainblue',
+  secondary: 'bg-mainblue',
 };
+
+export default THEME;

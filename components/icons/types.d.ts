@@ -1,4 +1,4 @@
 export interface IconProps {
-    size?: number;
-    stroke?: string;
+  size?: number;
+  stroke?: string;
 }

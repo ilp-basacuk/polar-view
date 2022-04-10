@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import Link from 'next/link';
 
-import { THEME } from './constants';
+import THEME from './constants';
 import type { ButtonProps, AnchorProps, Overload } from './types';
 
 // Guard to check if href exists in props
@@ -14,7 +14,7 @@ const CUT_MAP = {
   'right-bottom': 'cut-r-b',
   'right-top': 'cut-r-t',
   'left-top': 'cut-l-t',
-  'none': '',
+  none: '',
 };
 
 function buildClassName({ className, disabled, theme, cut }) {

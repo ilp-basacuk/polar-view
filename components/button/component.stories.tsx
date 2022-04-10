@@ -1,6 +1,4 @@
 import { Story } from '@storybook/react/types-6-0';
-import DoubleRightArrow from 'components/icons/double-right-arrow';
-
 import Button from './component';
 import { ButtonProps } from './types';
 
@@ -26,4 +24,3 @@ Default.args = {
   children: 'TEXT',
   disabled: false,
 };
-

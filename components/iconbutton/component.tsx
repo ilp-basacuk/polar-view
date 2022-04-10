@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import { FC } from 'react';
-import { THEME } from './constants';
+import THEME from './constants';
 import { IconButtonProps } from './types';
 
 const CUT_MAP = {
@@ -30,6 +30,7 @@ export const IconButton: FC<IconButtonProps> = ({
 }: IconButtonProps) => (
   <span className={CUT_MAP[cut]}>
     <button
+      type="button"
       className={buildClassName({
         className,
         disabled,
