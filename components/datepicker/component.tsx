@@ -11,8 +11,15 @@ import Button from 'components/button';
 import { format } from 'date-fns';
 import cx from 'classnames';
 
-const DatePickerInput = React.forwardRef<any, any>(
-  ({ onClick, startDate, isCalendarOpen }: any, ref) => {
+interface IDatePickerInputProps {
+  onClick?: any;
+  startDate: Date;
+  isCalendarOpen: boolean;
+}
+type Ref = HTMLButtonElement;
+
+const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
+  ({ onClick = null, startDate, isCalendarOpen }, ref) => {
     const formatedDate = format(startDate, 'dd/MM/yyyy');
     const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
     return (
@@ -31,7 +38,11 @@ const DatePickerInput = React.forwardRef<any, any>(
   }
 );
 
-const DatePicker: React.FC<ReactDatePickerProps> = ({ startDate = new Date(), onChange, ...others }: ReactDatePickerProps) => {
+const DatePicker: React.FC<ReactDatePickerProps> = ({
+  startDate = new Date(),
+  onChange,
+  ...others
+}: ReactDatePickerProps) => {
   const [currentDate, setCurrentDate] = React.useState(startDate);
   const [isCalendarOpen, setisCalendarOpen] = React.useState(false);
   return (
@@ -39,7 +50,7 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({ startDate = new Date(), on
       startDate={currentDate}
       onChange={(date, event) => {
         setCurrentDate(date);
-        onChange(date, event)
+        onChange(date, event);
       }}
       onCalendarOpen={() => setisCalendarOpen(true)}
       onCalendarClose={() => setisCalendarOpen(false)}
@@ -56,39 +67,37 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({ startDate = new Date(), on
           TODAY
         </Button>
       }
-      renderCustomHeader={({ monthDate, decreaseMonth, increaseMonth }) => {
-        return (
-          <div className="flex justify-between space-x-3 mb-2">
-            <IconButton
-              icon={ChevronLeft}
-              iconSize={9}
-              theme="primary"
-              cut="none"
-              onClick={decreaseMonth}
-            />
-            <div className="flex space-x-1">
-              <Button theme="primary" cut="none" className="font-xs leading-none">
-                {format(monthDate, 'MMM').toUpperCase()}
-              </Button>
-              <Button theme="primary" cut="none" className="font-xs leading-none">
-                {monthDate.getFullYear()}
-              </Button>
-            </div>
-            <IconButton
-              icon={ChevronRight}
-              iconSize={9}
-              theme="primary"
-              cut="none"
-              onClick={increaseMonth}
-            />
+      renderCustomHeader={({ monthDate, decreaseMonth, increaseMonth }) => (
+        <div className="flex justify-between space-x-3 mb-2">
+          <IconButton
+            icon={ChevronLeft}
+            iconSize={9}
+            theme="primary"
+            cut="none"
+            onClick={decreaseMonth}
+          />
+          <div className="flex space-x-1">
+            <Button theme="primary" cut="none" className="font-xs leading-none">
+              {format(monthDate, 'MMM').toUpperCase()}
+            </Button>
+            <Button theme="primary" cut="none" className="font-xs leading-none">
+              {monthDate.getFullYear()}
+            </Button>
           </div>
-        );
-      }}
-      weekDayClassName={(date) =>
+          <IconButton
+            icon={ChevronRight}
+            iconSize={9}
+            theme="primary"
+            cut="none"
+            onClick={increaseMonth}
+          />
+        </div>
+      )}
+      weekDayClassName={() =>
         'h-6 w-6 text-xs flex justify-center items-center text-mainblue font-bold'
       }
-      monthClassName={(date) => 'flex flex-col'}
-      dayClassName={(date) =>
+      monthClassName={() => 'flex flex-col'}
+      dayClassName={() =>
         'h-6 w-6 text-xs flex justify-center items-center font-bold hover:text-white hover:bg-mainblue cursor-pointer'
       }
       {...others}

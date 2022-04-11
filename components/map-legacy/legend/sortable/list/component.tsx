@@ -1,24 +1,19 @@
-import { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useState } from 'react';
-
-import cx from 'classnames';
-
 import {
-  DndContext,
-  DragOverlay,
-  closestCenter,
-  KeyboardSensor,
+  closestCenter, DndContext,
+  DragOverlay, KeyboardSensor,
   PointerSensor,
   useSensor,
-  useSensors,
+  useSensors
 } from '@dnd-kit/core';
 import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
+  verticalListSortingStrategy
 } from '@dnd-kit/sortable';
-
+import cx from 'classnames';
+import { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useState } from 'react';
 import SortableItem from './item';
 
 export interface SortableListProps {

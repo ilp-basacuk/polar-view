@@ -1,5 +1,5 @@
+import React from 'react';
 import cx from 'classnames';
-import { FC } from 'react';
 import THEME from './constants';
 import { IconButtonProps } from './types';
 
@@ -20,7 +20,7 @@ function buildClassName({ className, disabled, theme, cut }) {
   });
 }
 
-export const IconButton: FC<IconButtonProps> = ({
+export const IconButton: React.FC<IconButtonProps> = ({
   theme = 'primary',
   className,
   disabled,

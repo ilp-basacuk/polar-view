@@ -4,13 +4,9 @@ import DatePicker from './component';
 export default {
   title: 'Components/DatePicker',
   component: DatePicker,
-
 };
 
-const Template: Story<any> = ({ ...args }: any) => (
-  <DatePicker {...args}></DatePicker>
-);
+const Template: Story<any> = ({ ...args }: any) => <DatePicker {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-};
+Default.args = {};
