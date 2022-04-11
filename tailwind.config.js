@@ -4,9 +4,10 @@ const forms = require('@tailwindcss/forms');
 const lineClamp = require('./lib/tailwind/line-clamp');
 
 module.exports = {
+  mode: 'jit',
   purge: {
     enabled: process.env.NODE_ENV !== 'development',
-    content: ['./**/*.ts', './**/*.tsx'],
+    content: ['./components/**/*.ts', './components/**/*.tsx', './styles/global.css'],
   },
   darkMode: false, // or 'media' or 'class'
   theme: {

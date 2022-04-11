@@ -26,6 +26,8 @@ export const IconButton: FC<IconButtonProps> = ({
   disabled,
   cut = 'right-bottom',
   icon: Icon,
+  iconSize,
+  iconStroke,
   ...restProps
 }: IconButtonProps) => (
   <span className={CUT_MAP[cut]}>
@@ -40,7 +42,7 @@ export const IconButton: FC<IconButtonProps> = ({
       disabled={disabled}
       {...restProps}
     >
-      <Icon stroke={theme === 'secondary' ? 'white' : undefined} />
+      <Icon stroke={iconStroke} size={iconSize} />
     </button>
   </span>
 );

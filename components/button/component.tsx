@@ -11,9 +11,9 @@ import type { ButtonProps, AnchorProps, Overload } from './types';
 const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'href' in props;
 
 const CUT_MAP = {
-  'right-bottom': 'cut-r-b',
-  'right-top': 'cut-r-t',
-  'left-top': 'cut-l-t',
+  'right-bottom': 'cut cut-r-b',
+  'right-top': 'cut cut-r-t',
+  'left-top': 'cut cut-l-t',
   none: '',
 };
 
