@@ -7,7 +7,7 @@ module.exports = {
   mode: 'jit',
   purge: {
     enabled: process.env.NODE_ENV !== 'development',
-    content: ['./components/**/*.ts', './components/**/*.tsx', './styles/global.css'],
+    content: ['./**/*.ts', './**/*.tsx', './styles/global.css'],
   },
   darkMode: false, // or 'media' or 'class'
   theme: {

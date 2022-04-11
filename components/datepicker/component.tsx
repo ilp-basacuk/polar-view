@@ -1,19 +1,58 @@
 import IconButton from 'components/iconbutton';
 import React from 'react';
-import ReactDatePicker from 'react-datepicker';
+import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
+
 import ChevronLeft from 'components/icons/chevron-left';
 import ChevronRight from 'components/icons/chevron-right';
+import ChevronDown from 'components/icons/chevron-down';
+import ChevronUp from 'components/icons/chevron-up';
+
 import Button from 'components/button';
 import { format } from 'date-fns';
+import cx from 'classnames';
 
-const DatePicker: React.FC<any> = (props: any) => {
+const DatePickerInput = React.forwardRef<any, any>(
+  ({ onClick, startDate, isCalendarOpen }: any, ref) => {
+    const formatedDate = format(startDate, 'dd/MM/yyyy');
+    const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
+    return (
+      <button
+        className={`border border-mainblue text-white text-xs py-2 px-1 active:bg-softerblue flex content-center ${classes}`}
+        onClick={onClick}
+        ref={ref}
+      >
+        {formatedDate}
+        <span className="ml-4 h-4 flex items-center">
+          {isCalendarOpen && <ChevronUp stroke="white" size={10} />}
+          {!isCalendarOpen && <ChevronDown stroke="white" size={10} />}
+        </span>
+      </button>
+    );
+  }
+);
+
+const DatePicker: React.FC<ReactDatePickerProps> = ({ startDate = new Date(), onChange, ...others }: ReactDatePickerProps) => {
+  const [currentDate, setCurrentDate] = React.useState(startDate);
+  const [isCalendarOpen, setisCalendarOpen] = React.useState(false);
   return (
     <ReactDatePicker
+      startDate={currentDate}
+      onChange={(date, event) => {
+        setCurrentDate(date);
+        onChange(date, event)
+      }}
+      onCalendarOpen={() => setisCalendarOpen(true)}
+      onCalendarClose={() => setisCalendarOpen(false)}
       className="text-white"
-      calendarClassName="text-white border border-mainblue p-2 w-52"
-      inline
+      calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b"
+      customInput={<DatePickerInput startDate={currentDate} isCalendarOpen={isCalendarOpen} />}
       todayButton={
-        <Button theme="primary" cut="none" className="mx-auto my-2 font-xs leading-none">
+        <Button
+          theme="primary"
+          cut="none"
+          className="mx-auto my-2 font-xs leading-none"
+          onClick={() => setCurrentDate(new Date())}
+        >
           TODAY
         </Button>
       }
@@ -52,9 +91,7 @@ const DatePicker: React.FC<any> = (props: any) => {
       dayClassName={(date) =>
         'h-6 w-6 text-xs flex justify-center items-center font-bold hover:text-white hover:bg-mainblue cursor-pointer'
       }
-      onChange={(date) => {
-        console.log(date);
-      }}
+      {...others}
     />
   );
 };

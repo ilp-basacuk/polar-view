@@ -40,11 +40,11 @@ span.cut-r-b:hover:after {
   z-index: -1;
 }
 
-button.cut-r-b {
+.cut-r-b {
   clip-path: polygon(0% 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 0%);
 }
 
-button.cut-r-b:after {
+.cut-r-b:after {
   content: '';
   width: var(--cut-border-size);
   height: var(--cut-border-size);

@@ -1,7 +1,5 @@
 import { FC } from 'react';
-
 import cx from 'classnames';
-
 import Link from 'next/link';
 
 import THEME from './constants';
