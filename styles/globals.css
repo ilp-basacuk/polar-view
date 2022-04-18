@@ -16,23 +16,23 @@
   --white-triangle-border: 4px solid white;
 }
 
-span.cut {
+.btn-wrapper.cut {
   position: absolute;
 }
-span.cut:hover::after {
+.btn-wrapper.cut:hover::after {
   content: '';
   position: absolute;
   border: 4px solid transparent;
 }
-span.cut:hover button.btn-primary {
+.btn-wrapper.cut:hover button.btn-primary {
   background-color: var(--softerblue);
 }
-button.cut {
+.btn.cut {
   overflow: hidden;
   position: relative;
 }
 
-span.cut-r-b:hover:after {
+.btn-wrapper.cut-r-b:hover:after {
   right: 0px;
   bottom: 0px;
   border-right: var(--white-triangle-border);
@@ -40,11 +40,7 @@ span.cut-r-b:hover:after {
   z-index: -1;
 }
 
-.cut-r-b {
-  clip-path: polygon(0% 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 0%);
-}
-
-.cut-r-b:after {
+.btn.cut-r-b:after {
   content: '';
   width: var(--cut-border-size);
   height: var(--cut-border-size);
@@ -55,7 +51,11 @@ span.cut-r-b:hover:after {
   background-color: var(--mainblue);
 }
 
-span.cut-r-t:hover:after {
+.btn.cut-r-b {
+  clip-path: polygon(0% 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 0%);
+}
+
+.btn-wrapper.cut-r-t:hover:after {
   right: 0px;
   top: 0px;
   border-right: var(--white-triangle-border);
@@ -63,11 +63,11 @@ span.cut-r-t:hover:after {
   z-index: -1;
 }
 
-button.cut-r-t {
+.btn.cut-r-t {
   clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 10px, calc(100% - 10px) 0);
 }
 
-button.cut-r-t:after {
+.btn.cut-r-t:after {
   content: '';
   width: var(--cut-border-size);
   height: var(--cut-border-size);
@@ -78,7 +78,7 @@ button.cut-r-t:after {
   background-color: var(--mainblue);
 }
 
-span.cut-l-t:hover:after {
+.btn-wrapper.cut-l-t:hover:after {
   left: 0px;
   top: 0px;
   border-left: var(--white-triangle-border);
@@ -86,11 +86,11 @@ span.cut-l-t:hover:after {
   z-index: -1;
 }
 
-button.cut-l-t {
+.btn.cut-l-t {
   clip-path: polygon(10px 0%, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 10px);
 }
 
-button.cut-l-t:after {
+.btn.cut-l-t:after {
   content: '';
   width: var(--cut-border-size);
   height: var(--cut-border-size);
@@ -100,7 +100,6 @@ button.cut-l-t:after {
   transform: rotate(45deg);
   background-color: var(--mainblue);
 }
-
 
 @-webkit-keyframes autofill {
   0%,
@@ -268,4 +267,3 @@ button.cut-l-t:after {
 .react-datepicker__day--outside-month {
   @apply text-softerblue;
 }
-

@@ -23,4 +23,6 @@ export const Default = Template.bind({});
 Default.args = {
   children: 'TEXT',
   disabled: false,
+  component: 'a',
+  href: '/zeeshan',
 };
