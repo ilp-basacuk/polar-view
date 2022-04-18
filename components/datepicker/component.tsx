@@ -12,19 +12,20 @@ import { format } from 'date-fns';
 import cx from 'classnames';
 
 interface IDatePickerInputProps {
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   startDate: Date;
   isCalendarOpen: boolean;
 }
 type Ref = HTMLButtonElement;
 
 const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
-  ({ onClick = null, startDate, isCalendarOpen }, ref) => {
+  ({ onClick, startDate, isCalendarOpen }, ref) => {
     const formatedDate = format(startDate, 'dd/MM/yyyy');
     const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
     return (
       <button
-        className={`border border-mainblue text-white text-xs py-2 px-1 active:bg-softerblue flex content-center ${classes}`}
+        type="button"
+        className={`border border-mainblue text-white text-xs py-1 px-2 active:bg-softerblue flex content-center ${classes}`}
         onClick={onClick}
         ref={ref}
       >
@@ -61,7 +62,8 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({
         <Button
           theme="primary"
           cut="none"
-          className="mx-auto my-2 font-xs leading-none"
+          size="small"
+          className="mx-auto my-2"
           onClick={() => setCurrentDate(new Date())}
         >
           TODAY
@@ -77,10 +79,10 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({
             onClick={decreaseMonth}
           />
           <div className="flex space-x-1">
-            <Button theme="primary" cut="none" className="font-xs leading-none">
+            <Button theme="primary" cut="none" size="medium">
               {format(monthDate, 'MMM').toUpperCase()}
             </Button>
-            <Button theme="primary" cut="none" className="font-xs leading-none">
+            <Button theme="primary" cut="none" size="medium">
               {monthDate.getFullYear()}
             </Button>
           </div>

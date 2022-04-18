@@ -1,23 +1,24 @@
 import {
-  closestCenter, DndContext,
-  DragOverlay, KeyboardSensor,
+  closestCenter,
+  DndContext,
+  DragOverlay,
+  KeyboardSensor,
   PointerSensor,
   useSensor,
-  useSensors
+  useSensors,
 } from '@dnd-kit/core';
 import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy
+  verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import cx from 'classnames';
 import { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useState } from 'react';
 import SortableItem from './item';
 
 export interface SortableListProps {
-  className?: string;
   children: React.ReactNode;
   onChangeOrder: (id: string[]) => void;
 }
@@ -31,9 +32,9 @@ export const SortableList: FC<SortableListProps> = ({
   const ActiveItem = useMemo(() => {
     const activeChildArray = Children.map(children, (Child) => {
       if (isValidElement(Child)) {
-        const { props } = Child;
-        const { id } = props;
-
+        const {
+          props: { id },
+        } = Child;
         if (id === activeId) {
           return Child;
         }
@@ -49,8 +50,9 @@ export const SortableList: FC<SortableListProps> = ({
     () =>
       Children.map(children, (Child) => {
         if (isValidElement(Child)) {
-          const { props } = Child;
-          const { id } = props;
+          const {
+            props: { id },
+          } = Child;
           return id;
         }
 

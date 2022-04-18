@@ -12,7 +12,7 @@ const CUT_MAP = {
 
 function buildClassName({ className, disabled, theme, cut }) {
   return cx({
-    'flex items-center justify-center text-xs font-bolder px-2 py-2': true,
+    'flex items-center justify-center text-xs font-bolder p-2 h-6': true,
     [THEME[theme]]: true,
     [CUT_MAP[cut]]: true,
     [className]: !!className,

@@ -15,11 +15,18 @@ const CUT_MAP = {
   none: '',
 };
 
-function buildClassName({ className, disabled, theme, cut }) {
+const SIZE_MAP = {
+  small: 'h-4',
+  medium: 'h-6',
+  large: 'h8',
+};
+
+function buildClassName({ className, disabled, theme, cut, size }) {
   return cx({
-    'flex items-center justify-center text-xs font-bolder px-4 py-2': true,
+    'flex items-center justify-center text-tiny font-bolder p-2': true,
     [THEME[theme]]: true,
     [CUT_MAP[cut]]: true,
+    [SIZE_MAP[size]]: true,
     [className]: !!className,
     'opacity-50 pointer-events-none': disabled,
   });
@@ -33,6 +40,7 @@ export const LinkAnchor: FC<AnchorProps> = ({
   href,
   cut = 'right-bottom',
   anchorLinkProps,
+  size = 'large',
   ...restProps
 }: AnchorProps) => (
   <Link href={href} {...anchorLinkProps}>
@@ -42,6 +50,7 @@ export const LinkAnchor: FC<AnchorProps> = ({
         disabled,
         theme,
         cut,
+        size,
       })}
       {...restProps}
     >
@@ -57,6 +66,7 @@ export const Anchor: FC<AnchorProps> = ({
   disabled,
   cut = 'right-bottom',
   href,
+  size = 'large',
   ...restProps
 }: AnchorProps) => {
   // Anchor element doesn't support disabled attribute
@@ -72,6 +82,7 @@ export const Anchor: FC<AnchorProps> = ({
         disabled,
         theme,
         cut,
+        size,
       })}
       {...restProps}
     >
@@ -86,6 +97,7 @@ export const Button: FC<ButtonProps> = ({
   className,
   disabled,
   cut = 'right-bottom',
+  size = 'large',
   ...restProps
 }: ButtonProps) => (
   <span className={CUT_MAP[cut]}>
@@ -96,6 +108,7 @@ export const Button: FC<ButtonProps> = ({
         disabled,
         theme,
         cut,
+        size,
       })}
       disabled={disabled}
       {...restProps}
