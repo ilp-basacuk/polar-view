@@ -1,9 +1,11 @@
 import { Story } from '@storybook/react/types-6-0';
+import DoubleRightArrow from 'components/icons/double-right-arrow';
+
 import Button from './component';
-import { ButtonProps } from './types';
+import { IconButtonProps } from './types';
 
 export default {
-  title: 'Components/Button',
+  title: 'Components/Icon Button',
   component: Button,
   argTypes: {
     theme: {
@@ -15,12 +17,10 @@ export default {
   },
 };
 
-const Template: Story<ButtonProps> = ({ children, ...args }: ButtonProps) => (
-  <Button {...args}>{children}</Button>
-);
+const Template: Story<IconButtonProps> = ({ ...args }: IconButtonProps) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'TEXT',
+  icon: DoubleRightArrow,
   disabled: false,
 };

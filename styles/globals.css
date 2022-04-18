@@ -2,6 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
+.root,
+#root,
+#docs-root {
+  --navyblue: #0B1D32;
+  --mainblue: #27A2F8;
+  --white: #FFFFFF;
+  --navybluesoft: rgba(11, 29, 50, 0.2);
+  --softerblue: rgba(39, 162, 248, 0.4);
+  --middleblue: #004869;
+  --cut-border-size: 16px;
+  --cut-border-pos: -9px;
+  --white-triangle-border: 4px solid white;
+}
+
+
+span.cut-r-b {
+  position: absolute;
+}
+span.cut-r-b:hover:after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  border: 4px solid transparent;
+  border-right: var(--white-triangle-border);
+  border-bottom: var(--white-triangle-border);
+  z-index: -1;
+}
+button.cut-r-b {
+  overflow: hidden;
+  position: relative;
+  clip-path: polygon(0% 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 0%);
+}
+button.cut-r-b:after {
+  content: '';
+  width: var(--cut-border-size);
+  height: var(--cut-border-size);
+  position: absolute;
+  bottom: var(--cut-border-pos);
+  right: var(--cut-border-pos);
+  transform: rotate(45deg);
+  background-color: var(--mainblue);
+}
+
+span.cut-r-t {
+  position: absolute;
+}
+span.cut-r-t:hover:after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  border: 4px solid transparent;
+  border-right: var(--white-triangle-border);
+  border-top: var(--white-triangle-border);
+  z-index: -1;
+}
+button.cut-r-t {
+  overflow: hidden;
+  position: relative;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 10px, calc(100% - 10px) 0);
+}
+button.cut-r-t:after {
+  content: '';
+  width: var(--cut-border-size);
+  height: var(--cut-border-size);
+  position: absolute;
+  top: var(--cut-border-pos);
+  right: var(--cut-border-pos);
+  transform: rotate(45deg);
+  background-color: var(--mainblue);
+}
+
+span.cut-l-t {
+  position: absolute;
+}
+span.cut-l-t:hover:after {
+  content: '';
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border: 4px solid transparent;
+  border-left: var(--white-triangle-border);
+  border-top: var(--white-triangle-border);
+  z-index: -1;
+}
+
+button.cut-l-t {
+  overflow: hidden;
+  position: relative;
+  clip-path: polygon(10px 0%, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 10px);
+}
+button.cut-l-t:after {
+  content: '';
+  width: var(--cut-border-size);
+  height: var(--cut-border-size);
+  position: absolute;
+  left: var(--cut-border-pos);
+  top: var(--cut-border-pos);
+  transform: rotate(45deg);
+  background-color: var(--mainblue);
+}
+
 @-webkit-keyframes autofill {
   0%,
   100% {

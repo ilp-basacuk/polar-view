@@ -4,17 +4,24 @@ import cx from 'classnames';
 
 import Link from 'next/link';
 
-import { THEME, SIZE } from './constants';
+import THEME from './constants';
 import type { ButtonProps, AnchorProps, Overload } from './types';
 
 // Guard to check if href exists in props
 const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'href' in props;
 
-function buildClassName({ className, disabled, size, theme }) {
+const CUT_MAP = {
+  'right-bottom': 'cut-r-b',
+  'right-top': 'cut-r-t',
+  'left-top': 'cut-l-t',
+  none: '',
+};
+
+function buildClassName({ className, disabled, theme, cut }) {
   return cx({
-    'flex items-center justify-center rounded-3xl': true,
+    'flex items-center justify-center text-xs font-bolder px-4 py-2': true,
     [THEME[theme]]: true,
-    [SIZE[size]]: true,
+    [CUT_MAP[cut]]: true,
     [className]: !!className,
     'opacity-50 pointer-events-none': disabled,
   });
@@ -23,10 +30,10 @@ function buildClassName({ className, disabled, size, theme }) {
 export const LinkAnchor: FC<AnchorProps> = ({
   children,
   theme = 'primary',
-  size = 'base',
   className,
   disabled,
   href,
+  cut = 'right-bottom',
   anchorLinkProps,
   ...restProps
 }: AnchorProps) => (
@@ -35,8 +42,8 @@ export const LinkAnchor: FC<AnchorProps> = ({
       className={buildClassName({
         className,
         disabled,
-        size,
         theme,
+        cut,
       })}
       {...restProps}
     >
@@ -48,9 +55,9 @@ export const LinkAnchor: FC<AnchorProps> = ({
 export const Anchor: FC<AnchorProps> = ({
   children,
   theme = 'primary',
-  size = 'base',
   className,
   disabled,
+  cut = 'right-bottom',
   href,
   ...restProps
 }: AnchorProps) => {
@@ -65,8 +72,8 @@ export const Anchor: FC<AnchorProps> = ({
       className={buildClassName({
         className,
         disabled,
-        size,
         theme,
+        cut,
       })}
       {...restProps}
     >
@@ -78,24 +85,26 @@ export const Anchor: FC<AnchorProps> = ({
 export const Button: FC<ButtonProps> = ({
   children,
   theme = 'primary',
-  size = 'base',
   className,
   disabled,
+  cut = 'right-bottom',
   ...restProps
 }: ButtonProps) => (
-  <button
-    type="button"
-    className={buildClassName({
-      className,
-      disabled,
-      size,
-      theme,
-    })}
-    disabled={disabled}
-    {...restProps}
-  >
-    {children}
-  </button>
+  <span className={CUT_MAP[cut]}>
+    <button
+      type="button"
+      className={buildClassName({
+        className,
+        disabled,
+        theme,
+        cut,
+      })}
+      disabled={disabled}
+      {...restProps}
+    >
+      {children}
+    </button>
+  </span>
 );
 
 export const LinkButton: Overload = (props: ButtonProps | AnchorProps) => {

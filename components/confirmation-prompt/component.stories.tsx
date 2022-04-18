@@ -41,7 +41,7 @@ const Template: Story<ConfirmationPromptProps> = ({ ...args }: ConfirmationPromp
 
   return (
     <>
-      <Button theme="primary" size="base" onClick={() => setOpen(true)}>
+      <Button theme="primary" size="small" onClick={() => setOpen(true)}>
         Delete
       </Button>
       <ConfirmationPrompt
