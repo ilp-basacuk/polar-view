@@ -18,7 +18,7 @@ const CUT_MAP = {
 const SIZE_MAP = {
   small: 'h-4',
   medium: 'h-6',
-  large: 'h8',
+  large: 'h-8',
 };
 
 function buildClassName({ className, disabled, theme, cut, size }) {
