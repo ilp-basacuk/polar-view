@@ -18,6 +18,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
   opened,
   selectedItems,
   placeholder,
+  className,
   getToggleButtonProps,
   getDropdownProps,
 }: SelectToggleProps) => {
@@ -39,7 +40,10 @@ export const SelectToggle: FC<SelectToggleProps> = ({
       aria-label="Select..."
       disabled={disabled}
       className={cx({
-        'relative w-full flex items-center tracking-wide': true,
+        [className]: !!className,
+        'relative w-full flex items-center tracking-wide text-tiny font-bolder': true,
+        'border-b border-mainblue': opened,
+        'border border-mainblue': !opened,
         [THEME.sizes[size]]: true,
       })}
       {...(!multiple && getToggleButtonProps())}

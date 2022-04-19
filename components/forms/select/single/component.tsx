@@ -151,13 +151,13 @@ export const SingleSelect: FC<SelectProps> = ({
   return (
     <div
       className={cx({
-        'w-full leading-tight overflow-hidden': true,
+        'w-full leading-tight overflow-hidden relative': true,
         [THEME[theme].container]: true,
         [THEME[theme].closed]: true,
         [THEME.states[status]]: true,
       })}
     >
-      <div className="relative w-full" ref={triggerRef}>
+      <div className={cx({ 'relative w-full': true, 'invisible': isOpen })} ref={triggerRef}>
         <Toggle
           options={getOptions}
           theme={theme}
@@ -177,8 +177,6 @@ export const SingleSelect: FC<SelectProps> = ({
         <div
           className={cx({
             'z-50': true,
-            // The content of `<Menu />` must always be in the DOM so that Downshift can get the ref
-            // to the `<ul />` element through `getMenuProps`
             invisible: !isOpen,
           })}
           ref={menuRef}
@@ -201,6 +199,7 @@ export const SingleSelect: FC<SelectProps> = ({
               prefix={prefix}
               disabled={disabled}
               opened={isOpen}
+              className="bg-softerblue"
               selectedItems={selectedItems}
               placeholder={placeholder}
               getToggleButtonProps={getToggleButtonProps}
@@ -218,7 +217,7 @@ export const SingleSelect: FC<SelectProps> = ({
               {getOptions.map((option, index) => (
                 <li
                   className={cx({
-                    'px-4 py-1 mt-0.5 cursor-pointer': true,
+                    'px-2 py-1 mt-0.5 cursor-pointer text-tiny font-bolder': true,
                     [THEME[theme].item.base]: highlightedIndex !== index,
                     [THEME[theme].item.disabled]: option.disabled,
                     [THEME[theme].item.highlighted]:
