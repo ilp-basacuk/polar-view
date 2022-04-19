@@ -264,6 +264,7 @@
 .react-datepicker__day--keyboard-selected {
   @apply bg-mainblue text-white;
 }
-.react-datepicker__day--outside-month {
+.react-datepicker__day--outside-month, .react-datepicker__day--disabled {
   @apply text-softerblue;
 }
+

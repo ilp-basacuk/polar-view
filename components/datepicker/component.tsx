@@ -15,12 +15,13 @@ interface IDatePickerInputProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   startDate: Date;
   isCalendarOpen: boolean;
+  placeHolderText?: string;
 }
 type Ref = HTMLButtonElement;
 
 const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
-  ({ onClick, startDate, isCalendarOpen }, ref) => {
-    const formatedDate = format(startDate, 'dd/MM/yyyy');
+  ({ onClick, startDate, isCalendarOpen, placeHolderText }, ref) => {
+    const formatedDate = startDate ? format(startDate, 'dd/MM/yyyy') : placeHolderText;
     const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
     return (
       <button
@@ -40,8 +41,9 @@ const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
 );
 
 const DatePicker: React.FC<ReactDatePickerProps> = ({
-  startDate = new Date(),
+  startDate,
   onChange,
+  placeholderText,
   ...others
 }: ReactDatePickerProps) => {
   const [currentDate, setCurrentDate] = React.useState(startDate);
@@ -57,7 +59,7 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({
       onCalendarClose={() => setisCalendarOpen(false)}
       className="text-white"
       calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b"
-      customInput={<DatePickerInput startDate={currentDate} isCalendarOpen={isCalendarOpen} />}
+      customInput={<DatePickerInput startDate={currentDate} isCalendarOpen={isCalendarOpen} placeHolderText={placeholderText} />}
       todayButton={
         <Button
           theme="primary"
