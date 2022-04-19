@@ -1,5 +1,5 @@
+import React from 'react';
 import cx from 'classnames';
-import { FC } from 'react';
 import THEME from './constants';
 import { IconButtonProps } from './types';
 
@@ -12,7 +12,7 @@ const CUT_MAP = {
 
 function buildClassName({ className, disabled, theme, cut }) {
   return cx({
-    'flex items-center justify-center text-xs font-bolder px-2 py-2': true,
+    'flex items-center justify-center text-xs font-bolder p-2 h-6': true,
     [THEME[theme]]: true,
     [CUT_MAP[cut]]: true,
     [className]: !!className,
@@ -20,12 +20,14 @@ function buildClassName({ className, disabled, theme, cut }) {
   });
 }
 
-export const IconButton: FC<IconButtonProps> = ({
+export const IconButton: React.FC<IconButtonProps> = ({
   theme = 'primary',
   className,
   disabled,
   cut = 'right-bottom',
   icon: Icon,
+  iconSize,
+  iconStroke,
   ...restProps
 }: IconButtonProps) => (
   <span className={CUT_MAP[cut]}>
@@ -40,7 +42,7 @@ export const IconButton: FC<IconButtonProps> = ({
       disabled={disabled}
       {...restProps}
     >
-      <Icon stroke={theme === 'secondary' ? 'white' : undefined} />
+      <Icon stroke={iconStroke} size={iconSize} />
     </button>
   </span>
 );

@@ -1,7 +1,7 @@
-import Head from 'next/head';
-
 import Layer from 'components/layer';
 import Map from 'components/map';
+import Head from 'next/head';
+import React from 'react';
 
 const Home: React.FC = () => (
   <div>
@@ -10,7 +10,9 @@ const Home: React.FC = () => (
     </Head>
     <h1>Welcome to Polar View</h1>
     <div className="w-full h-screen">
+      {/** @ts-ignore */}
       <Map projection="antarctic">
+        {/** @ts-ignore */}
         <Layer
           url="https://geos.polarview.aq/geoserver/polarview/wms?"
           params={{

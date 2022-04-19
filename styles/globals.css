@@ -5,9 +5,9 @@
 .root,
 #root,
 #docs-root {
-  --navyblue: #0B1D32;
-  --mainblue: #27A2F8;
-  --white: #FFFFFF;
+  --navyblue: #0b1d32;
+  --mainblue: #27a2f8;
+  --white: #ffffff;
   --navybluesoft: rgba(11, 29, 50, 0.2);
   --softerblue: rgba(39, 162, 248, 0.4);
   --middleblue: #004869;
@@ -16,26 +16,31 @@
   --white-triangle-border: 4px solid white;
 }
 
-
-span.cut-r-b {
+.btn-wrapper.cut {
   position: absolute;
 }
-span.cut-r-b:hover:after {
+.btn-wrapper.cut:hover::after {
   content: '';
   position: absolute;
+  border: 4px solid transparent;
+}
+.btn-wrapper.cut:hover button.btn-primary {
+  background-color: var(--softerblue);
+}
+.btn.cut {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-wrapper.cut-r-b:hover:after {
   right: 0px;
   bottom: 0px;
-  border: 4px solid transparent;
   border-right: var(--white-triangle-border);
   border-bottom: var(--white-triangle-border);
   z-index: -1;
 }
-button.cut-r-b {
-  overflow: hidden;
-  position: relative;
-  clip-path: polygon(0% 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 0%);
-}
-button.cut-r-b:after {
+
+.btn.cut-r-b:after {
   content: '';
   width: var(--cut-border-size);
   height: var(--cut-border-size);
@@ -46,25 +51,23 @@ button.cut-r-b:after {
   background-color: var(--mainblue);
 }
 
-span.cut-r-t {
-  position: absolute;
+.btn.cut-r-b {
+  clip-path: polygon(0% 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 0%);
 }
-span.cut-r-t:hover:after {
-  content: '';
-  position: absolute;
+
+.btn-wrapper.cut-r-t:hover:after {
   right: 0px;
   top: 0px;
-  border: 4px solid transparent;
   border-right: var(--white-triangle-border);
   border-top: var(--white-triangle-border);
   z-index: -1;
 }
-button.cut-r-t {
-  overflow: hidden;
-  position: relative;
+
+.btn.cut-r-t {
   clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 10px, calc(100% - 10px) 0);
 }
-button.cut-r-t:after {
+
+.btn.cut-r-t:after {
   content: '';
   width: var(--cut-border-size);
   height: var(--cut-border-size);
@@ -75,26 +78,19 @@ button.cut-r-t:after {
   background-color: var(--mainblue);
 }
 
-span.cut-l-t {
-  position: absolute;
-}
-span.cut-l-t:hover:after {
-  content: '';
-  position: absolute;
+.btn-wrapper.cut-l-t:hover:after {
   left: 0px;
   top: 0px;
-  border: 4px solid transparent;
   border-left: var(--white-triangle-border);
   border-top: var(--white-triangle-border);
   z-index: -1;
 }
 
-button.cut-l-t {
-  overflow: hidden;
-  position: relative;
+.btn.cut-l-t {
   clip-path: polygon(10px 0%, 100% 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 10px);
 }
-button.cut-l-t:after {
+
+.btn.cut-l-t:after {
   content: '';
   width: var(--cut-border-size);
   height: var(--cut-border-size);
@@ -257,4 +253,17 @@ button.cut-l-t:after {
       backdrop-filter: blur(4px);
     }
   }
+}
+
+.react-datepicker__day-names {
+  @apply flex justify-between mb-1 border-b border-softerblue;
+}
+.react-datepicker__week {
+  @apply flex justify-between;
+}
+.react-datepicker__day--keyboard-selected {
+  @apply bg-mainblue text-white;
+}
+.react-datepicker__day--outside-month {
+  @apply text-softerblue;
 }
