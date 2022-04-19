@@ -8,7 +8,12 @@ interface IDateRangePicker {
   endPlaceHolder?: string;
 }
 
-const DateRangePicker: React.FC<IDateRangePicker> = ({ startDate, endDate, startPlaceHolder, endPlaceHolder }) => {
+const DateRangePicker: React.FC<IDateRangePicker> = ({
+  startDate,
+  endDate,
+  startPlaceHolder,
+  endPlaceHolder,
+}) => {
   const [sStartDate, setStartDate] = React.useState(startDate);
   const [sEndDate, setEndDate] = React.useState(endDate);
 

@@ -11,5 +11,5 @@ const Template: Story<any> = ({ ...args }: any) => <DateRangePicker {...args} />
 export const Default = Template.bind({});
 Default.args = {
   startPlaceHolder: 'Start Date',
-  endPlaceHolder: 'End Date'
+  endPlaceHolder: 'End Date',
 };

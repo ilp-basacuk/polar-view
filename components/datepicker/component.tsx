@@ -59,7 +59,13 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({
       onCalendarClose={() => setisCalendarOpen(false)}
       className="text-white"
       calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b"
-      customInput={<DatePickerInput startDate={currentDate} isCalendarOpen={isCalendarOpen} placeHolderText={placeholderText} />}
+      customInput={
+        <DatePickerInput
+          startDate={currentDate}
+          isCalendarOpen={isCalendarOpen}
+          placeHolderText={placeholderText}
+        />
+      }
       todayButton={
         <Button
           theme="primary"
