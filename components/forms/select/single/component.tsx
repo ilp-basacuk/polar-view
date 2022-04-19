@@ -157,7 +157,7 @@ export const SingleSelect: FC<SelectProps> = ({
         [THEME.states[status]]: true,
       })}
     >
-      <div className={cx({ 'relative w-full': true, 'invisible': isOpen })} ref={triggerRef}>
+      <div className={cx({ 'relative w-full': true, invisible: isOpen })} ref={triggerRef}>
         <Toggle
           options={getOptions}
           theme={theme}
