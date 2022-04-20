@@ -1,37 +1,22 @@
 import { Story } from '@storybook/react/types-6-0';
 
-import Radio from './component';
-import { RadioProps } from './types';
+import RadioButton from './component';
 
 export default {
   title: 'Components/Forms/Radio',
-  component: Radio,
-  argTypes: {
-    theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
-    },
-    InputHTMLAttributes: {
-      name: 'InputHTMLAttributes',
-      description: 'https://www.w3schools.com/tags/tag_textarea.asp',
-      table: {
-        type: {
-          summary: 'InputHTMLAttributes',
-          detail: null,
-        },
-      },
-      control: {
-        disabled: true,
-      },
-    },
-  },
+  component: RadioButton,
 };
 
-const Template: Story<RadioProps> = (args) => <Radio {...args} />;
+const Template: Story<any> = (args) => {
+  return (
+    <>
+      <RadioButton {...args} />
+    </>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
-  theme: 'dark',
+  name: 'radio1',
+  labelText: 'Label Text'
 };
