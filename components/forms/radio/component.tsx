@@ -9,7 +9,7 @@ export interface IRadioButton {
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined
 }
 
-export const RadioButton: FC<IRadioButton> = ({ onChange, name, labelText, ...props }) => {
+export const RadioButton: FC<IRadioButton> = ({ name, labelText, ...props }) => {
   return (
     <div className="flex items-center">
       <input
@@ -22,7 +22,7 @@ export const RadioButton: FC<IRadioButton> = ({ onChange, name, labelText, ...pr
       <div className="w-4 h-4 rounded-full border border-dashed border-mainblue flex items-center justify-center">
         <span className="hidden fill-current w-2.5 h-2.5 rounded-full bg-mainblue"></span>
       </div>
-      {labelText && <label htmlFor={name} className="text-white">{labelText}</label>}
+      {labelText && <label htmlFor={name} className="text-white ml-1">{labelText}</label>}
     </div>
   );
 };

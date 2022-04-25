@@ -18,6 +18,15 @@ export const parameters = {
   docs: {
     theme: themes.dark,
   },
+  backgrounds: {
+    default: 'polarview',
+    values: [
+      {
+        name: 'polarview',
+        value: '#0B1D32',
+      },
+    ],
+  },
 };
 
 export const decorators = [

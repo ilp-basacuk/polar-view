@@ -264,20 +264,37 @@
 .react-datepicker__day--keyboard-selected {
   @apply bg-mainblue text-white;
 }
-.react-datepicker__day--outside-month, .react-datepicker__day--disabled {
+.react-datepicker__day--outside-month,
+.react-datepicker__day--disabled {
   @apply text-softerblue;
 }
 
-
 input.radio:hover + div span {
-  @apply bg-softerblue block
+  @apply bg-softerblue block;
 }
 input.radio:checked + div span {
-  @apply bg-white border-solid block
+  @apply bg-white border-solid block;
 }
 input.radio:checked:hover + div span {
   @apply w-3 h-3;
 }
 input.radio:checked + div {
-  @apply border-solid
+  @apply border-solid;
+}
+
+input.checkbox:hover + div span {
+  @apply block bg-softerblue
+}
+input.checkbox:checked + div {
+  @apply border-mainblue border-solid;
+}
+input.checkbox:checked + div span {
+  @apply block;
+}
+input.checkbox:checked:hover + div span {
+  @apply bg-mainblue w-3 h-3;
+}
+
+.dayslider-radio:checked + div {
+  @apply bg-mainblue block;
 }

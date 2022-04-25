@@ -8,7 +8,7 @@ import ChevronDown from 'components/icons/chevron-down';
 import ChevronUp from 'components/icons/chevron-up';
 
 import Button from 'components/button';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 import cx from 'classnames';
 
 interface IDatePickerInputProps {

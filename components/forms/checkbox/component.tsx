@@ -1,35 +1,29 @@
-import { FC } from 'react';
+import React from 'react';
 
-import cx from 'classnames';
+interface CheckboxProps extends React.HTMLProps<HTMLInputElement> {
+  label?: string;
+}
 
-import useStatus from '../utils';
-
-import { THEME } from './constants';
-import type { CheckboxProps } from './types';
-
-export const Checkbox: FC<CheckboxProps> = ({
-  theme = 'dark',
-  input,
-  meta = {},
-  disabled = false,
-  className,
-  ...props
-}: CheckboxProps) => {
-  const st = useStatus({ meta, disabled });
-
+export const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, ...props }) => {
   return (
-    <input
-      {...input}
-      {...props}
-      type="checkbox"
-      disabled={disabled}
-      className={cx({
-        'form-checkbox': true,
-        [THEME[theme].base]: true,
-        [THEME[theme].status[st]]: true,
-        [className]: !!className,
-      })}
-    />
+    <div className='relative'>
+      <div className="flex items-center absolute">
+        <input
+          type="checkbox"
+          className="checkbox opacity-0 absolute w-full h-full cursor-pointer"
+          name={name}
+          {...props}
+        />
+        <div className="border border-dashed border-mainblue w-4 h-4 flex justify-center items-center">
+          <span className="w-2.5 h-2.5 bg-mainblue hidden"></span>
+        </div>
+        {label && (
+          <label htmlFor={name} className="text-mainblue text-tiny ml-1">
+            {label}
+          </label>
+        )}
+      </div>
+    </div>
   );
 };
 

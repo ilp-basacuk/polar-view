@@ -22,7 +22,8 @@ module.exports = {
       white: '#FFFFFF',
       navybluesoft: 'rgba(11, 29, 50, 0.2)',
       softerblue: 'rgba(39, 162, 248, 0.4)',
-      middleblue: '#004869'
+      middleblue: '#004869',
+      blur: 'rgba(0, 72, 105, 0.1)'
     },
     fontWeight: {
       light: 300,
