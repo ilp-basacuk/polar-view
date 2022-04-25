@@ -22,13 +22,19 @@ const Expandable: React.FC<IExpandable> = ({
   return (
     <div className="mb-1">
       <div className="h-8 px-2 bg-navyblue w-full border-l border-r border-mainblue text-tiny text-white flex items-center">
-        <span className="icon cursor-pointer" onClick={onExpandChange}>
+        <span
+          className="icon cursor-pointer"
+          role="button"
+          tabIndex={0}
+          aria-hidden
+          onClick={onExpandChange}
+        >
           <Icon stroke="white" />
         </span>
         <span className="ml-2">{label}</span>
-        <span className="flex-1 h-[1px] bg-middleblue mx-2"></span>
+        <span className="flex-1 h-[1px] bg-middleblue mx-2" />
         <span className="radio">
-          <RadioButton {...radioButtonProps}></RadioButton>
+          <RadioButton {...radioButtonProps} />
         </span>
       </div>
       {expanded && (

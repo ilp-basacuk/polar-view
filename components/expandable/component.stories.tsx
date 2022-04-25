@@ -24,22 +24,22 @@ export const Examples: React.FC = () => {
         onExpandChange={() => setExpanded(0)}
         expanded={expanded === 0}
         radioButtonProps={{ name: 'combo', value: '1' }}
-        content={<div className="h-40"></div>}
-      ></Expandable>
+        content={<div className="h-40" />}
+      />
       <Expandable
         label="ICE CHARTS"
         onExpandChange={() => setExpanded(1)}
         expanded={expanded === 1}
         radioButtonProps={{ name: 'combo', value: '2' }}
-        content={<div className="h-40"></div>}
-      ></Expandable>
+        content={<div className="h-40" />}
+      />
       <Expandable
         label="MODIS MOSAIC"
         onExpandChange={() => setExpanded(2)}
         expanded={expanded === 2}
         radioButtonProps={{ name: 'combo', value: '3' }}
-        content={<div className="h-40"></div>}
-      ></Expandable>
+        content={<div className="h-40" />}
+      />
     </div>
   );
 };

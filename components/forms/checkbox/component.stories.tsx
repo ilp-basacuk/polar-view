@@ -5,9 +5,7 @@ import Checkbox from './component';
 export default {
   title: 'Components/Forms/Checkbox',
   component: Checkbox,
-  argTypes: {
-    
-  },
+  argTypes: {},
 };
 
 const Template: Story<any> = (args) => <Checkbox {...args} />;

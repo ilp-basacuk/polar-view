@@ -7,16 +7,10 @@ export default {
   component: RadioButton,
 };
 
-const Template: Story<any> = (args) => {
-  return (
-    <>
-      <RadioButton {...args} />
-    </>
-  );
-};
+const Template: Story<any> = (args) => <RadioButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
   name: 'radio1',
-  labelText: 'Label Text'
+  labelText: 'Label Text',
 };
