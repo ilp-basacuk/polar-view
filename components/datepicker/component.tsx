@@ -45,7 +45,6 @@ const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
   }
 );
 
-
 const DatePicker: React.FC<IReactDatePickerProps> = ({
   startDate,
   onChange,
