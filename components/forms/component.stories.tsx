@@ -181,7 +181,7 @@ export const Form = (): ReactNode => {
             >
               {(flprops) => (
                 <div className="flex mt-2">
-                  <Radio id="radio-group-option-1" {...flprops} />
+                  <Radio name="radio-group-option-1" {...flprops} />
                   <Label htmlFor="radio-group-option-1" className="ml-2">
                     Option 1
                   </Label>
@@ -197,7 +197,7 @@ export const Form = (): ReactNode => {
             >
               {(flprops) => (
                 <div className="flex mt-2">
-                  <Radio id="radio-group-option-2" {...flprops} />
+                  <Radio name="radio-group-option-2" {...flprops} />
                   <Label htmlFor="radio-group-option-2" className="ml-2">
                     Option 2
                   </Label>
@@ -213,7 +213,7 @@ export const Form = (): ReactNode => {
             >
               {(flprops) => (
                 <div className="flex mt-2">
-                  <Radio id="radio-group-option-3" {...flprops} />
+                  <Radio name="radio-group-option-3" {...flprops} />
                   <Label htmlFor="radio-group-option-3" className="ml-2">
                     Option 3
                   </Label>
