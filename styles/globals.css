@@ -283,7 +283,7 @@ input.radio:checked + div {
 }
 
 input.checkbox:hover + div span {
-  @apply block bg-softerblue
+  @apply block bg-softerblue;
 }
 input.checkbox:checked + div {
   @apply border-mainblue border-solid;
@@ -297,4 +297,13 @@ input.checkbox:checked:hover + div span {
 
 .dayslider-radio:checked + div {
   @apply bg-mainblue block;
+}
+
+.leaflet-container {
+  @apply bg-navyblue;
+}
+
+.graticule-layer {
+  /* Just to make closer to the designs */
+  filter: sepia(100%) hue-rotate(160deg) saturate(2) brightness(0.5) !important;
 }
