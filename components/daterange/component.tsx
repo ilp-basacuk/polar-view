@@ -38,6 +38,7 @@ const DateRangePicker: React.FC<IDateRangePicker> = ({
         startDate={sStartDate}
         endDate={sEndDate}
         minDate={sStartDate}
+        maxDate={new Date()}
         disableToday={sStartDate > new Date()}
         placeholderText={endPlaceHolder}
       />
