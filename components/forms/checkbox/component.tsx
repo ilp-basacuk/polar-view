@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface CheckboxProps extends React.HTMLProps<HTMLInputElement> {
+export interface CheckboxProps extends React.HTMLProps<HTMLInputElement> {
   label?: string;
 }
 

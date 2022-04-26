@@ -52,8 +52,13 @@ export const Menu: FC<MenuProps> = ({
         <motion.div style={{ scale, opacity, maxWidth: maxWidth || 'none' }} {...attrs}>
           <div className="relative">
             <div className="px-2 py-1 border border-mainblue bg-blur flex flex-col text-white text-tiny font-bolder space-y-2">
-              {items.map((item, i) => (
-                <button key={i} className="text-left" onClick={() => onItemClick(item)}>
+              {items.map((item) => (
+                <button
+                  type="button"
+                  key={item.value}
+                  className="text-left"
+                  onClick={() => onItemClick(item)}
+                >
                   {item.text}
                 </button>
               ))}

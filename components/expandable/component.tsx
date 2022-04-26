@@ -8,7 +8,7 @@ interface IExpandable {
   expanded?: boolean;
   radioButtonProps?: IRadioButton;
   onExpandChange?: React.MouseEventHandler<HTMLSpanElement> | undefined;
-  content: any;
+  content: React.ReactNode;
 }
 
 const Expandable: React.FC<IExpandable> = ({

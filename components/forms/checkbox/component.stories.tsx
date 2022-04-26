@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react/types-6-0';
 
-import Checkbox from './component';
+import Checkbox, { CheckboxProps } from './component';
 
 export default {
   title: 'Components/Forms/Checkbox',
@@ -8,7 +8,7 @@ export default {
   argTypes: {},
 };
 
-const Template: Story<any> = (args) => <Checkbox {...args} />;
+const Template: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
