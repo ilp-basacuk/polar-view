@@ -9,4 +9,6 @@ export default {
 const Template: Story<any> = ({ ...args }: any) => <DatePicker {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  placeholderText: 'Select Date',
+};

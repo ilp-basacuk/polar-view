@@ -17,6 +17,11 @@ interface IDatePickerInputProps {
   isCalendarOpen: boolean;
   placeHolderText?: string;
 }
+
+interface IReactDatePickerProps extends ReactDatePickerProps {
+  disableToday?: boolean;
+}
+
 type Ref = HTMLButtonElement;
 
 const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
@@ -40,12 +45,13 @@ const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
   }
 );
 
-const DatePicker: React.FC<ReactDatePickerProps> = ({
+const DatePicker: React.FC<IReactDatePickerProps> = ({
   startDate,
   onChange,
   placeholderText,
+  disableToday,
   ...others
-}: ReactDatePickerProps) => {
+}: IReactDatePickerProps) => {
   const [currentDate, setCurrentDate] = React.useState(startDate);
   const [isCalendarOpen, setisCalendarOpen] = React.useState(false);
   return (
@@ -72,6 +78,7 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({
           cut="none"
           size="small"
           className="mx-auto my-2"
+          disabled={disableToday}
           onClick={() => setCurrentDate(new Date())}
         >
           TODAY

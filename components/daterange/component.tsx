@@ -1,5 +1,6 @@
 import React from 'react';
 import DatePicker from '../datepicker';
+import addDays from 'date-fns/addDays';
 
 interface IDateRangePicker {
   startDate?: Date;
@@ -25,6 +26,8 @@ const DateRangePicker: React.FC<IDateRangePicker> = ({
         selectsStart
         startDate={sStartDate}
         endDate={sEndDate}
+        maxDate={sEndDate}
+        disableToday={sEndDate < addDays(new Date(), -1)}
         placeholderText={startPlaceHolder}
       />
       <span className="text-mainblue text-tiny font-bolder mx-4">TO</span>
@@ -35,6 +38,7 @@ const DateRangePicker: React.FC<IDateRangePicker> = ({
         startDate={sStartDate}
         endDate={sEndDate}
         minDate={sStartDate}
+        disableToday={sStartDate > new Date()}
         placeholderText={endPlaceHolder}
       />
     </div>
