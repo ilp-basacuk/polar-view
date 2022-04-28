@@ -1,36 +1,31 @@
-import { FC } from 'react';
+import React from 'react';
 
-import cx from 'classnames';
+export interface IRadioButton {
+  checked?: boolean;
+  name: string;
+  value?: string;
+  labelText?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
+}
 
-import useStatus from '../utils';
-
-import { THEME } from './constants';
-import type { RadioProps } from './types';
-
-export const Radio: FC<RadioProps> = ({
-  theme = 'dark',
-  disabled = false,
-  input = {},
-  meta = {},
-  className,
-  ...props
-}: RadioProps) => {
-  const st = useStatus({ active: !!input.checked, meta, disabled });
-
-  return (
+export const RadioButton: React.FC<IRadioButton> = ({ name, labelText, ...props }) => (
+  <div className="flex items-center">
     <input
-      {...input}
-      {...props}
       type="radio"
-      disabled={disabled}
-      className={cx({
-        'form-radio': true,
-        [THEME[theme].base]: true,
-        [THEME[theme].status[st]]: true,
-        [className]: !!className,
-      })}
+      className="radio opacity-0 absolute h-8 w-8"
+      id={name}
+      name={name}
+      {...props}
     />
-  );
-};
+    <div className="w-4 h-4 rounded-full border border-dashed border-mainblue flex items-center justify-center">
+      <span className="hidden fill-current w-2.5 h-2.5 rounded-full bg-mainblue" />
+    </div>
+    {labelText && (
+      <label htmlFor={name} className="text-white ml-1">
+        {labelText}
+      </label>
+    )}
+  </div>
+);
 
-export default Radio;
+export default RadioButton;

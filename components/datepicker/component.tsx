@@ -8,19 +8,25 @@ import ChevronDown from 'components/icons/chevron-down';
 import ChevronUp from 'components/icons/chevron-up';
 
 import Button from 'components/button';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 import cx from 'classnames';
 
 interface IDatePickerInputProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   startDate: Date;
   isCalendarOpen: boolean;
+  placeHolderText?: string;
 }
+
+interface IReactDatePickerProps extends ReactDatePickerProps {
+  disableToday?: boolean;
+}
+
 type Ref = HTMLButtonElement;
 
 const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
-  ({ onClick, startDate, isCalendarOpen }, ref) => {
-    const formatedDate = format(startDate, 'dd/MM/yyyy');
+  ({ onClick, startDate, isCalendarOpen, placeHolderText }, ref) => {
+    const formatedDate = startDate ? format(startDate, 'dd/MM/yyyy') : placeHolderText;
     const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
     return (
       <button
@@ -39,11 +45,13 @@ const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
   }
 );
 
-const DatePicker: React.FC<ReactDatePickerProps> = ({
-  startDate = new Date(),
+const DatePicker: React.FC<IReactDatePickerProps> = ({
+  startDate,
   onChange,
+  placeholderText,
+  disableToday,
   ...others
-}: ReactDatePickerProps) => {
+}: IReactDatePickerProps) => {
   const [currentDate, setCurrentDate] = React.useState(startDate);
   const [isCalendarOpen, setisCalendarOpen] = React.useState(false);
   return (
@@ -57,13 +65,20 @@ const DatePicker: React.FC<ReactDatePickerProps> = ({
       onCalendarClose={() => setisCalendarOpen(false)}
       className="text-white"
       calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b"
-      customInput={<DatePickerInput startDate={currentDate} isCalendarOpen={isCalendarOpen} />}
+      customInput={
+        <DatePickerInput
+          startDate={currentDate}
+          isCalendarOpen={isCalendarOpen}
+          placeHolderText={placeholderText}
+        />
+      }
       todayButton={
         <Button
           theme="primary"
           cut="none"
           size="small"
           className="mx-auto my-2"
+          disabled={disableToday}
           onClick={() => setCurrentDate(new Date())}
         >
           TODAY

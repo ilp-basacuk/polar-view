@@ -31,8 +31,8 @@ export const getProjection = (projection: string, MAX_ZOOM, TILE_SIZE) => {
         '+ellps=WGS84 +datum=WGS84 +units=m +no_defs',
       {
         origin: [-4194304, 4194304],
-        resolutions: getResolutions(4194304),
-        bounds: L.bounds([
+        resolutions: [8192.0, 4096.0, 2048.0, 1024.0, 512.0, 256.0],
+        bounds: new L.Bounds([
           [-4194304, -4194304],
           [4194304, 4194304],
         ]),

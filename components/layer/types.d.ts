@@ -5,4 +5,5 @@ export interface LayerProps {
   params: WMSParams;
   minZoom?: number;
   tileSize: number;
+  className?: string;
 }
