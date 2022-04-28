@@ -15,14 +15,12 @@ import {
   sameWidthModifier,
   offsetModifier,
 } from 'components/forms/select/constants/popper-modifiers';
-import THEME from 'components/forms/select/constants/theme';
+import Styles from 'components/forms/select/constants/styles';
 import Menu from 'components/forms/select/menu';
 import Toggle from 'components/forms/select/toggle';
 import { SelectProps, SelectOptionProps } from 'components/forms/select/types';
 
 export const SingleSelect: FC<SelectProps> = ({
-  theme = 'dark',
-  size = 'base',
   maxHeight = 300,
   status,
   prefix,
@@ -152,16 +150,14 @@ export const SingleSelect: FC<SelectProps> = ({
     <div
       className={cx({
         'w-full leading-tight overflow-hidden relative': true,
-        [THEME[theme].container]: true,
-        [THEME[theme].closed]: true,
-        [THEME.states[status]]: true,
+        [Styles.container]: true,
+        [Styles.closed]: true,
+        [Styles.states[status]]: true,
       })}
     >
       <div className={cx({ 'relative w-full': true, invisible: isOpen })} ref={triggerRef}>
         <Toggle
           options={getOptions}
-          theme={theme}
-          size={size}
           status={status}
           prefix={prefix}
           disabled={disabled}
@@ -183,18 +179,9 @@ export const SingleSelect: FC<SelectProps> = ({
           style={styles.popper}
           {...attributes.popper}
         >
-          <Menu
-            theme={theme}
-            size={size}
-            status={status}
-            disabled={disabled}
-            opened={isOpen}
-            attributes={attributes}
-          >
+          <Menu status={status} disabled={disabled} opened={isOpen} attributes={attributes}>
             <Toggle
               options={options}
-              theme={theme}
-              size={size}
               status={status}
               prefix={prefix}
               disabled={disabled}
@@ -217,10 +204,10 @@ export const SingleSelect: FC<SelectProps> = ({
               {getOptions.map((option, index) => (
                 <li
                   className={cx({
-                    'px-2 py-1 mt-0.5 cursor-pointer text-tiny font-bolder': true,
-                    [THEME[theme].item.base]: highlightedIndex !== index,
-                    [THEME[theme].item.disabled]: option.disabled,
-                    [THEME[theme].item.highlighted]:
+                    'px-2 py-1 mt-0.5 cursor-pointer text-tiny font-bolder uppercase': true,
+                    [Styles.item.base]: highlightedIndex !== index,
+                    [Styles.item.disabled]: option.disabled,
+                    [Styles.item.highlighted]:
                       (highlightedIndex === index && !option.disabled) ||
                       isSelected(option, selectedItems),
                   })}
