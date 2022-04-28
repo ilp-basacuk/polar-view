@@ -292,11 +292,11 @@ input.checkbox:checked + div span {
   @apply block;
 }
 input.checkbox:checked:hover + div span {
-  @apply bg-mainblue w-3 h-3;
+  @apply bg-white w-3 h-3;
 }
 
 .dayslider-radio:checked + div {
-  @apply bg-mainblue block;
+  @apply bg-white block;
 }
 
 .leaflet-container {

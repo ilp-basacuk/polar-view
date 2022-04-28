@@ -24,7 +24,14 @@ module.exports = {
       softerblue: 'rgba(39, 162, 248, 0.4)',
       middleblue: '#004869',
       blur: 'rgba(0, 72, 105, 0.1)',
-      transparent: 'transparent'
+      transparent: 'transparent',
+      gray: '#707174',
+      red: '#FF1D32',
+      orange: '#FF8132',
+      yellow: '#FBFB32',
+      sky: '#78C8FA',
+      purple: '#9524E3',
+      green: '#52E38F'
     },
     fontWeight: {
       light: 300,
