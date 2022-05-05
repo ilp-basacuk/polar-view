@@ -1,8 +1,6 @@
 import { ReactNode, FocusEventHandler } from 'react';
 
 interface SelectThemeProps {
-  theme: 'dark' | 'light';
-  size: 'base' | 's';
   status?: 'none' | 'error' | 'valid' | 'disabled';
   maxHeight?: number | string;
 }
@@ -50,6 +48,7 @@ export interface SelectMenuProps extends SelectStatusProps, SelectThemeProps {
 }
 
 export interface SelectToggleProps extends SelectStatusProps, SelectDataProps, SelectThemeProps {
+  className?: string;
   opened: boolean;
   selectedItems: SelectOptionProps[];
   getToggleButtonProps: (e?: unknown) => void;

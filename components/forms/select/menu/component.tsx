@@ -2,11 +2,10 @@ import { FC } from 'react';
 
 import cx from 'classnames';
 
-import THEME from 'components/forms/select/constants/theme';
+import Styles from 'components/forms/select/constants/styles';
 import { SelectMenuProps } from 'components/forms/select/types';
 
 export const SelectMenu: FC<SelectMenuProps> = ({
-  theme,
   opened,
   attributes,
   children,
@@ -15,7 +14,7 @@ export const SelectMenu: FC<SelectMenuProps> = ({
     className={cx({
       'overflow-hidden': true,
       'invisible pointer-events-none': attributes?.popper?.['data-popper-reference-hidden'],
-      [THEME[theme].open]: opened,
+      [Styles.open]: opened,
     })}
   >
     {children}

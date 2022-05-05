@@ -16,14 +16,12 @@ import {
   sameWidthModifier,
   offsetModifier,
 } from 'components/forms/select/constants/popper-modifiers';
-import THEME from 'components/forms/select/constants/theme';
+import Styles from 'components/forms/select/constants/styles';
 import Menu from 'components/forms/select/menu';
 import Toggle from 'components/forms/select/toggle';
 import { SelectProps, SelectOptionProps } from 'components/forms/select/types';
 
 export const MultiSelect: FC<SelectProps> = ({
-  theme = 'dark',
-  size = 'base',
   maxHeight = 300,
   status,
   prefix,
@@ -199,16 +197,14 @@ export const MultiSelect: FC<SelectProps> = ({
     <div
       className={cx({
         'w-full leading-tight overflow-hidden': true,
-        [THEME[theme].container]: true,
-        [THEME[theme].closed]: true,
-        [THEME.states[status]]: true,
+        [Styles.container]: true,
+        [Styles.closed]: true,
+        [Styles.states[status]]: true,
       })}
     >
       <div className="relative w-full" ref={triggerRef}>
         <Toggle
           options={getOptionsEnabled}
-          theme={theme}
-          size={size}
           status={status}
           prefix={prefix}
           disabled={disabled}
@@ -235,8 +231,6 @@ export const MultiSelect: FC<SelectProps> = ({
           {...attributes.popper}
         >
           <Menu
-            theme={theme}
-            size={size}
             status={status}
             disabled={disabled}
             multiple
@@ -245,8 +239,6 @@ export const MultiSelect: FC<SelectProps> = ({
           >
             <Toggle
               options={getOptionsEnabled}
-              theme={theme}
-              size={size}
               status={status}
               prefix={prefix}
               disabled={disabled}
@@ -271,9 +263,9 @@ export const MultiSelect: FC<SelectProps> = ({
                 <li
                   className={cx({
                     'px-4 py-1 mt-0.5 cursor-pointer relative': true,
-                    [THEME[theme].item.base]: highlightedIndex !== index,
-                    [THEME[theme].item.disabled]: option.disabled,
-                    [THEME[theme].item.highlighted]:
+                    [Styles.item.base]: highlightedIndex !== index,
+                    [Styles.item.disabled]: option.disabled,
+                    [Styles.item.highlighted]:
                       (highlightedIndex === index && !option.disabled) ||
                       isSelected(option, selectedItems),
                   })}

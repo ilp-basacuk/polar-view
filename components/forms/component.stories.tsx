@@ -84,8 +84,6 @@ export const Form = (): ReactNode => {
                   <Select
                     {...flprops.input}
                     id="form-select"
-                    theme="dark"
-                    size="base"
                     meta={flprops.meta}
                     options={[
                       { label: 'Option 1', value: 'option-1' },

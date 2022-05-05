@@ -9,8 +9,6 @@ import type { SelectProps } from './types';
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
   const {
-    theme = 'dark',
-    size = 'base',
     placeholder = 'Select...',
     multiple,
     selected,
@@ -61,8 +59,6 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
       <MultipleSelect
         {...props}
         status={status}
-        theme={theme}
-        size={size}
         placeholder={placeholder}
         initialValues={initialValues}
         values={values}
@@ -75,8 +71,6 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
     <SingleSelect
       {...props}
       status={status}
-      theme={theme}
-      size={size}
       placeholder={placeholder}
       initialValues={initialValues}
       values={values}

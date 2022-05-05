@@ -2,7 +2,7 @@ import { FC, useCallback, useMemo } from 'react';
 
 import cx from 'classnames';
 
-import THEME from 'components/forms/select/constants/theme';
+import Styles from 'components/forms/select/constants/styles';
 import { SelectToggleProps } from 'components/forms/select/types';
 import Icon from 'components/icon';
 
@@ -10,14 +10,13 @@ import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
 export const SelectToggle: FC<SelectToggleProps> = ({
   options,
-  theme,
-  size,
   prefix,
   disabled,
   multiple,
   opened,
   selectedItems,
   placeholder,
+  className,
   getToggleButtonProps,
   getDropdownProps,
 }: SelectToggleProps) => {
@@ -39,8 +38,11 @@ export const SelectToggle: FC<SelectToggleProps> = ({
       aria-label="Select..."
       disabled={disabled}
       className={cx({
-        'relative w-full flex items-center tracking-wide': true,
-        [THEME.sizes[size]]: true,
+        [className]: !!className,
+        'relative w-full flex items-center tracking-wide text-tiny font-bolder uppercase px-2 py-1':
+          true,
+        'border-b border-mainblue': opened,
+        'border border-mainblue': !opened,
       })}
       {...(!multiple && getToggleButtonProps())}
       {...(multiple && getToggleButtonProps(getDropdownProps({ preventKeyAction: opened })))}
@@ -49,7 +51,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
         <span
           className={cx({
             'mr-2 text-xs font-heading': true,
-            [THEME[theme].prefix.base]: true,
+            [Styles.prefix.base]: true,
           })}
         >
           {prefix}
@@ -59,7 +61,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
       <span
         className={cx({
           'text-sm leading-none': true,
-          [THEME[theme].prefix.base]: selectedItems.length,
+          [Styles.prefix.base]: selectedItems.length,
         })}
       >
         {labelDefaultFormatter()}
@@ -68,9 +70,9 @@ export const SelectToggle: FC<SelectToggleProps> = ({
       <Icon
         className={cx({
           'absolute w-3 h-3 right-4': true,
-          [THEME[theme].icon.closed]: !opened,
-          [THEME[theme].icon.open]: opened,
-          [THEME[theme].icon.disabled]: disabled,
+          [Styles.icon.closed]: !opened,
+          [Styles.icon.open]: opened,
+          [Styles.icon.disabled]: disabled,
         })}
         icon={ARROW_DOWN_SVG}
       />
