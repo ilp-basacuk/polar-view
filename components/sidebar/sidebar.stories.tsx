@@ -1,6 +1,5 @@
-import { Story } from '@storybook/react/types-6-0';
-import { SideBar } from './sidebarcontainer';
 import React from 'react';
+import SideBar from './sidebarcontainer';
 
 export default {
   title: 'Components/Sidebar',

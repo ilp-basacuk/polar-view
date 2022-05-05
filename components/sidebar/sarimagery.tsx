@@ -1,6 +1,5 @@
-import Expandable from 'components/expandable';
 import FilterCheck from 'components/filtercheck';
-import { useChangeEffect } from 'components/hooks/useChangeState';
+import useChangeEffect from 'components/hooks/useChangeState';
 import React from 'react';
 import { ISARImageryState } from './sidebar.types';
 
@@ -36,7 +35,7 @@ export const SARImagery: React.FC<SARImageryProps> = ({ onChange }) => {
   useChangeEffect(() => {
     onChange(state);
   }, [state]);
-  
+
   return (
     <div>
       <FilterCheck

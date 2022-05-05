@@ -1,10 +1,10 @@
 import DateRangePicker from 'components/daterange/component';
+import DaySlider from 'components/dayslider/component';
 import FilterCheck from 'components/filtercheck';
-import { useChangeEffect } from 'components/hooks/useChangeState';
+import useChangeEffect from 'components/hooks/useChangeState';
+import addDays from 'date-fns/addDays';
 import React from 'react';
 import { ISeaIceState } from './sidebar.types';
-import DaySlider from 'components/dayslider/component';
-import addDays from 'date-fns/addDays';
 
 enum SeaIceActionsKind {
   AMSR2SEAICEEDGE = 'AMSR2SEAICEEDGE',
@@ -67,7 +67,7 @@ export const SeaIce: React.FC<SeaIceProps> = ({ onChange }) => {
       {showIceMap && (
         <div className="mb-3">
           <div className="text-white text-tiny mb-3 py-1">
-            <div className="sea-ice-map-gradiant h-2"></div>
+            <div className="sea-ice-map-gradiant h-2" />
             <div className="flex justify-between mt-2.5">
               <span>0%</span>
               <span>100%</span>

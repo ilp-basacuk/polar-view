@@ -1,15 +1,12 @@
+import Button from 'components/button';
 import IconButton from 'components/iconbutton';
-import React from 'react';
-import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
-
+import ChevronDown from 'components/icons/chevron-down';
 import ChevronLeft from 'components/icons/chevron-left';
 import ChevronRight from 'components/icons/chevron-right';
-import ChevronDown from 'components/icons/chevron-down';
 import ChevronUp from 'components/icons/chevron-up';
-
-import Button from 'components/button';
 import format from 'date-fns/format';
-import cx from 'classnames';
+import React from 'react';
+import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
 
 interface IDatePickerInputProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -27,11 +24,11 @@ type Ref = HTMLButtonElement;
 const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
   ({ onClick, startDate, isCalendarOpen, placeHolderText }, ref) => {
     const formatedDate = startDate ? format(startDate, 'dd/MM/yyyy') : placeHolderText;
-    const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
+    // const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
     return (
       <button
         type="button"
-        className={`border border-mainblue text-white text-xs py-1 px-2 active:bg-softerblue flex content-center `}
+        className="border border-mainblue text-white text-xs py-1 px-2 active:bg-softerblue flex content-center"
         onClick={onClick}
         ref={ref}
       >

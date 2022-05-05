@@ -1,8 +1,6 @@
-import Checkbox, { CheckboxProps } from 'components/forms/checkbox/component';
-import React from 'react';
-import Menu, { MenuProps } from '../menu/component';
-import MenuButton from '../menu/menubutton';
 import cx from 'classnames';
+import { CheckboxProps } from 'components/forms/checkbox/component';
+import React from 'react';
 
 export interface IIceChartCheck extends CheckboxProps {
   label: string;

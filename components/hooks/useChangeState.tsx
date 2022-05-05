@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const useChangeEffect = (onChange: React.EffectCallback, dependencies: ReadonlyArray<any>) => {
+const useChangeEffect = (onChange: React.EffectCallback, dependencies: ReadonlyArray<any>) => {
   const [firstRender, setFirstRender] = React.useState(true);
   React.useEffect(() => {
     if (firstRender) {
@@ -10,3 +10,5 @@ export const useChangeEffect = (onChange: React.EffectCallback, dependencies: Re
     }
   }, dependencies);
 };
+
+export default useChangeEffect;
