@@ -1,10 +1,10 @@
-import { start } from '@popperjs/core';
 import DateRangePicker from 'components/daterange/component';
-import Expandable from 'components/expandable';
 import FilterCheck from 'components/filtercheck';
 import { useChangeEffect } from 'components/hooks/useChangeState';
 import React from 'react';
 import { ISeaIceState } from './sidebar.types';
+import DaySlider from 'components/dayslider/component';
+import addDays from 'date-fns/addDays';
 
 enum SeaIceActionsKind {
   AMSR2SEAICEEDGE = 'AMSR2SEAICEEDGE',
@@ -73,16 +73,22 @@ export const SeaIce: React.FC<SeaIceProps> = ({ onChange }) => {
               <span>100%</span>
             </div>
           </div>
-          <DateRangePicker
-            startDate={state.DATERANGE.startDate}
-            endDate={state.DATERANGE.endDate}
-            startPlaceHolder="Start Date"
-            endPlaceHolder="End Date"
-            onChange={(startDate, endDate) => {
-              if (startDate && endDate) {
-                setState({ type: SeaIceActionsKind.DATERANGE, payload: { startDate, endDate } });
-              }
-            }}
+          <div className="mb-3">
+            <DateRangePicker
+              startDate={state.DATERANGE.startDate}
+              endDate={state.DATERANGE.endDate}
+              startPlaceHolder="Start Date"
+              endPlaceHolder="End Date"
+              onChange={(startDate, endDate) => {
+                if (startDate && endDate) {
+                  setState({ type: SeaIceActionsKind.DATERANGE, payload: { startDate, endDate } });
+                }
+              }}
+            />
+          </div>
+          <DaySlider
+            startDate={addDays(new Date(), -30)}
+            onChange={(date) => setState({ type: SeaIceActionsKind.SLIDERDAY, payload: date })}
           />
         </div>
       )}

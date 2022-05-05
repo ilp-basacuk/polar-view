@@ -299,7 +299,15 @@ input.checkbox:checked:hover + div span {
 }
 
 .dayslider-radio:checked + div {
-  @apply bg-white block;
+  @apply bg-mainblue block;
+}
+
+.dayslider-radio:hover + div {
+  @apply border border-mainblue;
+}
+
+.leaflet-container {
+  @apply bg-navyblue;
 }
 
 .graticule-layer {
