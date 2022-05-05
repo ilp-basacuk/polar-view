@@ -31,7 +31,7 @@ const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
     return (
       <button
         type="button"
-        className={`border border-mainblue text-white text-xs py-1 px-2 active:bg-softerblue flex content-center ${classes}`}
+        className={`border border-mainblue text-white text-xs py-1 px-2 active:bg-softerblue flex content-center `}
         onClick={onClick}
         ref={ref}
       >
@@ -64,7 +64,7 @@ const DatePicker: React.FC<IReactDatePickerProps> = ({
       onCalendarOpen={() => setisCalendarOpen(true)}
       onCalendarClose={() => setisCalendarOpen(false)}
       className="text-white"
-      calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b"
+      calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b bg-navyblue"
       customInput={
         <DatePickerInput
           startDate={currentDate}

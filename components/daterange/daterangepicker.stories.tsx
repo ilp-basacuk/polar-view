@@ -6,7 +6,11 @@ export default {
   component: DateRangePicker,
 };
 
-const Template: Story<any> = ({ ...args }: any) => <DateRangePicker {...args} />;
+const Template: Story<any> = ({ ...args }: any) => (
+  <div className="w-[300px]">
+    <DateRangePicker {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {
