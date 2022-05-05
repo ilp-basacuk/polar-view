@@ -1,19 +1,20 @@
 import Expandable from 'components/expandable';
-import FilterCheck from 'components/filtercheck';
 import { useChangeEffect } from 'components/hooks/useChangeState';
 import React from 'react';
+import { IceCharts, IceChartsInitialState } from './icecharts';
 import { SARImagery, SARImageryInitialState } from './sarimagery';
 import { SeaIce, SeaIceInitialState } from './seaiceconcentration';
-import { ISARImageryState, ISidebarState, ISeaIceState } from './sidebar.types';
+import { IIceChartsState, ISARImageryState, ISeaIceState, ISidebarState } from './sidebar.types';
 
 enum SideBarActionKind {
   SARIMAGERY = 'SARIMAGERY',
   SEAICE = 'SEAICE',
+  ICECHARTS = 'ICECHARTS',
 }
 
 interface SideBarAction {
   type: SideBarActionKind;
-  payload: ISARImageryState | ISeaIceState;
+  payload: ISARImageryState | ISeaIceState | IIceChartsState;
 }
 
 const sidebarStateReducer = (state: ISidebarState, action: SideBarAction) => {
@@ -24,6 +25,7 @@ const sidebarStateReducer = (state: ISidebarState, action: SideBarAction) => {
 const sidebarInitialState: ISidebarState = {
   SARIMAGERY: SARImageryInitialState,
   SEAICE: SeaIceInitialState,
+  ICECHARTS: IceChartsInitialState,
 };
 
 export const SideBar: React.FC = () => {
@@ -49,7 +51,7 @@ export const SideBar: React.FC = () => {
         first
       />
       <Expandable
-        label="ICE CHARTS"
+        label="SEA ICE CONCENTRATION"
         onExpandChange={() => setExpanded(1)}
         expanded={expanded === 1}
         radioButtonProps={{ name: 'combo', value: '2' }}
@@ -58,11 +60,15 @@ export const SideBar: React.FC = () => {
         }
       />
       <Expandable
-        label="MODIS MOSAIC"
+        label="ICE CHARTS"
         onExpandChange={() => setExpanded(2)}
         expanded={expanded === 2}
         radioButtonProps={{ name: 'combo', value: '3' }}
-        content={<div className="h-40" />}
+        content={
+          <IceCharts
+            onChange={(payload) => setState({ type: SideBarActionKind.ICECHARTS, payload })}
+          />
+        }
       />
     </div>
   );
