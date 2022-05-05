@@ -12,7 +12,7 @@ export interface MenuProps {
   items: MenuItem[];
   maxWidth?: string | number;
   children?: React.ReactElement;
-  onItemClick?: (item: MenuItem) => void;
+  onItemClick?: (item: MenuItem) => boolean | null;
 }
 
 export const Menu: FC<MenuProps> = ({
@@ -26,6 +26,7 @@ export const Menu: FC<MenuProps> = ({
   const opacity = useSpring(0, springConfig);
   const scale = useSpring(0.95, springConfig);
   const [isVisible, setIsVisible] = React.useState(false);
+  const tippyRef = React.useRef(null);
 
   const onMount = useCallback(() => {
     scale.set(1);
@@ -48,6 +49,7 @@ export const Menu: FC<MenuProps> = ({
   return (
     <Tippy
       {...props}
+      ref={tippyRef}
       render={(attrs) => (
         <motion.div style={{ scale, opacity, maxWidth: maxWidth || 'none' }} {...attrs}>
           <div className="relative">
@@ -57,7 +59,14 @@ export const Menu: FC<MenuProps> = ({
                   type="button"
                   key={item.value}
                   className="text-left"
-                  onClick={() => onItemClick(item)}
+                  onClick={() => {
+                    if (onItemClick) {
+                      if (onItemClick(item)) {
+                        // eslint-disable-next-line no-underscore-dangle
+                        tippyRef?.current?._tippy.hide();
+                      }
+                    }
+                  }}
                 >
                   {item.text}
                 </button>
