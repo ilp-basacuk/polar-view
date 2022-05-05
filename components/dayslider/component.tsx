@@ -2,6 +2,7 @@ import addDays from 'date-fns/addDays';
 import format from 'date-fns/format';
 import React from 'react';
 import Tooltip from '../tooltip';
+
 interface IDaySlider {
   startDate?: Date;
   onChange?: (date: Date) => void;
@@ -26,7 +27,7 @@ const DaySlider: React.FC<IDaySlider> = ({ startDate, onChange }) => {
           const borderLeft = i === 0 ? 'border-l' : 'border-l-0';
           return (
             <Tooltip
-            key={val}
+              key={val}
               content={
                 <div className="px-2 py-2 text-tiny text-white bg-middleblue">
                   <span>{format(addDays(startDate, val), 'dd-MM-yyyy')}</span>

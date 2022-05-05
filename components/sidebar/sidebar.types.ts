@@ -13,7 +13,7 @@ export interface ISeaIceState {
 export interface IIceChartsState {
   FASTICE: { checked: boolean };
   VERYCLOSEDRIFTICE: { checked: boolean };
-  CLOSEDRIFTICE: { checked: boolean },
+  CLOSEDRIFTICE: { checked: boolean };
   OPENDRIFTICE: { checked: boolean };
   OPENWATER: { checked: boolean };
 }

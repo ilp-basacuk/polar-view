@@ -1,11 +1,7 @@
-import DateRangePicker from 'components/daterange/component';
-import FilterCheck from 'components/filtercheck';
-import { useChangeEffect } from 'components/hooks/useChangeState';
+import IceChartCheck from 'components/filtercheck/icechartcheck';
+import useChangeEffect from 'components/hooks/useChangeState';
 import React from 'react';
 import { IIceChartsState } from './sidebar.types';
-import DaySlider from 'components/dayslider/component';
-import addDays from 'date-fns/addDays';
-import IceChartCheck from 'components/filtercheck/icechartcheck';
 
 enum IceChartsActionsKind {
   FASTICE = 'FASTICE',

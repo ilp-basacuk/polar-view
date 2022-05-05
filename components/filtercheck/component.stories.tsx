@@ -103,11 +103,7 @@ export const Examples1: React.FC = () => (
 
 export const Examples2: React.FC = () => (
   <div className="w-[300px]">
-    <IceChartCheck
-      label="Fast Ice"
-      bullet="gray"
-       name= 'fastIce'
-    />
+    <IceChartCheck label="Fast Ice" bullet="gray" name="fastIce" />
     <IceChartCheck label="Very Close Drift Ice" bullet="red" />
     <IceChartCheck label="Close Drift Ice" bullet="orange" />
     <IceChartCheck label="Open Drift Ice" bullet="yellow" />

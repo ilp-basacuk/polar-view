@@ -1,5 +1,5 @@
 import Expandable from 'components/expandable';
-import { useChangeEffect } from 'components/hooks/useChangeState';
+import useChangeEffect from 'components/hooks/useChangeState';
 import React from 'react';
 import { IceCharts, IceChartsInitialState } from './icecharts';
 import { SARImagery, SARImageryInitialState } from './sarimagery';
@@ -28,7 +28,7 @@ const sidebarInitialState: ISidebarState = {
   ICECHARTS: IceChartsInitialState,
 };
 
-export const SideBar: React.FC = () => {
+const SideBar: React.FC = () => {
   const [expanded, setExpanded] = React.useState(1);
   const [state, setState] = React.useReducer(sidebarStateReducer, sidebarInitialState);
 
@@ -73,3 +73,5 @@ export const SideBar: React.FC = () => {
     </div>
   );
 };
+
+export default SideBar;
