@@ -1,21 +1,14 @@
-import Expandable from 'components/expandable';
 import useChangeEffect from 'components/hooks/useChangeState';
+import Iconbutton from 'components/iconbutton';
+import DoubleRightArrow from 'components/icons/double-right-arrow';
 import React from 'react';
-import { IceCharts, IceChartsInitialState } from './icecharts';
-import { SARImagery, SARImageryInitialState } from './sarimagery';
-import { SeaIce, SeaIceInitialState } from './seaiceconcentration';
-import { IIceChartsState, ISARImageryState, ISeaIceState, ISidebarState } from './sidebar.types';
-
-enum SideBarActionKind {
-  SARIMAGERY = 'SARIMAGERY',
-  SEAICE = 'SEAICE',
-  ICECHARTS = 'ICECHARTS',
-}
-
-interface SideBarAction {
-  type: SideBarActionKind;
-  payload: ISARImageryState | ISeaIceState | IIceChartsState;
-}
+import { IceChartsInitialState } from './icecharts';
+import { SARImageryInitialState } from './sarimagery';
+import { SeaIceInitialState } from './seaiceconcentration';
+import { ISidebarState, SideBarAction, SIDEBAR_VIEW } from './sidebar.types';
+import SidebarBottomAction from './sidebarbottomaction';
+import SidebarLayerView from './sidebarlayerview';
+import SidebarLegendView from './sidebarlegendview';
 
 const sidebarStateReducer = (state: ISidebarState, action: SideBarAction) => {
   const { type, payload } = action;
@@ -29,47 +22,30 @@ const sidebarInitialState: ISidebarState = {
 };
 
 const SideBar: React.FC = () => {
-  const [expanded, setExpanded] = React.useState(1);
   const [state, setState] = React.useReducer(sidebarStateReducer, sidebarInitialState);
+  const [view, setView] = React.useState<SIDEBAR_VIEW>(SIDEBAR_VIEW.LAYERS);
 
   useChangeEffect(() => {
     console.log(state);
   }, [state]);
 
   return (
-    <div className="bg-navyblue space-y-1 w-[275px] absolute left-6 bottom-12">
-      <Expandable
-        label="SAR IMAGERY"
-        onExpandChange={() => setExpanded(0)}
-        expanded={expanded === 0}
-        radioButtonProps={{ name: 'combo', value: '1' }}
-        content={
-          <SARImagery
-            onChange={(payload) => setState({ type: SideBarActionKind.SARIMAGERY, payload })}
-          />
-        }
-        first
-      />
-      <Expandable
-        label="SEA ICE CONCENTRATION"
-        onExpandChange={() => setExpanded(1)}
-        expanded={expanded === 1}
-        radioButtonProps={{ name: 'combo', value: '2' }}
-        content={
-          <SeaIce onChange={(payload) => setState({ type: SideBarActionKind.SEAICE, payload })} />
-        }
-      />
-      <Expandable
-        label="ICE CHARTS"
-        onExpandChange={() => setExpanded(2)}
-        expanded={expanded === 2}
-        radioButtonProps={{ name: 'combo', value: '3' }}
-        content={
-          <IceCharts
-            onChange={(payload) => setState({ type: SideBarActionKind.ICECHARTS, payload })}
-          />
-        }
-      />
+    <div className="bg-navyblue w-[275px] absolute left-6 bottom-12">
+      {view === SIDEBAR_VIEW.LAYERS && <SidebarLayerView onChange={setState} />}
+      {view === SIDEBAR_VIEW.LEGEND && (
+          <SidebarLegendView onChange={(params) => {}} />
+      )}
+      {view == SIDEBAR_VIEW.NONE && (
+        <Iconbutton
+          onClick={() => {
+            setView(SIDEBAR_VIEW.LAYERS);
+          }}
+          theme="secondary"
+          icon={DoubleRightArrow}
+          iconStroke="#ffffff"
+        />
+      )}
+      {view != SIDEBAR_VIEW.NONE && <SidebarBottomAction view={view} setView={setView} />}
     </div>
   );
 };

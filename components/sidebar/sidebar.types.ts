@@ -23,3 +23,21 @@ export interface ISidebarState {
   SEAICE: ISeaIceState;
   ICECHARTS: IIceChartsState;
 }
+
+export enum SIDEBAR_VIEW {
+  LEGEND,
+  LAYERS,
+  NONE,
+}
+
+export enum SideBarActionKind {
+  SARIMAGERY = 'SARIMAGERY',
+  SEAICE = 'SEAICE',
+  ICECHARTS = 'ICECHARTS',
+}
+
+export interface SideBarAction {
+  type: SideBarActionKind;
+  payload: ISARImageryState | ISeaIceState | IIceChartsState;
+}
+

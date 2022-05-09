@@ -1,6 +1,6 @@
 export default {
   container: 'text-white bg-transparent',
-  open: 'text-white border border-mainblue',
+  open: 'text-white border-b border-r border-l border-mainblue',
   closed: '',
   prefix: {
     base: 'text-white',

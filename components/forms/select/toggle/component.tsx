@@ -39,10 +39,9 @@ export const SelectToggle: FC<SelectToggleProps> = ({
       disabled={disabled}
       className={cx({
         [className]: !!className,
-        'relative w-full flex items-center tracking-wide text-tiny font-bolder uppercase px-2 py-1':
+        'relative w-full flex items-center tracking-wide text-tiny font-bolder uppercase px-2 py-2 border border-mainblue':
           true,
-        'border-b border-mainblue': opened,
-        'border border-mainblue': !opened,
+        'border-l-0 border-r-0': opened,
       })}
       {...(!multiple && getToggleButtonProps())}
       {...(multiple && getToggleButtonProps(getDropdownProps({ preventKeyAction: opened })))}
@@ -60,7 +59,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
 
       <span
         className={cx({
-          'text-sm leading-none': true,
+          'text-tiny leading-none': true,
           [Styles.prefix.base]: selectedItems.length,
         })}
       >
