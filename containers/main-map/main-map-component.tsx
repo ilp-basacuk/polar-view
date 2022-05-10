@@ -25,7 +25,7 @@ const MainMap: FC<MainMapProps> = () => {
       params: { ...defaultParams, ...layer.params },
     };
 
-    return <Layer {...updatedLayer} />;
+    return <Layer key={layer.id} {...updatedLayer} />;
   };
 
   const activeLayers = ['graticule', 'land-mask'];

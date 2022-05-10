@@ -24,7 +24,7 @@ const LatLonText: FC<{}> = () => {
     },
   });
   return (
-    <div className="absolute bottom-0 right-3 text-mainblue">
+    <div className="absolute bottom-8 right-3 w-40 text-mainblue">
       Long: {lon}, Lat: {lat}
     </div>
   );

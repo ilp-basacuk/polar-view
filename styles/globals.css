@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./leaflet-overrides.css";
+
 /* .root,
 #root,
 #docs-root {
@@ -298,14 +300,6 @@ input.checkbox:checked:hover + div span {
 
 .dayslider-radio:checked + div {
   @apply bg-white block;
-}
-
-.leaflet-container {
-  @apply bg-navyblue;
-}
-
-.leaflet-pane {
-  z-index: 1;
 }
 
 .graticule-layer {
