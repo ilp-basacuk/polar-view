@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.root,
+@import "./leaflet-overrides.css";
+
+/* .root,
 #root,
 #docs-root {
   --navyblue: #0b1d32;
@@ -14,7 +16,7 @@
   --cut-border-size: 16px;
   --cut-border-pos: -9px;
   --white-triangle-border: 4px solid white;
-}
+} */
 
 .btn-wrapper.cut {
   position: relative;
@@ -26,7 +28,7 @@
   border: 4px solid transparent;
 }
 .btn-wrapper.cut:hover button.btn-primary {
-  background-color: var(--softerblue);
+  background-color: rgba(39, 162, 248, 0.4);
 }
 .btn.cut {
   overflow: hidden;
@@ -36,20 +38,20 @@
 .btn-wrapper.cut-r-b:hover:after {
   right: 0px;
   bottom: 0px;
-  border-right: var(--white-triangle-border);
-  border-bottom: var(--white-triangle-border);
+  border-right: 4px solid white;
+  border-bottom: 4px solid white;
   z-index: 1;
 }
 
 .btn.cut-r-b:after {
   content: '';
-  width: var(--cut-border-size);
-  height: var(--cut-border-size);
+  width: 16px;
+  height: 16px;
   position: absolute;
-  bottom: var(--cut-border-pos);
-  right: var(--cut-border-pos);
+  bottom: -9px;
+  right: -9px;
   transform: rotate(45deg);
-  background-color: var(--mainblue);
+  @apply bg-mainblue;
 }
 
 .btn.cut-r-b {
@@ -59,8 +61,8 @@
 .btn-wrapper.cut-r-t:hover:after {
   right: 0px;
   top: 0px;
-  border-right: var(--white-triangle-border);
-  border-top: var(--white-triangle-border);
+  border-right: 4px solid white;
+  border-top: 4px solid white;
   z-index: 1;
 }
 
@@ -70,20 +72,20 @@
 
 .btn.cut-r-t:after {
   content: '';
-  width: var(--cut-border-size);
-  height: var(--cut-border-size);
+  width: 16px;
+  height: 16px;
   position: absolute;
-  top: var(--cut-border-pos);
-  right: var(--cut-border-pos);
+  top: -9px;
+  right: -9px;
   transform: rotate(45deg);
-  background-color: var(--mainblue);
+  @apply bg-mainblue;
 }
 
 .btn-wrapper.cut-l-t:hover:after {
   left: 0px;
   top: 0px;
-  border-left: var(--white-triangle-border);
-  border-top: var(--white-triangle-border);
+  border-left: 4px solid white;
+  border-top: 4px solid white;
   z-index: 1;
 }
 
@@ -93,13 +95,13 @@
 
 .btn.cut-l-t:after {
   content: '';
-  width: var(--cut-border-size);
-  height: var(--cut-border-size);
+  width: 16px;
+  height: 16px;
   position: absolute;
-  left: var(--cut-border-pos);
-  top: var(--cut-border-pos);
+  left: -9px;
+  top: -9px;
   transform: rotate(45deg);
-  background-color: var(--mainblue);
+  @apply bg-mainblue;
 }
 
 @-webkit-keyframes autofill {
@@ -298,10 +300,6 @@ input.checkbox:checked:hover + div span {
 
 .dayslider-radio:checked + div {
   @apply bg-white block;
-}
-
-.leaflet-container {
-  @apply bg-navyblue;
 }
 
 .graticule-layer {
