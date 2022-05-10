@@ -1,32 +1,15 @@
-import { SyntheticEvent, useState, FC } from 'react';
-
-import { useMap, useMapEvents } from 'react-leaflet';
+import * as L from 'leaflet';
 
 import Button from 'components/button';
 
-interface ZoomControlProps {
-  minZoom: number;
-  maxZoom: number;
-}
-
-const ZoomControl: FC<ZoomControlProps> = ({ minZoom, maxZoom }) => {
-  const map = useMap();
-  const [zoom, setZoom] = useState(map && map.getZoom());
-
-  useMapEvents({
-    zoomend() {
-      setZoom(map.getZoom());
-    },
-  });
-
-  const zoomIn: (e: SyntheticEvent) => void = (e) => {
+const ZoomControl = ({ map }: { map: L.Map }) => {
+  const zoomIn = (e) => {
     e.preventDefault();
     if (map) {
       map.setZoom(map.getZoom() + 1);
     }
   };
-
-  const zoomOut: (e: SyntheticEvent) => void = (e) => {
+  const zoomOut = (e) => {
     e.preventDefault();
     if (map) {
       map.setZoom(map.getZoom() - 1);
@@ -43,7 +26,7 @@ const ZoomControl: FC<ZoomControlProps> = ({ minZoom, maxZoom }) => {
         theme="primary"
         onClick={zoomIn}
         cut="left-top"
-        disabled={zoom && zoom >= maxZoom}
+        disabled={map && map.getZoom() > 12}
       >
         +
       </Button>
@@ -55,7 +38,7 @@ const ZoomControl: FC<ZoomControlProps> = ({ minZoom, maxZoom }) => {
         theme="primary"
         onClick={zoomOut}
         cut="right-bottom"
-        disabled={zoom && zoom <= minZoom}
+        disabled={map && map.getZoom() < 0.5}
       >
         −
       </Button>
