@@ -38,11 +38,7 @@ const FilterCheck: React.FC<IFilterCheck> = ({
     <div className="flex items-center justify-between p-1">
       <div className="flex items-center">
         {bullet && <div className={bulletClass} />}
-        <div
-          className={`text-sm text-${labelColor}`}
-        >
-          {label}
-        </div>
+        <div className={`text-sm text-${labelColor}`}>{label}</div>
       </div>
       {(menuProps || checkboxProps) && (
         <div className="flex">

@@ -24,7 +24,7 @@ export interface ISidebarState {
   ICECHARTS: IIceChartsState;
 }
 
-export enum SIDEBAR_VIEW {
+export enum SIDEBARVIEW {
   LEGEND,
   LAYERS,
   NONE,
@@ -40,4 +40,3 @@ export interface SideBarAction {
   type: SideBarActionKind;
   payload: ISARImageryState | ISeaIceState | IIceChartsState;
 }
-
