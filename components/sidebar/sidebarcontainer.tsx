@@ -5,7 +5,7 @@ import React from 'react';
 import { IceChartsInitialState } from './icecharts';
 import { SARImageryInitialState } from './sarimagery';
 import { SeaIceInitialState } from './seaiceconcentration';
-import { ISidebarState, SideBarAction, SIDEBAR_VIEW } from './sidebar.types';
+import { ISidebarState, SideBarAction, SIDEBARVIEW } from './sidebar.types';
 import SidebarBottomAction from './sidebarbottomaction';
 import SidebarLayerView from './sidebarlayerview';
 import SidebarLegendView from './sidebarlegendview';
@@ -23,7 +23,7 @@ const sidebarInitialState: ISidebarState = {
 
 const SideBar: React.FC = () => {
   const [state, setState] = React.useReducer(sidebarStateReducer, sidebarInitialState);
-  const [view, setView] = React.useState<SIDEBAR_VIEW>(SIDEBAR_VIEW.LAYERS);
+  const [view, setView] = React.useState<SIDEBARVIEW>(SIDEBARVIEW.LAYERS);
 
   useChangeEffect(() => {
     console.log(state);
@@ -31,21 +31,19 @@ const SideBar: React.FC = () => {
 
   return (
     <div className="bg-navyblue w-[275px] absolute left-6 bottom-12">
-      {view === SIDEBAR_VIEW.LAYERS && <SidebarLayerView onChange={setState} />}
-      {view === SIDEBAR_VIEW.LEGEND && (
-          <SidebarLegendView onChange={(params) => {}} />
-      )}
-      {view == SIDEBAR_VIEW.NONE && (
+      {view === SIDEBARVIEW.LAYERS && <SidebarLayerView onChange={setState} />}
+      {view === SIDEBARVIEW.LEGEND && <SidebarLegendView />}
+      {view === SIDEBARVIEW.NONE && (
         <Iconbutton
           onClick={() => {
-            setView(SIDEBAR_VIEW.LAYERS);
+            setView(SIDEBARVIEW.LAYERS);
           }}
           theme="secondary"
           icon={DoubleRightArrow}
           iconStroke="#ffffff"
         />
       )}
-      {view != SIDEBAR_VIEW.NONE && <SidebarBottomAction view={view} setView={setView} />}
+      {view !== SIDEBARVIEW.NONE && <SidebarBottomAction view={view} setView={setView} />}
     </div>
   );
 };
