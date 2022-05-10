@@ -4,6 +4,7 @@ import Head from 'next/head';
 // import Image from 'next/image';
 
 import MainMap from 'containers/main-map';
+import Menu from 'containers/menu';
 
 import Button from 'components/button';
 
@@ -23,7 +24,7 @@ const Home: React.FC = () => (
     <div className="w-full h-screen">
       {renderLogo()}
       <div className="absolute top-4 right-4 z-50">
-        <Button theme="primary">Hello</Button>
+        <Menu />
       </div>
       <MainMap />
     </div>

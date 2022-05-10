@@ -1,7 +1,11 @@
-import cx from 'classnames';
 import { FC } from 'react';
+
+import cx from 'classnames';
+
+import Link from 'next/link';
+
 import THEME from './constants';
-import type { ButtonProps } from './types';
+import type { ButtonProps, AnchorProps, Overload } from './types';
 
 const CUT_MAP = {
   'right-bottom': 'cut cut-r-b',
@@ -16,9 +20,11 @@ const SIZE_MAP = {
   large: 'h-8',
 };
 
+// Guard to check if href exists in props
+const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'href' in props;
+
 function buildClassName({ className, disabled, theme, cut, size }) {
-  return cx({
-    'btn flex items-center justify-center text-tiny font-bolder p-2': true,
+  return cx('btn flex items-center justify-center text-tiny font-bolder p-2 uppercase', {
     [THEME[theme]]: true,
     [CUT_MAP[cut]]: true,
     [SIZE_MAP[size]]: true,
@@ -26,6 +32,69 @@ function buildClassName({ className, disabled, theme, cut, size }) {
     'opacity-50 pointer-events-none': disabled,
   });
 }
+
+export const LinkAnchor: FC<AnchorProps> = ({
+  anchorLinkProps,
+  children,
+  theme = 'primary',
+  className,
+  disabled,
+  href,
+  cut = 'right-bottom',
+  size = 'large',
+  ...restProps
+}: AnchorProps) => (
+  <Link href={href} {...anchorLinkProps}>
+    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+      <a
+        className={buildClassName({
+          className,
+          disabled,
+          theme,
+          cut,
+          size,
+        })}
+        {...restProps}
+      >
+        {children}
+      </a>
+    </span>
+  </Link>
+);
+
+export const Anchor: FC<AnchorProps> = ({
+  children,
+  theme = 'primary',
+  className,
+  disabled,
+  href,
+  cut = 'right-bottom',
+  size = 'large',
+  ...restProps
+}: AnchorProps) => {
+  // Anchor element doesn't support disabled attribute
+  // https://www.w3.org/TR/2014/REC-html5-20141028/disabled-elements.html
+  if (disabled) {
+    return <span {...restProps}>{children}</span>;
+  }
+  return (
+    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+      <a
+        href={href}
+        className={buildClassName({
+          className,
+          disabled,
+          theme,
+          cut,
+          size,
+        })}
+        {...restProps}
+      >
+        {children}
+      </a>
+    </span>
+  );
+};
 
 export const Button: FC<ButtonProps> = ({
   children,
@@ -57,4 +126,16 @@ export const Button: FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export const LinkButton: Overload = (props: ButtonProps | AnchorProps) => {
+  // We consider a link button when href attribute exits
+  if (hasHref(props)) {
+    const { href } = props;
+    if (href.startsWith('http')) {
+      return <Anchor {...props} />;
+    }
+    return <LinkAnchor {...props} />;
+  }
+  return <Button {...props} />;
+};
+
+export default LinkButton;
