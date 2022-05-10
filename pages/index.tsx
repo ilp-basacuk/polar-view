@@ -1,18 +1,16 @@
 import React from 'react';
 
 import Head from 'next/head';
-// import Image from 'next/image';
+import Image from 'next/image';
 
 import MainMap from 'containers/main-map';
 import Menu from 'containers/menu';
 
-import Button from 'components/button';
+import logo from 'public/images/logo.png';
 
-// import logo from 'public/images/logo.png';
 const renderLogo = () => (
-  <a className="absolute top-4 left-4 w-12 text-white" href="/">
-    Home
-    {/* <Image alt="Polar view logo" src={logo} width={200} height={200} /> */}
+  <a className="absolute top-6 left-6 z-50 text-white" href="/" title="polar view logo">
+    <Image alt="Polar view logo" src={logo} width="144px" height="24px" />
   </a>
 );
 
