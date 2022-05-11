@@ -14,6 +14,7 @@ const MAX_ZOOM = 5;
 const TILE_SIZE = 256;
 const ARCTIC_CENTER = L.latLng(90, 135);
 const ANTARCTIC_CENTER = L.latLng(-90, 0);
+const MAX_BOUNDS_ANTARCTIC = L.latLngBounds(L.latLng(-37, -46), L.latLng(-26, 135));
 
 const LatLonText: FC<{}> = () => {
   const [lat, setLat] = useState<number | undefined>();
@@ -25,7 +26,7 @@ const LatLonText: FC<{}> = () => {
     },
   });
   return (
-    <div className="absolute bottom-8 right-3 w-40 text-mainblue">
+    <div className="absolute bottom-8 right-3 w-40 text-mainblue z-50">
       Long: {lon}, Lat: {lat}
     </div>
   );
@@ -48,6 +49,7 @@ const Map: FC<MapProps> = ({ projection = 'artic', children }) => {
       maxZoom={MAX_ZOOM}
       attributionControl={false}
       zoomControl={false}
+      maxBounds={projection === 'antarctic' ? MAX_BOUNDS_ANTARCTIC : undefined}
     >
       {children}
       <ZoomControl minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
