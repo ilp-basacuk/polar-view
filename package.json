@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo/config",
+  "name": "@polar-view/config",
   "version": "1.0.0",
   "description": "An experiment for front-end multi-apps",
   "main": "index.js",
