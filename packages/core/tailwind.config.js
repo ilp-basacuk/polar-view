@@ -3,13 +3,13 @@ const forms = require("@tailwindcss/forms");
 
 const lineClamp = require("./lib/tailwind/line-clamp");
 
+
 module.exports = {
-  mode: "jit",
-  purge: {
-    enabled: process.env.NODE_ENV !== "development",
-    content: ["./**/*.ts", "./**/*.tsx", "./styles/global.css"],
-  },
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "media", // or 'media' or 'class'
+  // purge: {
+  //   enabled: process.env.NODE_ENV !== "development",
+  //   content: ["./**/*.ts", "./**/*.tsx", "./styles/global.css"],
+  // },
   theme: {
     extend: {
       fontSize: {
@@ -42,9 +42,6 @@ module.exports = {
     fontFamily: {
       sans: "Niveau Grotesk",
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [forms, lineClamp],
 };

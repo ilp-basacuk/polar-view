@@ -1,9 +1,9 @@
-import { h } from "preact";
-import style from "./style.css";
+import Menu from '../../components/menu';
 
 const Home = () => (
-  <div class={style.home}>
-    <h1 className="text-red-600">Home</h1>
+  <div className="bg-navyblue min-h-screen w-full">
+		<Menu />
+    <h1 className="text-sky">Home</h1>
     <p>This is the Home component.</p>
   </div>
 );
