@@ -9,14 +9,15 @@
 /coverage
 
 # next.js
-/.next/
-/out/
+/packages/high-bandwith/.next/
+/packages/high-bandwith/out/
 
 # production
-/build
+/packages/high-bandwith/build
+/packages/low-bandwith/build
 
 # tailwind styles
-/public/styles/
+/packages/high-bandwith/public/styles/
 
 # misc
 .DS_Store
