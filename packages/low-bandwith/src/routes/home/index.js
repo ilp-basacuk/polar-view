@@ -4,10 +4,9 @@ import Menu from '../../components/menu';
 import curves from '../../assets/curves.svg';
 
 const Home = () => (
-  <div className="bg-navyblue min-h-screen w-full">
+  <div className="bg-navyblue h-screen w-full overflow-hidden">
 		<Menu />
-    <div className="h-screen w-full flex flex-col items-center justify-center z-10">
-      <img className="absolute top-0 left-0 w-full overflow-hidden z-0 pointer-events-none" src={curves} />
+    <div className="h-screen w-full flex flex-col items-center justify-center z-10" style={{ backgroundImage: `url(${curves})` }}>
       <a href="https://polarview.com/high/artic">
         <h2 className="text-white text-9xl uppercase tracking-widest font-extralight">Artic</h2>
       </a>
