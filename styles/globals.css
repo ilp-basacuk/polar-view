@@ -271,6 +271,9 @@
 .react-datepicker__day--disabled {
   @apply text-softerblue;
 }
+.react-datepicker__day--selected {
+  @apply bg-mainblue text-white;
+}
 
 input.radio:hover + div span {
   @apply bg-softerblue block;
@@ -313,6 +316,6 @@ input.checkbox:checked:hover + div span {
   filter: sepia(100%) hue-rotate(160deg) saturate(2) brightness(0.5) !important;
 }
 
-.sea-ice-map-gradiant {
+.sea-ice-map-gradient {
   background: linear-gradient(270deg, #2997B3 0%, rgba(255, 255, 255, 0.17) 100%);
 }

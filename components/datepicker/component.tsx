@@ -24,7 +24,6 @@ type Ref = HTMLButtonElement;
 const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
   ({ onClick, startDate, isCalendarOpen, placeHolderText }, ref) => {
     const formatedDate = startDate ? format(startDate, 'dd/MM/yyyy') : placeHolderText;
-    // const classes = cx({ 'bg-softerblue border-b-0': isCalendarOpen });
     return (
       <button
         type="button"

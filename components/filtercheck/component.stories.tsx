@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react/types-6-0';
 import FilterCheck, { IFilterCheck } from './component';
 import React from 'react';
-import IceChartCheck from './icechartcheck';
+import IceChartCheckBullet from './icechartcheck';
 
 export default {
   title: 'Components/FilterCheck',
@@ -103,10 +103,10 @@ export const Examples1: React.FC = () => (
 
 export const Examples2: React.FC = () => (
   <div className="w-[300px]">
-    <IceChartCheck label="Fast Ice" bullet="gray" name="fastIce" />
-    <IceChartCheck label="Very Close Drift Ice" bullet="red" />
-    <IceChartCheck label="Close Drift Ice" bullet="orange" />
-    <IceChartCheck label="Open Drift Ice" bullet="yellow" />
-    <IceChartCheck label="Open Water" bullet="sky" />
+    <IceChartCheckBullet label="Fast Ice" bullet="gray" name="fastIce" />
+    <IceChartCheckBullet label="Very Close Drift Ice" bullet="red" />
+    <IceChartCheckBullet label="Close Drift Ice" bullet="orange" />
+    <IceChartCheckBullet label="Open Drift Ice" bullet="yellow" />
+    <IceChartCheckBullet label="Open Water" bullet="sky" />
   </div>
 );

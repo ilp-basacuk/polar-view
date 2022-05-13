@@ -67,7 +67,7 @@ export const SeaIce: React.FC<SeaIceProps> = ({ onChange }) => {
       {showIceMap && (
         <div className="mb-3">
           <div className="text-white text-tiny mb-3 py-1">
-            <div className="sea-ice-map-gradiant h-2" />
+            <div className="sea-ice-map-gradient h-2" />
             <div className="flex justify-between mt-2.5">
               <span>0%</span>
               <span>100%</span>

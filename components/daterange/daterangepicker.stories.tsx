@@ -1,4 +1,5 @@
 import { Story } from '@storybook/react/types-6-0';
+import React from 'react';
 import DateRangePicker from './component';
 
 export default {
@@ -6,11 +7,23 @@ export default {
   component: DateRangePicker,
 };
 
-const Template: Story<any> = ({ ...args }: any) => (
-  <div className="w-[300px]">
-    <DateRangePicker {...args} />
-  </div>
-);
+const Template: Story<any> = ({ ...args }: any) => {
+  const [startDate, setStartDate] = React.useState(null)
+  const [endDate, setEndDate] = React.useState(null)
+  return (
+    <div className="w-[300px]">
+      <DateRangePicker
+        startDate={startDate}
+        endDate={endDate}
+        {...args}
+        onChange={(start, end) => {
+          setStartDate(start);
+          setEndDate(end);
+        }}
+      />
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {
