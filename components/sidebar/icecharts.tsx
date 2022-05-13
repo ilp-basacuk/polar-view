@@ -1,4 +1,6 @@
-import IceChartCheck from 'components/filtercheck/icechartcheck';
+import FilterCheck from 'components/filtercheck';
+import IceChartCheckBullet from 'components/filtercheck/icechartcheck';
+import Select from 'components/forms/select';
 import useChangeEffect from 'components/hooks/useChangeState';
 import React from 'react';
 import { IIceChartsState } from './sidebar.types';
@@ -34,6 +36,7 @@ interface IceChartsProps {
 }
 
 export const IceCharts: React.FC<IceChartsProps> = ({ onChange }) => {
+  const [showDetail, setShowDetail] = React.useState(false);
   const [state, setState] = React.useReducer(IceChartsReducer, IceChartsInitialState);
 
   useChangeEffect(() => {
@@ -49,41 +52,42 @@ export const IceCharts: React.FC<IceChartsProps> = ({ onChange }) => {
 
   return (
     <div>
-      <IceChartCheck
-        label="Fast Ice"
-        bullet="gray"
-        checked={state[IceChartsActionsKind.FASTICE].checked}
-        name={IceChartsActionsKind.FASTICE}
-        onChange={handleOnChange}
+      <FilterCheck
+        label="Ice charts"
+        checkboxProps={{
+          checked: showDetail,
+          onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+            setShowDetail(event.target.checked);
+          },
+        }}
       />
-      <IceChartCheck
-        label="Very Close Drift Ice: 9/10 - 10/10"
-        bullet="red"
-        checked={state[IceChartsActionsKind.VERYCLOSEDRIFTICE].checked}
-        name={IceChartsActionsKind.VERYCLOSEDRIFTICE}
-        onChange={handleOnChange}
-      />
-      <IceChartCheck
-        label="Close Drift Ice: 7/10 - 9/10"
-        bullet="orange"
-        checked={state[IceChartsActionsKind.CLOSEDRIFTICE].checked}
-        name={IceChartsActionsKind.CLOSEDRIFTICE}
-        onChange={handleOnChange}
-      />
-      <IceChartCheck
-        label="Open Drift Ice: 1/10 - 4/10 - 2"
-        bullet="yellow"
-        checked={state[IceChartsActionsKind.OPENDRIFTICE].checked}
-        name={IceChartsActionsKind.OPENDRIFTICE}
-        onChange={handleOnChange}
-      />
-      <IceChartCheck
-        label="Open Water: 0/10 - 1/10"
-        bullet="sky"
-        checked={state[IceChartsActionsKind.OPENWATER].checked}
-        name={IceChartsActionsKind.OPENWATER}
-        onChange={handleOnChange}
-      />
+
+      {showDetail && (
+        <div>
+          <div className='py-1'>
+            <Select
+              id="time"
+              initialSelected="1"
+              onChange={(selection) => {
+                console.log(selection);
+              }}
+              options={[
+                { label: 'LAST 24H.', value: '1' },
+                { label: 'LAST 72H.', value: '2' },
+                { label: 'LAST 7 DAYS.', value: '3' },
+                { label: 'LAST 30 DAYS.', value: '4' },
+              ]}
+            />
+          </div>
+          <div>
+            <IceChartCheckBullet label="Fast Ice" bullet="gray" />
+            <IceChartCheckBullet label="Very Close Drift Ice: 9/10 - 10/10" bullet="red" />
+            <IceChartCheckBullet label="Close Drift Ice: 7/10 - 9/10" bullet="orange" />
+            <IceChartCheckBullet label="Open Drift Ice: 1/10 - 4/10 - 2" bullet="yellow" />
+            <IceChartCheckBullet label="Open Water: 0/10 - 1/10" bullet="sky" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

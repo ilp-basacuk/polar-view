@@ -2,7 +2,7 @@ import cx from 'classnames';
 import { CheckboxProps } from 'components/forms/checkbox/component';
 import React from 'react';
 
-export interface IIceChartCheck extends CheckboxProps {
+export interface IIceChartBulletProps extends CheckboxProps {
   label: string;
   bullet?: 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green';
 }
@@ -18,7 +18,7 @@ const COLOR_MAP: any = {
   green: 'bg-green',
 };
 
-const IceChartCheck: React.FC<IIceChartCheck> = ({ label, bullet, name, ...others }) => {
+const IceChartCheckBullet: React.FC<IIceChartBulletProps> = ({ label, bullet, name, ...others }) => {
   const bulletClass = cx({
     'w-2.5 h-2.5 rounded mr-2.5': true,
     [COLOR_MAP[bullet || 'none']]: !!bullet,
@@ -29,12 +29,6 @@ const IceChartCheck: React.FC<IIceChartCheck> = ({ label, bullet, name, ...other
       <div className="flex">
         <div className="relative">
           <div className="flex items-center">
-            <input
-              type="checkbox"
-              className="checkbox opacity-0 absolute w-full h-full cursor-pointer peer"
-              name={name}
-              {...others}
-            />
             <div className="text-sm text-white peer-checked:text-mainblue">{label}</div>
           </div>
         </div>
@@ -43,4 +37,4 @@ const IceChartCheck: React.FC<IIceChartCheck> = ({ label, bullet, name, ...other
   );
 };
 
-export default IceChartCheck;
+export default IceChartCheckBullet;

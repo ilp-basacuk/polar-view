@@ -16,7 +16,7 @@ enum EXPANDABLES {
 }
 
 const SidebarLayerView: React.FC<SideBarLayerViewProps> = ({ onChange }) => {
-  const [expanded, setExpanded] = React.useState<EXPANDABLES>(EXPANDABLES.SARIMAGERY);
+  const [expanded, setExpanded] = React.useState<EXPANDABLES>(EXPANDABLES.ICECHARTS);
 
   return (
     <div className="space-y-1">
