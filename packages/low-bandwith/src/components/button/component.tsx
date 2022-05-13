@@ -37,6 +37,7 @@ export const LinkAnchor: FunctionalComponent<AnchorProps> = ({
   anchorLinkProps,
   children,
   theme = 'primary',
+  containerClassName,
   className,
   disabled,
   href,
@@ -45,7 +46,7 @@ export const LinkAnchor: FunctionalComponent<AnchorProps> = ({
   ...restProps
 }: AnchorProps) => (
   <Link href={href} {...anchorLinkProps}>
-    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]} ${containerClassName}`}>
       <a
         className={buildClassName({
           className,
@@ -65,6 +66,7 @@ export const LinkAnchor: FunctionalComponent<AnchorProps> = ({
 export const Anchor: FunctionalComponent<AnchorProps> = ({
   children,
   theme = 'primary',
+  containerClassName,
   className,
   disabled,
   href,
@@ -78,7 +80,7 @@ export const Anchor: FunctionalComponent<AnchorProps> = ({
     return <span {...restProps}>{children}</span>;
   }
   return (
-    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}  ${containerClassName}`}>
       <a
         href={href}
         className={buildClassName({
@@ -100,6 +102,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
   children,
   theme = 'primary',
   className,
+  containerClassName,
   disabled,
   cut = 'right-bottom',
   size = 'large',
@@ -108,7 +111,7 @@ export const Button: FunctionalComponent<ButtonProps> = ({
 }: ButtonProps) => {
   const Component = component;
   return (
-    <span className={`btn-wrapper ${CUT_MAP[cut]}`}>
+    <span className={`btn-wrapper ${CUT_MAP[cut]} ${containerClassName}`}>
       <Component
         className={buildClassName({
           className,

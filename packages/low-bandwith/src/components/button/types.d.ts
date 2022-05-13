@@ -5,6 +5,7 @@ import { LinkProps } from 'next/link';
 export interface AnchorButtonProps {
   theme: 'primary' | 'secondary';
   className?: string;
+  containerClassName?: string;
   cut?: 'right-bottom' | 'right-top' | 'left-top' | 'none';
   size?: 'small' | 'medium' | 'large';
   component?: any;
