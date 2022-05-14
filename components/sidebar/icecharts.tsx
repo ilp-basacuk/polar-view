@@ -6,11 +6,8 @@ import React from 'react';
 import { IIceChartsState } from './sidebar.types';
 
 enum IceChartsActionsKind {
-  FASTICE = 'FASTICE',
-  VERYCLOSEDRIFTICE = 'VERYCLOSEDRIFTICE',
-  CLOSEDRIFTICE = 'CLOSEDRIFTICE',
-  OPENDRIFTICE = 'OPENDRIFTICE',
-  OPENWATER = 'OPENWATER',
+  CHILINENANTARCTIC = 'CHILINENANTARCTIC',
+  ANTARCTICPENINSULA = 'ANTARCTICPENINSULA',
 }
 
 interface IceChartsAction {
@@ -24,11 +21,8 @@ const IceChartsReducer = (state: IIceChartsState, action: IceChartsAction) => {
 };
 
 export const IceChartsInitialState: IIceChartsState = {
-  FASTICE: { checked: false },
-  VERYCLOSEDRIFTICE: { checked: false },
-  CLOSEDRIFTICE: { checked: false },
-  OPENDRIFTICE: { checked: false },
-  OPENWATER: { checked: false },
+  CHILINENANTARCTIC: { value: '' },
+  ANTARCTICPENINSULA: { value: '' },
 };
 
 interface IceChartsProps {
@@ -43,10 +37,10 @@ export const IceCharts: React.FC<IceChartsProps> = ({ onChange }) => {
     onChange(state);
   }, [state]);
 
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (name, selection) => {
     setState({
-      type: IceChartsActionsKind[event.target.name],
-      payload: { checked: event.target.checked },
+      type: IceChartsActionsKind[name],
+      payload: { value: selection },
     });
   };
 
@@ -64,19 +58,31 @@ export const IceCharts: React.FC<IceChartsProps> = ({ onChange }) => {
 
       {showDetail && (
         <div>
-          <div className='py-1'>
+          <div className="py-1">
             <Select
-              id="time"
+              id={IceChartsActionsKind.CHILINENANTARCTIC}
               initialSelected="1"
-              onChange={(selection) => {
-                console.log(selection);
-              }}
+              onChange={(selection) =>
+                handleOnChange(IceChartsActionsKind.CHILINENANTARCTIC, selection)
+              }
               options={[
-                { label: 'LAST 24H.', value: '1' },
-                { label: 'LAST 72H.', value: '2' },
-                { label: 'LAST 7 DAYS.', value: '3' },
-                { label: 'LAST 30 DAYS.', value: '4' },
+                { label: 'CHILINEN ANTARCTIC ICE CHARTS', value: '1' },
+                { label: 'CHILINEN ANTARCTIC ICE CHARTS', value: '2' },
               ]}
+            />
+          </div>
+
+          <div className="py-1">
+            <Select
+              id={IceChartsActionsKind.ANTARCTICPENINSULA}
+              initialSelected="1"
+              onChange={(selection) =>
+                handleOnChange(IceChartsActionsKind.ANTARCTICPENINSULA, selection)
+              }
+              options={[
+                { label: 'ANTARCTIC PENINSULA - BRANSFIELD', value: '1' },
+                { label: 'ANTARCTIC PENINSULA - BRANSFIELD', value: '2' }
+            ]}
             />
           </div>
           <div>

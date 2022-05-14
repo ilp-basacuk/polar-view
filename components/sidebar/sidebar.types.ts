@@ -11,11 +11,8 @@ export interface ISeaIceState {
 }
 
 export interface IIceChartsState {
-  FASTICE: { checked: boolean };
-  VERYCLOSEDRIFTICE: { checked: boolean };
-  CLOSEDRIFTICE: { checked: boolean };
-  OPENDRIFTICE: { checked: boolean };
-  OPENWATER: { checked: boolean };
+  CHILINENANTARCTIC: { value: string | string[] },
+  ANTARCTICPENINSULA: { value: string | string[] },
 }
 
 export interface ISidebarState {
