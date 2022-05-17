@@ -4,6 +4,7 @@ import React from 'react';
 
 export interface IIceChartBulletProps extends CheckboxProps {
   label: string;
+  name?: string;
   bullet?: 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green';
 }
 
