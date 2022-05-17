@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 packages/high-bandwith/node_modules
+packages/low-bandwith/node_modules/
 /.pnp
 .pnp.js
 
@@ -54,3 +55,4 @@ yarn-error.log*
 tsconfig.tsbuildinfo
 
 packages/high-bandwith/storybook-static
+packages/low-bandwith/size-plugin.json
