@@ -24,7 +24,8 @@ const SIZE_MAP = {
 const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'href' in props;
 
 function buildClassName({ className, disabled, theme, cut, size }) {
-  return cx('btn flex items-center justify-center text-tiny font-bolder p-2 uppercase', {
+  return cx({
+    'btn flex items-center justify-center text-tiny font-bolder p-2 w-full uppercase': true,
     [THEME[theme]]: true,
     [CUT_MAP[cut]]: true,
     [SIZE_MAP[size]]: true,
@@ -108,7 +109,7 @@ export const Button: FC<ButtonProps> = ({
 }: ButtonProps) => {
   const Component = component;
   return (
-    <span className={`btn-wrapper ${CUT_MAP[cut]}`}>
+    <span className={`btn-wrapper w-full ${CUT_MAP[cut]}`}>
       <Component
         className={buildClassName({
           className,

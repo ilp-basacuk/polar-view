@@ -271,6 +271,9 @@
 .react-datepicker__day--disabled {
   @apply text-softerblue;
 }
+.react-datepicker__day--selected {
+  @apply bg-mainblue text-white;
+}
 
 input.radio:hover + div span {
   @apply bg-softerblue block;
@@ -299,10 +302,20 @@ input.checkbox:checked:hover + div span {
 }
 
 .dayslider-radio:checked + div {
-  @apply bg-white block;
+  @apply bg-mainblue block;
+}
+.dayslider-radio:hover + div {
+  @apply border border-mainblue;
+}
+.leaflet-container {
+  @apply bg-navyblue;
 }
 
 .graticule-layer {
   /* Just to make closer to the designs */
   filter: sepia(100%) hue-rotate(160deg) saturate(2) brightness(0.5) !important;
+}
+
+.sea-ice-map-gradient {
+  background: linear-gradient(270deg, #2997B3 0%, rgba(255, 255, 255, 0.17) 100%);
 }
