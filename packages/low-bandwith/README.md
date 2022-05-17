@@ -1,22 +1,33 @@
-# mypreactapp
+# Polar view low bandwidth
 
-## CLI Commands
+Some of the features included are:
 
-``` bash
-# install dependencies
-npm install
+- This application uses [preact](https://preactjs.com/) a lightweight alternative to React via [preact-cli](https://github.com/developit/preact-cli/blob/master/README.md) to be able to reduce the bandwidth compared to the high bandwidth application.
+- [Tailwind](https://tailwindcss.com/) as CSS Framework
+- [Typescript](https://www.typescriptlang.org/) already configured
+- editorconfig and code style based on [Airbnb](https://github.com/airbnb/javascript)
+- [Storybook](https://storybook.js.org/) also available and configured
 
-# serve with hot reload at localhost:8080
-npm run dev
+## Scripts
 
-# build for production with minification
-npm run build
-
-# test the production build locally
-npm run serve
-
-# run tests with jest and enzyme
-npm run test
+Serve with hot reload at localhost:8080
+```bash
+yarn low dev
 ```
 
-For detailed explanation on how things work, checkout the [CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
+build for production with minification
+
+```bash
+yarn low build
+```
+
+Test the production build locally
+```bash
+yarn low serve
+```
+
+Run tests with jest and enzyme
+
+```bash
+yarn low test
+```

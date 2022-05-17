@@ -12,16 +12,12 @@ Some of the features included are:
 - editorconfig and code style based on [Airbnb](https://github.com/airbnb/javascript)
 - [Storybook](https://storybook.js.org/) also available and configured
 
-## Getting Started
-
-Check the documentation (TBD)
-
 ### Quick start
 
 First, run the development server:
 
 ```bash
-yarn dev
+yarn high dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -34,10 +30,8 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 To learn more about this project, take a look at the following resources:
 
-- [Blogin internal post](https://vizzuality.blogin.co/posts/a-scaffold-to-rule-all-of-them-135768) - communication to Vizzuality
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Standardization guidelines](https://vizzuality.github.io/frontismos/docs/guidelines/standardization/) - a set of agreements and conventions.
 
 ## Deploy on Vercel
 
