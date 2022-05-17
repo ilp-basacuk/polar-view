@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+packages/high-bandwith/node_modules
 /.pnp
 .pnp.js
 
@@ -9,15 +10,15 @@
 /coverage
 
 # next.js
-/packages/high-bandwith/.next/
-/packages/high-bandwith/out/
+packages/high-bandwith/.next
+packages/high-bandwith/out
 
 # production
-/packages/high-bandwith/build
-/packages/low-bandwith/build
+packages/high-bandwith/build
+packages/low-bandwith/build
 
 # tailwind styles
-/packages/high-bandwith/public/styles/
+packages/core/public/styles/
 
 # misc
 .DS_Store
@@ -52,7 +53,4 @@ yarn-error.log*
 # typescript
 tsconfig.tsbuildinfo
 
-/packages/high-bandwith/storybook-static
-
-/packages/high-bandwith/build
-/packages/low-bandwith/build
+packages/high-bandwith/storybook-static
