@@ -9,6 +9,8 @@ interface IExpandable {
   radioButtonProps?: IRadioButton;
   onExpandChange?: React.MouseEventHandler<HTMLSpanElement> | undefined;
   content: React.ReactNode;
+  first?: true | undefined;
+  last?: true | undefined;
 }
 
 const Expandable: React.FC<IExpandable> = ({
@@ -17,11 +19,15 @@ const Expandable: React.FC<IExpandable> = ({
   onExpandChange,
   radioButtonProps,
   content: Content,
+  first,
 }) => {
   const Icon = expanded ? ChevronUp : ChevronDown;
+  const firstClasses = first ? 'border-t' : '';
   return (
-    <div className="mb-1">
-      <div className="h-8 px-2 bg-navyblue w-full border-l border-r border-mainblue text-tiny text-white flex items-center">
+    <div>
+      <div
+        className={`h-8 px-3 bg-blur w-full border-l border-r border-mainblue text-tiny text-white flex items-center ${firstClasses}`}
+      >
         <span
           className="icon cursor-pointer"
           role="button"
@@ -38,7 +44,7 @@ const Expandable: React.FC<IExpandable> = ({
         </span>
       </div>
       {expanded && (
-        <div className="content border-l border-r border-mainblue bg-navyblue">{Content}</div>
+        <div className="content border-l border-r p-2 border-mainblue bg-blur">{Content}</div>
       )}
     </div>
   );

@@ -9,6 +9,7 @@ export interface IFilterCheck {
   bullet?: 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green';
   menuProps?: MenuProps;
   checkboxProps?: CheckboxProps;
+  labelColor?: string;
 }
 
 const COLOR_MAP: any = {
@@ -22,7 +23,13 @@ const COLOR_MAP: any = {
   green: 'bg-green',
 };
 
-const FilterCheck: React.FC<IFilterCheck> = ({ label, bullet, menuProps, checkboxProps }) => {
+const FilterCheck: React.FC<IFilterCheck> = ({
+  label,
+  bullet,
+  menuProps,
+  checkboxProps,
+  labelColor = 'white',
+}) => {
   const bulletClass = cx({
     'w-2.5 h-2.5 rounded mr-2.5': true,
     [COLOR_MAP[bullet || 'none']]: !!bullet,
@@ -31,7 +38,7 @@ const FilterCheck: React.FC<IFilterCheck> = ({ label, bullet, menuProps, checkbo
     <div className="flex items-center justify-between p-1">
       <div className="flex items-center">
         {bullet && <div className={bulletClass} />}
-        <div className="text-sm text-white">{label}</div>
+        <div className={`text-sm text-${labelColor}`}>{label}</div>
       </div>
       {(menuProps || checkboxProps) && (
         <div className="flex">

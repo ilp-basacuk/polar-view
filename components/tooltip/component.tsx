@@ -42,7 +42,6 @@ export const Tooltip: FC<TooltipProps> = ({
         <motion.div style={{ scale, opacity, maxWidth: maxWidth || 'none' }} {...attrs}>
           <div className="relative">
             {content}
-
             {arrow && <Arrow data-popper-arrow="" {...attrs} />}
           </div>
         </motion.div>

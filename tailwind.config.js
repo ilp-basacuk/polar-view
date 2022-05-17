@@ -31,7 +31,8 @@ module.exports = {
       yellow: '#FBFB32',
       sky: '#78C8FA',
       purple: '#9524E3',
-      green: '#52E38F'
+      green: '#52E38F',
+      seabed: '#111827'
     },
     fontWeight: {
       light: 300,

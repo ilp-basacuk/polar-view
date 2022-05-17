@@ -27,6 +27,7 @@ module.exports = {
     // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
     // NextJs specific fix: allow jsx syntax in js and ts files
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': [
