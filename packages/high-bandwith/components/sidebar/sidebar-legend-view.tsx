@@ -1,12 +1,12 @@
+import { FC } from 'react';
 import FilterCheck from 'components/filtercheck';
 import Select from 'components/forms/select';
-import React from 'react';
-import { SideBarAction } from './sidebar.types';
+import type { SideBarAction } from './types';
 
 interface DividerProps {
   label?: string;
 }
-const Divider: React.FC<DividerProps> = ({ label }) => (
+const Divider: FC<DividerProps> = ({ label }) => (
   <div className="flex items-center">
     <div className="bg-softerblue h-[1px] flex-1" />
     {label && <div className="text-tiny text-mainblue font-bolder ml-2">{label}</div>}
@@ -17,7 +17,7 @@ interface SideBarLegendViewProps {
   onChange?: (params: SideBarAction) => void;
 }
 
-const SidebarLegendView: React.FC<SideBarLegendViewProps> = () => (
+const SidebarLegendView: FC<SideBarLegendViewProps> = () => (
   <div className="space-y-1 border border-b-0 border-mainblue p-3">
     <Divider label="SAR IMAGERY" />
 

@@ -1,7 +1,7 @@
 import FilterCheck from 'components/filtercheck';
 import useChangeEffect from 'components/hooks/useChangeState';
-import React from 'react';
-import { ISARImageryState } from './sidebar.types';
+import { FC, useReducer, ChangeEvent } from 'react';
+import { ISAR_ImageryState } from './types.d';
 
 enum SARImageryActionsKind {
   SENTINAL2 = 'SENTINAL2',
@@ -14,7 +14,7 @@ interface SARImageryAction {
   payload: { checked: boolean };
 }
 
-const sarImageryReducer = (state: ISARImageryState, action: SARImageryAction) => {
+const sarImageryReducer = (state: ISAR_ImageryState, action: SARImageryAction) => {
   const { type, payload } = action;
   return { ...state, [type]: payload };
 };
@@ -26,11 +26,11 @@ export const SARImageryInitialState = {
 };
 
 interface SARImageryProps {
-  onChange: (payload: ISARImageryState) => void;
+  onChange: (payload: ISAR_ImageryState) => void;
 }
 
-export const SARImagery: React.FC<SARImageryProps> = ({ onChange }) => {
-  const [state, setState] = React.useReducer(sarImageryReducer, SARImageryInitialState);
+export const SARImagery: FC<SARImageryProps> = ({ onChange }) => {
+  const [state, setState] = useReducer(sarImageryReducer, SARImageryInitialState);
 
   useChangeEffect(() => {
     onChange(state);
@@ -43,7 +43,7 @@ export const SARImagery: React.FC<SARImageryProps> = ({ onChange }) => {
         bullet="yellow"
         checkboxProps={{
           checked: state[SARImageryActionsKind.SENTINAL2].checked,
-          onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange: (event: ChangeEvent<HTMLInputElement>) => {
             setState({
               type: SARImageryActionsKind.SENTINAL2,
               payload: { checked: event.target.checked },
@@ -56,7 +56,7 @@ export const SARImagery: React.FC<SARImageryProps> = ({ onChange }) => {
         bullet="purple"
         checkboxProps={{
           checked: state[SARImageryActionsKind.RADARSAT2].checked,
-          onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange: (event: ChangeEvent<HTMLInputElement>) => {
             setState({
               type: SARImageryActionsKind.RADARSAT2,
               payload: { checked: event.target.checked },
@@ -69,7 +69,7 @@ export const SARImagery: React.FC<SARImageryProps> = ({ onChange }) => {
         bullet="green"
         checkboxProps={{
           checked: state[SARImageryActionsKind.COSMO_SKYMED].checked,
-          onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+          onChange: (event: ChangeEvent<HTMLInputElement>) => {
             setState({
               type: SARImageryActionsKind.COSMO_SKYMED,
               payload: { checked: event.target.checked },

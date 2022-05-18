@@ -4,7 +4,7 @@ import FilterCheck from 'components/filtercheck';
 import useChangeEffect from 'components/hooks/useChangeState';
 import addDays from 'date-fns/addDays';
 import React from 'react';
-import { ISeaIceState } from './sidebar.types';
+import type { ISeaIceState } from './types';
 
 enum SeaIceActionsKind {
   AMSR2SEAICEEDGE = 'AMSR2SEAICEEDGE',

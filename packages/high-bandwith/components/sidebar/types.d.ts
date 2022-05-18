@@ -1,4 +1,4 @@
-export interface ISARImageryState {
+export interface ISAR_ImageryState {
   SENTINAL2: { checked: boolean };
   RADARSAT2: { checked: boolean };
   COSMO_SKYMED: { checked: boolean };
@@ -16,24 +16,28 @@ export interface IIceChartsState {
 }
 
 export interface ISidebarState {
-  SARIMAGERY: ISARImageryState;
-  SEAICE: ISeaIceState;
-  ICECHARTS: IIceChartsState;
+  SAR_IMAGERY: ISAR_ImageryState;
+  SEA_ICE: ISeaIceState;
+  ICE_CHARTS: IIceChartsState;
 }
 
-export enum SIDEBARVIEW {
+export enum SIDEBAR_VIEW {
   LEGEND,
   LAYERS,
-  NONE,
+  MINIMIZED,
 }
 
 export enum SideBarActionKind {
-  SARIMAGERY = 'SARIMAGERY',
-  SEAICE = 'SEAICE',
-  ICECHARTS = 'ICECHARTS',
+  SAR_IMAGERY = 'SAR_IMAGERY',
+  SEA_ICE = 'SEA_ICE',
+  ICE_CHARTS = 'ICE_CHARTS',
 }
 
 export interface SideBarAction {
   type: SideBarActionKind;
-  payload: ISARImageryState | ISeaIceState | IIceChartsState;
+  payload: ISAR_ImageryState | ISeaIceState | IIceChartsState;
+}
+
+export interface SideBarProps {
+  className?: string;
 }

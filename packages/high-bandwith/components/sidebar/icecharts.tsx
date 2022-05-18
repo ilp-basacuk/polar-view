@@ -3,7 +3,7 @@ import IceChartCheckBullet from 'components/filtercheck/icechartcheck';
 import Select from 'components/forms/select';
 import useChangeEffect from 'components/hooks/useChangeState';
 import React from 'react';
-import { IIceChartsState } from './sidebar.types';
+import type { IIceChartsState } from './types';
 
 enum IceChartsActionsKind {
   CHILINENANTARCTIC = 'CHILINENANTARCTIC',

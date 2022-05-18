@@ -1,5 +1,5 @@
 import React from 'react';
-import SideBar from './sidebarcontainer';
+import SideBar from './';
 
 export default {
   title: 'Components/Sidebar',
@@ -7,7 +7,7 @@ export default {
 };
 
 export const Examples: React.FC = () => (
-  <div className="h-[800px] w-full relative">
+  <div className="w-full relative">
     <SideBar />
   </div>
 );
