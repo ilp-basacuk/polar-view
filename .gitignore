@@ -31,10 +31,12 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+
+packages/low-bandwith/.env
+packages/high-bandwith/.env.local
+packages/high-bandwith/.env.development.local
+packages/high-bandwith/.env.test.local
+packages/high-bandwith/.env.production.local
 
 # vercel
 .vercel
