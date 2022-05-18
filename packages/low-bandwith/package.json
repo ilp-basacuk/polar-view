@@ -13,6 +13,7 @@
   "devDependencies": {
     "@polar-view/core": "1.0.0",
     "autoprefixer": "10.4.5",
+    "dotenv-webpack": "^7.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-preact-pure": "^2.0.0",
     "eslint": "8.14.0",
@@ -26,6 +27,7 @@
     "tailwindcss": "3.0.24"
   },
   "dependencies": {
+    "dotenv-safe": "^8.2.0",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1"
