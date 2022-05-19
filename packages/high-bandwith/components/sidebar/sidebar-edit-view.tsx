@@ -16,9 +16,8 @@ const SidebarEditView: FC = () => {
           onExpandChange={() => setExpanded(expanded === layerGroup.id ? null : layerGroup.id)}
           expanded={expanded === layerGroup.id}
           radioButtonProps={{ name: 'EXPANDABLES', value: layerGroup.id }}
-          content={layerGroup.type === 'checkbox' ?
-            <CheckboxGroup layerGroup={layerGroup} /> : null
-          }
+          content={<CheckboxGroup layerGroup={layerGroup} />}
+          activeLayersNumber={layerGroup.layers.filter(l => l.checked).length || null}
           first={i === 0}
           last={i === layerGroups.length - 1}
         />
