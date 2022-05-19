@@ -1,5 +1,4 @@
 module.exports = {
-  extends: '../../.eslintrc.js',
   env: {
     browser: true,
     es2021: true,
