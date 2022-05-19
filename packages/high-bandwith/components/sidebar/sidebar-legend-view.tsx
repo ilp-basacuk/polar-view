@@ -32,9 +32,6 @@ const SidebarLegendView: FC<SideBarLegendViewProps> = () => (
         <Select
           id="time"
           initialSelected="1"
-          onChange={(selection) => {
-            console.log(selection);
-          }}
           options={[
             { label: 'LAST 24H.', value: '1' },
             { label: 'LAST 72H.', value: '2' },

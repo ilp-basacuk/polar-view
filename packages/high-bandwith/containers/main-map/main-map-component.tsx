@@ -4,7 +4,7 @@ import { FC, useMemo } from 'react';
 import Layer from 'components/layer';
 import Map from 'components/map';
 
-import LAYERS from './layers.json';
+import LAYERS from 'constants/layers.json';
 import { MainMapProps } from './types';
 import { useAppSelector } from 'store/hooks';
 

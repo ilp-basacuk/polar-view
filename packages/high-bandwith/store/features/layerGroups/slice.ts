@@ -1,37 +1,45 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import presets from 'constants/presets.json';
 
 // Define a type for the slice state
-
 interface Layer {
   id: string;
   checked: boolean;
   label: string;
-  color:  'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'none' | 'purple' | 'green';
+  color?:  'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'none' | 'purple' | 'green';
+  type: 'checkbox' | 'dropdown' | 'double-dropdown';
 }
 
 interface LayerGroup {
   id: string;
   label: string;
-  type: 'checkbox' | 'dropdown' | 'double-dropdown';
+  selected: boolean;
   layers: Layer[];
 }
 
 interface LayerGroupsState {
   data: LayerGroup[];
+  activePreset: string;
 }
 
 // Define the initial state using that type
 const initialState: LayerGroupsState = {
   data: [
-    { label: 'Ice charts', id: 'ice-charts', type: 'checkbox',
-      layers: [
-        { id: 'ice-met-norway', checked: false, label: 'Ice chart (met.no)', color: 'yellow' },
-        { id: 'ice-miz', checked: false, label: 'Ice chart (NIC, MIZ)', color: 'purple' },
-        { id: 'ice-concentration', checked: false, label: 'Ice chart (NIC, Con)', color: 'green'},
-        { id: 'ice-stage-of-development', checked: false, label: 'Ice chart (NIC, SoD)', color: 'sky'}
+    {
+      "label": "SAR Imagery", "id": "sar-imagery", "selected": false,
+      "layers": [
+        { "id": "sar-subset", "label": "SAR Subset", "checked": false, "type": "checkbox" }
+      ]
+    },
+    {
+      "label": "Ice charts", "id": "ice-charts", "selected": false,
+      "layers": [
+        { "id": "ice-met-norway", "label": "Ice chart (met.no)", "checked": false, "type": "checkbox" },
+        { "id": "ice-miz", "label": "Ice chart (met.no)", "checked": false, "type": "checkbox" }
       ]
     }
   ],
+  activePreset: null,
 };
 
 export const layerGroupSlice = createSlice({
@@ -43,7 +51,6 @@ export const layerGroupSlice = createSlice({
       data: action.payload,
     }),
     updateLayer: (state, action: PayloadAction<{ layerGroupId: string, layer: Layer }>) => {
-      console.log(action)
       const { layerGroupId, layer } = action.payload;
       const updatedData = state.data.map(existingLayerGroup => existingLayerGroup.id === layerGroupId ?
         {
@@ -54,12 +61,34 @@ export const layerGroupSlice = createSlice({
 
       return {
         ...state,
-        data: updatedData
+        data: updatedData,
+        activePreset: null, // Deselect the preset whenever any other layers are selected or deselected
+      }
+    },
+    activatePreset: (state, action: PayloadAction<{ presetId: string }>) => {
+      const { presetId } = action.payload;
+      const selectedPreset = presets[presetId];
+      const updatedData = state.data.map(layerGroup => (
+        {
+          ...layerGroup,
+          layers: layerGroup.layers.map(layer => (
+            {
+              ...layer,
+              checked: selectedPreset[layerGroup.id]?.includes(layer.id) ? true : false
+            }
+          ))
+        }
+      ));
+
+      return {
+        ...state,
+        data: updatedData,
+        activePreset: presetId,
       }
     },
   },
 });
 
-export const { setLayerGroupsData, updateLayer } = layerGroupSlice.actions;
+export const { setLayerGroupsData, updateLayer, activatePreset } = layerGroupSlice.actions;
 
 export default layerGroupSlice.reducer;
