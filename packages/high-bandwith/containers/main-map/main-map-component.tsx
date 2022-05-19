@@ -6,6 +6,8 @@ import Map from 'components/map';
 
 import LAYERS from './layers.json';
 import { MainMapProps } from './types';
+import { useAppSelector } from 'store/hooks';
+
 
 const MainMap: FC<MainMapProps> = () => {
   const renderLayer = (layer) => {
@@ -28,8 +30,10 @@ const MainMap: FC<MainMapProps> = () => {
     return <Layer key={layer.id} {...updatedLayer} />;
   };
 
-  const activeLayers = ['graticule', 'land-mask'];
-
+  const layerGroups = useAppSelector(state => state.layerGroups.data)
+  const defaultLayers = ['graticule', 'land-mask'];
+  const changingActiveLayers = layerGroups.map(layerGroup => layerGroup.layers.map(l => l.checked && l.id).filter(Boolean)).flat();
+  const activeLayers = [...defaultLayers, ...changingActiveLayers];
   const selectedLayers = useMemo(
     () => LAYERS.filter((layer) => activeLayers.includes(layer.id)),
     [activeLayers]

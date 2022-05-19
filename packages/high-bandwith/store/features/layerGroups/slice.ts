@@ -1,14 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define a type for the slice state
+
 interface Layer {
-  id: string,
+  id: string;
+  checked: boolean;
+  label: string;
+  color:  'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'none' | 'purple' | 'green';
 }
 
 interface LayerGroup {
-  name: string,
-  type: string,
-  layers: Layer[]
+  id: string;
+  label: string;
+  type: 'checkbox' | 'dropdown' | 'double-dropdown';
+  layers: Layer[];
 }
 
 interface LayerGroupsState {
@@ -18,12 +23,12 @@ interface LayerGroupsState {
 // Define the initial state using that type
 const initialState: LayerGroupsState = {
   data: [
-    { name: 'Ice charts', type: 'simple-dropdown',
+    { label: 'Ice charts', id: 'ice-charts', type: 'checkbox',
       layers: [
-        { id: 'ice-met-norway'},
-        { id: 'ice-miz'},
-        { id: 'ice-concentration'},
-        { id: 'ice-stage-of-development'}
+        { id: 'ice-met-norway', checked: false, label: 'Ice chart (met.no)', color: 'yellow' },
+        { id: 'ice-miz', checked: false, label: 'Ice chart (NIC, MIZ)', color: 'purple' },
+        { id: 'ice-concentration', checked: false, label: 'Ice chart (NIC, Con)', color: 'green'},
+        { id: 'ice-stage-of-development', checked: false, label: 'Ice chart (NIC, SoD)', color: 'sky'}
       ]
     }
   ],
@@ -37,9 +42,24 @@ export const layerGroupSlice = createSlice({
       ...state,
       data: action.payload,
     }),
+    updateLayer: (state, action: PayloadAction<{ layerGroupId: string, layer: Layer }>) => {
+      console.log(action)
+      const { layerGroupId, layer } = action.payload;
+      const updatedData = state.data.map(existingLayerGroup => existingLayerGroup.id === layerGroupId ?
+        {
+          ...existingLayerGroup,
+          layers: existingLayerGroup.layers.map(existingLayer => existingLayer.id === layer.id ? layer : existingLayer)
+        } : existingLayerGroup
+      );
+
+      return {
+        ...state,
+        data: updatedData
+      }
+    },
   },
 });
 
-export const { setLayerGroupsData } = layerGroupSlice.actions;
+export const { setLayerGroupsData, updateLayer } = layerGroupSlice.actions;
 
 export default layerGroupSlice.reducer;

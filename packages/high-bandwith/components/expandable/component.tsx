@@ -9,8 +9,8 @@ interface IExpandable {
   radioButtonProps?: IRadioButton;
   onExpandChange?: React.MouseEventHandler<HTMLSpanElement> | undefined;
   content: React.ReactNode;
-  first?: true | undefined;
-  last?: true | undefined;
+  first?: boolean | undefined;
+  last?: boolean | undefined;
 }
 
 const Expandable: React.FC<IExpandable> = ({
@@ -37,7 +37,7 @@ const Expandable: React.FC<IExpandable> = ({
         >
           <Icon stroke="white" />
         </span>
-        <span className="ml-2">{label}</span>
+        <span className="ml-2 uppercase">{label}</span>
         <span className="flex-1 h-[1px] bg-middleblue mx-2" />
         <span className="radio">
           <RadioButton {...radioButtonProps} />
