@@ -1,0 +1,15 @@
+[
+  {
+    "label": "SAR Imagery", "id": "sar-imagery", "selected": false,
+    "layers": [
+      { "id": "sar-subset", "label": "SAR Subset", "checked": false, "type": "checkbox" }
+    ]
+  },
+  {
+    "label": "Ice charts", "id": "ice-charts", "selected": false,
+    "layers": [
+      { "id": "ice-met-norway", "label": "Ice chart (met.no)", "checked": false, "type": "checkbox" },
+      { "id": "ice-miz", "label": "Ice chart (met.no)", "checked": false, "type": "checkbox" }
+    ]
+  }
+];

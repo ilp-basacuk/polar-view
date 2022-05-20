@@ -12,14 +12,14 @@ export interface MenuProps {
   items: MenuItem[];
   maxWidth?: string | number;
   children?: React.ReactElement;
-  onItemClick?: (item: MenuItem) => boolean | null;
+  onClick?: (item: MenuItem) => boolean | null;
 }
 
 export const Menu: FC<MenuProps> = ({
   items,
   maxWidth = 115,
   children,
-  onItemClick,
+  onClick,
   ...props
 }: MenuProps) => {
   const springConfig: SpringOptions = { damping: 15, stiffness: 300 };
@@ -60,8 +60,8 @@ export const Menu: FC<MenuProps> = ({
                   key={item.value}
                   className="text-left"
                   onClick={() => {
-                    if (onItemClick) {
-                      if (onItemClick(item)) {
+                    if (onClick) {
+                      if (onClick(item)) {
                         // eslint-disable-next-line no-underscore-dangle
                         tippyRef?.current?._tippy.hide();
                       }
