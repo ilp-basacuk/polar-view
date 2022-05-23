@@ -51,7 +51,7 @@ export const Menu: FC<MenuProps> = ({
       {...props}
       ref={tippyRef}
       render={(attrs) => (
-        <motion.div style={{ scale, opacity, maxWidth: maxWidth || 'none' }} {...attrs}>
+        <motion.div className="z-50" style={{ scale, opacity, maxWidth: maxWidth || 'none' }} {...attrs}>
           <div className="relative">
             <div className="px-2 py-1 border border-mainblue bg-blur flex flex-col text-white text-tiny font-bolder space-y-2">
               {items.map((item) => (
