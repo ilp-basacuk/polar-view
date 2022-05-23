@@ -1,8 +1,9 @@
 import FilterCheck from 'components/filtercheck';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useAppDispatch } from 'store/hooks';
 import { updateLayer } from 'store/features/layerGroups/slice';
 import GroupedDropdowns from './grouped-dropdowns';
+import Legend from 'components/legend';
 
 interface CheckboxGroupProps {
   layerGroup: any,
@@ -10,9 +11,6 @@ interface CheckboxGroupProps {
 
 const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
   const dispatch = useAppDispatch();
-  const renderLayerParams = (layer) => {
-    return (<div>Hi</div>)
-  }
 
   return (
     <div>
@@ -39,7 +37,8 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
               ],
             }}
           />
-          {layer.checked && (layer.groups ? <GroupedDropdowns layer={layer} /> : renderLayerParams(layer))}
+          {layer.checked && layer.groups && <GroupedDropdowns layer={layer} />}
+          {layer.checked && <Legend layer={layer} />}
         </>
       ))}
     </div>

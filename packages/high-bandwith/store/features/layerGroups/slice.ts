@@ -131,6 +131,6 @@ export const layerGroupSlice = createSlice({
   },
 });
 
-export const { setLayerGroupsData, updateLayer, activatePreset, updateGroupLayer } = layerGroupSlice.actions;
+export const { setLayerGroupsData, updateLayer, activatePreset } = layerGroupSlice.actions;
 
 export default layerGroupSlice.reducer;
