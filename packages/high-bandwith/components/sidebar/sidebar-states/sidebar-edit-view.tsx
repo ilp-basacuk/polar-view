@@ -17,7 +17,7 @@ const SidebarEditView: FC = () => {
   }
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-1 max-h-72 overflow-hidden overflow-y-auto border border-mainblue">
       {layerGroups.map((layerGroup, i) =>
         <Expandable
           key={layerGroup.id}

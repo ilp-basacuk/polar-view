@@ -9,5 +9,48 @@
       { "label": "Very Open Drift Ice 1/10 - 2/10", "color": "#0AFF00"},
       { "label": "Open Water 0/10 - 1/10", "color": "#1900FF"}
     ]
+  },
+  "ice-miz": {
+    "type": "categorical",
+    "items": [
+      { "label": "Fast ice", "color": "#FF0100"},
+      { "label": "Marginal ice zone", "color": "#FEFF00"}
+    ]
+  },
+  "ice-concentration": {
+    "type": "categorical",
+    "items": [
+      { "label": "Less than 1/10 Open Water", "color": "#95C9FF"},
+      { "label": "Very Open Drift Ice 1/10 - 2/10", "color": "#0AFF00"},
+      { "label": "Open Ice 4/10 - 7/10", "color": "#FEFF00"},
+      { "label": "Close Ice 7/10 - 9/10", "color": "#FEAD00"},
+      { "label": "Very Close Open Ice 9/10 - 10/10", "color": "#FF0100"},
+      { "label": "Fast Ice", "color": "#787878"},
+      { "label": "Ice free", "color": "#1900FF"}
+    ]
+  },
+  "ice-stage-of-development": {
+    "type": "categorical",
+    "items": [
+      { "label": "Ice free", "color": "#1900FF"},
+      { "label": "Unspecified CoD", "color": "#95C9FF"},
+      { "label": "New Ice", "color": "#F0D2F9"},
+      { "label": "Light/dark nilas", "color": "#FFAEFE"},
+      { "label": "Young ice", "color": "#A929EF"},
+      { "label": "Grey ice", "color": "#873CD6"},
+      { "label": "Grey-white ice", "color": "#DC50EB"},
+      { "label": "First-year ice", "color": "#FEFF00"},
+      { "label": "First-year thin ice", "color": "#9BD102"},
+      { "label": "First-year thin ice first stage", "color": "#D9FA81"},
+      { "label": "First-year thin ice second stage", "color": "#AFFA00"},
+      { "label": "First-year medium ice", "color": "#0AFF00"},
+      { "label": "First-year thick ice", "color": "#007800"},
+      { "label": "Old ice", "color": "#B36432"},
+      { "label": "Second-year ice", "color": "#FEAD00"},
+      { "label": "Multi-year ice", "color": "#FF0100"},
+      { "label": "Glacier ice", "image": "glacier-ice.png"},
+      { "label": "Undetermined", "color": "#fff"},
+      { "label": "Fast Ice", "color": "#787878"}
+    ]
   }
 }

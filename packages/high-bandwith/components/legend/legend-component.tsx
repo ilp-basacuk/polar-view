@@ -12,7 +12,7 @@ const Legend: FC<LegendProps> = ({ layer }) => {
   return (
     <>
       {legend.items.map((item) => (
-        <LegendItem key={item.label} label={item.label} color={item.color} />
+        <LegendItem {...item} key={item.label} />
       ))}
     </>
   );

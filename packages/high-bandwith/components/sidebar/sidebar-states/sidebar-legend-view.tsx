@@ -34,7 +34,7 @@ const SidebarLegendView: FC<SideBarLegendViewProps> = () => {
   };
 
   return (
-    <div className="space-y-1 border border-b-0 border-mainblue p-3">
+    <div className="space-y-1 max-h-96 overflow-y-auto border border-b-0 border-mainblue p-3">
       {activeLayers.map(renderLayerLegend)}
     </div>
   );
