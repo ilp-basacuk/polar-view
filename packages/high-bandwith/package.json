@@ -6,8 +6,8 @@
     "nohoist": [
       "**/fork-ts-checker-webpack-plugin",
       "**fork-ts-checker-webpack-plugin**",
-      "**/fs-extra",
-      "**fs-extra**"
+      "**/tailwindcss",
+      "**tailwindcss**"
     ]
   },
   "scripts": {
