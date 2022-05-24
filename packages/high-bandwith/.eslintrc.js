@@ -1,4 +1,5 @@
 module.exports = {
+  extends: '../../.eslintrc.json',
   env: {
     browser: true,
     es2021: true,
