@@ -5,7 +5,9 @@
   "workspaces": {
     "nohoist": [
       "**/fork-ts-checker-webpack-plugin",
-      "**fork-ts-checker-webpack-plugin**"
+      "**fork-ts-checker-webpack-plugin**",
+      "**/fs-extra",
+      "**fs-extra**"
     ]
   },
   "scripts": {
