@@ -7,7 +7,9 @@
       "**/fork-ts-checker-webpack-plugin",
       "**fork-ts-checker-webpack-plugin**",
       "**/tailwindcss",
-      "**tailwindcss**"
+      "**tailwindcss**",
+      "**/fs-extra",
+      "**fs-extra**"
     ]
   },
   "scripts": {
