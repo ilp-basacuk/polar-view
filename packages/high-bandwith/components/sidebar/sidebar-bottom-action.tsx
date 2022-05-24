@@ -23,11 +23,11 @@ const SidebarBottomAction: FC<SideBarActionProps> = ({ view, setView }) => (
     <Button
       theme="primary"
       onClick={() => {
-        setView(view === SIDEBAR_VIEW.LAYERS ? SIDEBAR_VIEW.LEGEND : SIDEBAR_VIEW.LAYERS);
+        setView(view === SIDEBAR_VIEW.EDIT ? SIDEBAR_VIEW.LEGEND : SIDEBAR_VIEW.EDIT);
       }}
       className="w-full bg-mainblue flex items-center pl-4 h-7 text-seabed hover:border hover:border-t-0 hover:border-mainblue"
     >
-      {view === SIDEBAR_VIEW.LAYERS ? 'SHOW AS A LEGEND' : 'EDIT LAYERS'}
+      {view === SIDEBAR_VIEW.EDIT ? 'SHOW AS A LEGEND' : 'EDIT LAYERS'}
     </Button>
   </div>
 );

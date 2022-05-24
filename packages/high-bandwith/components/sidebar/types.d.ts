@@ -23,7 +23,7 @@ export interface ISidebarState {
 
 export enum SIDEBAR_VIEW {
   LEGEND,
-  LAYERS,
+  EDIT,
   MINIMIZED,
 }
 

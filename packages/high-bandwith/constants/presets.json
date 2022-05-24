@@ -1,0 +1,5 @@
+{
+  "sar-imagery": { "sar-imagery": ["sar-subset"] },
+  "ice-charts": { "sar-imagery": ["sar-subset"],  "ice-charts": ["ice-met-norway"] },
+  "ice-products": { "ice-products": ["sea-ice-concentration", "sea-ice-thickness"] }
+}

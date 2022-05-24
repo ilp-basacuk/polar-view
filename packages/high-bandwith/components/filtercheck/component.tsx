@@ -1,7 +1,7 @@
 import Checkbox, { CheckboxProps } from 'components/forms/checkbox/component';
 import React from 'react';
-import Menu, { MenuProps } from '../menu/component';
-import MenuButton from '../menu/menubutton';
+import Menu, { MenuProps } from 'components/menu/component';
+import MenuButton from 'components/menu/menubutton';
 import cx from 'classnames';
 
 export interface IFilterCheck {

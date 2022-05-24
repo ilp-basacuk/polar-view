@@ -74,6 +74,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
           [Styles.icon.disabled]: disabled,
         })}
         icon={ARROW_DOWN_SVG}
+        style={{ fill: 'currentColor' }}
       />
     </button>
   );

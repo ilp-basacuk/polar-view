@@ -2,10 +2,10 @@ import cx from 'classnames';
 import { CheckboxProps } from 'components/forms/checkbox/component';
 import React from 'react';
 
-export interface IIceChartBulletProps extends CheckboxProps {
+export interface LegendItemProps extends CheckboxProps {
   label: string;
-  name?: string;
-  bullet?: 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green';
+  color?: 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green' | `#${string}`;
+  image?: string;
 }
 
 const COLOR_MAP: any = {
@@ -19,14 +19,27 @@ const COLOR_MAP: any = {
   green: 'bg-green',
 };
 
-const IceChartCheckBullet: React.FC<IIceChartBulletProps> = ({ label, bullet, name, ...others }) => {
+const LegendItem: React.FC<LegendItemProps> = ({ label, color, image }) => {
   const bulletClass = cx({
     'w-2.5 h-2.5 rounded mr-2.5': true,
-    [COLOR_MAP[bullet || 'none']]: !!bullet,
+    [`bg-${COLOR_MAP[color] || 'none'}`]: !!color,
   });
   return (
     <div className="flex items-center p-1">
-      <div className="flex items-center">{bullet && <div className={bulletClass} />}</div>
+      <div className="flex items-center">
+        {image &&
+          <div
+            className={cx(bulletClass, 'bg-cover')}
+            style={{ backgroundImage: `url('/images/legend/${image}')` }}
+          />
+        }
+        {color &&
+          <div
+            className={bulletClass}
+            style={!COLOR_MAP[color] && { backgroundColor: color }}
+          />
+        }
+        </div>
       <div className="flex">
         <div className="relative">
           <div className="flex items-center">
@@ -38,4 +51,4 @@ const IceChartCheckBullet: React.FC<IIceChartBulletProps> = ({ label, bullet, na
   );
 };
 
-export default IceChartCheckBullet;
+export default LegendItem;
