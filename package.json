@@ -6,10 +6,14 @@
   "author": "David Inga <david.inga@vizzuality.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": {"packages": [
+  "workspaces": {
+    "packages": [
       "packages/*"
     ],
-    "nohoist": ["**/fork-ts-checker-webpack-plugin", "**fork-ts-checker-webpack-plugin**"]
+    "nohoist": [
+      "**/fork-ts-checker-webpack-plugin",
+      "**fork-ts-checker-webpack-plugin**"
+    ]
   },
   "scripts": {
     "low": "yarn workspace @polar-view/low-bandwith",

@@ -2,6 +2,12 @@
   "name": "@polar-view/high-bandwith",
   "version": "0.2.0",
   "private": true,
+  "workspaces": {
+    "nohoist": [
+      "**/fork-ts-checker-webpack-plugin",
+      "**fork-ts-checker-webpack-plugin**"
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
