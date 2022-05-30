@@ -16,7 +16,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
   return (
     <div>
       {layerGroup.layers.map((layer: (GroupedLayer | SingleLayer)) => (
-        <>
+        <div key={layer.id}>
           <FilterCheck
             label={layer.label}
             bullet={layer.type !== 'grouped-dropdown' ? layer.color : null}
@@ -40,7 +40,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
           />
           {layer.checked && layer.type === 'grouped-dropdown' && layer.groups && layer.layers && <GroupedDropdowns layer={layer} />}
           {layer.checked && <Legend layer={layer} />}
-        </>
+        </div>
       ))}
     </div>
   );
