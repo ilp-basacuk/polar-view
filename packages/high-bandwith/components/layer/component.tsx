@@ -4,6 +4,12 @@ import { WMSTileLayer } from 'react-leaflet';
 
 import type { LayerProps } from './types';
 
+const DEFAULT_LAYER_PARAMS = {
+  version: '1.1.1',
+  format: 'image/png',
+  transparent: true,
+};
+
 export const Layer: FC<LayerProps> = ({
   url,
   params,
@@ -13,8 +19,8 @@ export const Layer: FC<LayerProps> = ({
 }: LayerProps) => (
   <WMSTileLayer
     url={url}
-    params={params}
-    minZoom={minZoom}
+    params={{...DEFAULT_LAYER_PARAMS, ...params}}
+    minZoom={minZoom || 0}
     tileSize={tileSize}
     className={className}
   />

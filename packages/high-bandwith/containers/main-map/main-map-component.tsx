@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-properties */
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useCallback } from 'react';
 import Layer from 'components/layer';
-import type { LayerProps } from 'components/layer/types';
 
 import Map from 'components/map';
 
@@ -10,45 +9,28 @@ import { MainMapProps } from './types';
 import { useAppSelector } from 'store/hooks';
 
 const DEFAULT_LAYER_IDS : string[] = ['graticule', 'land-mask'];
-const DEFAULT_LAYERS : LayerProps[] = LAYERS.filter((layer) => DEFAULT_LAYER_IDS.includes(layer.id));
+
+const renderLayers = (layerIds: string[]) => layerIds.map(renderLayer);
+const renderLayer = (layerId) => {
+  const layer = LAYERS.find(layer => layer.id === layerId);
+  if (!layer) return null;
+  return <Layer key={layer.id} {...layer} />;
+};
 
 const MainMap: FC<MainMapProps> = () => {
-  const renderLayer = (layer) => {
-    const defaultParams = {
-      version: '1.1.1',
-      format: 'image/png',
-      transparent: true,
-    };
-
-    const defaultProps = {
-      minZoom: 0,
-    };
-
-    const updatedLayer = {
-      ...defaultProps,
-      ...layer,
-      params: { ...defaultParams, ...layer.params },
-    };
-
-    return <Layer key={layer.id} {...updatedLayer} />;
-  };
-
   const layerGroups = useAppSelector(state => state.layerGroups.data);
 
-  const activeLayers : string[] = useMemo(() =>
+  const activeLayerIds : string[] = useMemo(() =>
     layerGroups.map(layerGroup => layerGroup.layers.map(l => l.checked && l.id).filter(Boolean)).flat(),
     [layerGroups]
   );
 
-  const selectedLayers : LayerProps[] = useMemo(
-    () => [
-      ...DEFAULT_LAYERS,
-      ...(LAYERS.filter((layer) => activeLayers.includes(layer.id)))
-    ],
-    [activeLayers]
-  );
+  const renderMapLayers = useCallback(() => renderLayers([
+    ...DEFAULT_LAYER_IDS,
+    ...activeLayerIds
+  ]), [activeLayerIds]);
 
-  return <Map projection="antarctic">{selectedLayers.map(renderLayer)}</Map>;
+  return <Map projection="antarctic">{renderMapLayers()}</Map>;
 };
 
 export default MainMap;
