@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import legends from 'constants/legends.json';
 import LegendItem from 'components/legend/legend-item';
+import { Layer } from 'types';
 
 interface LegendProps {
-  layer: any,
+  layer: Layer,
 }
 
 const Legend: FC<LegendProps> = ({ layer }) => {

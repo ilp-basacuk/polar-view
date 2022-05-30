@@ -3,16 +3,9 @@ import React from 'react';
 import Menu, { MenuProps } from 'components/menu/component';
 import MenuButton from 'components/menu/menubutton';
 import cx from 'classnames';
+import type { IFilterCheck } from './types';
 
-export interface IFilterCheck {
-  label: string;
-  bullet?: 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green';
-  menuProps?: MenuProps;
-  checkboxProps?: CheckboxProps;
-  labelColor?: string;
-}
-
-const COLOR_MAP: any = {
+const COLOR_MAP = {
   red: 'bg-red',
   orange: 'bg-orange',
   yellow: 'bg-yellow',

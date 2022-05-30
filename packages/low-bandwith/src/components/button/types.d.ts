@@ -1,4 +1,4 @@
-// import { ButtonHTMLAttributes, AnchorHTMLAttributes } from 'preact';
+import { h } from 'preact';
 
 import { LinkProps } from 'next/link';
 
@@ -8,7 +8,7 @@ export interface AnchorButtonProps {
   containerClassName?: string;
   cut?: 'right-bottom' | 'right-top' | 'left-top' | 'none';
   size?: 'small' | 'medium' | 'large';
-  component?: any;
+  component?: h;
 }
 
 // Button props

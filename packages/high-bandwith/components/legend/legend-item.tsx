@@ -1,14 +1,15 @@
 import cx from 'classnames';
 import { CheckboxProps } from 'components/forms/checkbox/component';
 import React from 'react';
+import type { Color } from 'types';
 
 export interface LegendItemProps extends CheckboxProps {
   label: string;
-  color?: 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green' | `#${string}`;
+  color?: Color;
   image?: string;
 }
 
-const COLOR_MAP: any = {
+const COLOR_MAP = {
   red: 'bg-red',
   orange: 'bg-orange',
   yellow: 'bg-yellow',

@@ -1,15 +1,15 @@
+import { useState } from 'react';
 import { Story } from '@storybook/react/types-6-0';
-import DaySlider from './component';
+import DaySlider, { IDaySliderProps }  from './component';
 import format from 'date-fns/format';
-import React from 'react';
 
 export default {
   title: 'Components/DaySlider',
   component: DaySlider,
 };
 
-const Template: Story<any> = ({ ...args }: any) => {
-  const [value, setValue] = React.useState();
+const Template: Story<IDaySliderProps> = ({ ...args }: IDaySliderProps) => {
+  const [value, setValue] = useState<Date | undefined>();
   return (
     <div className="w-[270px]">
       <DaySlider {...args} onChange={setValue} />

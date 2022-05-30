@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react';
 
 import { LinkProps } from 'next/link';
 
@@ -7,7 +7,7 @@ export interface AnchorButtonProps {
   className?: string;
   cut?: 'right-bottom' | 'right-top' | 'left-top' | 'none';
   size?: 'small' | 'medium' | 'large';
-  component?: any;
+  component?: FC;
 }
 
 // Button props

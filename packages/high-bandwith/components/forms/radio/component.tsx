@@ -1,14 +1,7 @@
 import React from 'react';
+import type { RadioButtonProps } from './types';
 
-export interface IRadioButton {
-  checked?: boolean;
-  name: string;
-  value?: string;
-  labelText?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
-}
-
-export const RadioButton: React.FC<IRadioButton> = ({ name, labelText, ...props }) => (
+export const RadioButton: React.FC<RadioButtonProps> = ({ name, labelText, ...props }) => (
   <div className="flex items-center">
     <input
       type="radio"

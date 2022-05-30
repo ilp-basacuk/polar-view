@@ -1,13 +1,14 @@
 import React from 'react';
 import ChevronDown from '../icons/chevron-down';
 import ChevronUp from '../icons/chevron-up';
-import RadioButton, { IRadioButton } from '../forms/radio';
+import RadioButton from '../forms/radio';
+import type { RadioButtonProps } from '../forms/radio/types';
 
-interface IExpandable {
+export interface IExpandable {
   label: string;
   expanded?: boolean;
   activeLayersNumber?: number;
-  radioButtonProps?: IRadioButton;
+  radioButtonProps?: RadioButtonProps;
   onExpandChange?: React.MouseEventHandler<HTMLSpanElement> | undefined;
   content: React.ReactNode;
   first?: boolean | undefined;

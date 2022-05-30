@@ -3,7 +3,7 @@ import DatePicker from '../datepicker';
 import addDays from 'date-fns/addDays';
 import useChangeEffect from 'components/hooks/useChangeState';
 
-interface IDateRangePicker {
+export interface IDateRangePicker {
   startDate?: Date;
   endDate?: Date;
   startPlaceHolder?: string;

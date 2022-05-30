@@ -1,13 +1,13 @@
 import { Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import DateRangePicker from './component';
+import DateRangePicker, { IDateRangePicker } from './component';
 
 export default {
   title: 'Components/DateRangePicker',
   component: DateRangePicker,
 };
 
-const Template: Story<any> = ({ ...args }: any) => {
+const Template: Story<IDateRangePicker> = ({ ...args }: IDateRangePicker) => {
   const [startDate, setStartDate] = React.useState(null)
   const [endDate, setEndDate] = React.useState(null)
   return (

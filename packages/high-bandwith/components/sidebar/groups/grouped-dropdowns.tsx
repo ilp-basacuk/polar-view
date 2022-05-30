@@ -3,14 +3,15 @@ import Select from 'components/forms/select';
 import { updateLayer } from 'store/features/layerGroups/slice';
 import { useAppDispatch } from 'store/hooks';
 import useChangeEffect from 'components/hooks/useChangeState';
+import { GroupedLayer } from 'types';
 
 interface GroupedDropdownsProps {
-  layer: any,
+  layer: GroupedLayer,
 }
 
-const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer }) => {
-  const [selectedGroup, setSelectedGroup] = useState(layer.layers.find(l => l.checked)?.group || null)
-  const [selectedLayer, setSelectedLayer] = useState(layer.layers.find(l => l.checked)?.id || null);
+const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer } : GroupedDropdownsProps) => {
+  const [selectedGroup, setSelectedGroup] = useState<string | null>(layer.layers.find(l => l.checked)?.group || null)
+  const [selectedLayer, setSelectedLayer] = useState<string | null>(layer.layers.find(l => l.checked)?.id || null);
   const groupOptions = layer.groups.map(group => ({ label: group.label, value: group.id }));
   const layerOptions = useMemo(() => layer.layers.filter(l => l.group === selectedGroup).map(l => ({ label: l.label, value: l.id })), [selectedGroup]);
 
@@ -32,7 +33,7 @@ const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer }) => {
         <Select
           id={`${layer.id}-group-select`}
           initialSelected={selectedGroup}
-          onChange={setSelectedGroup}
+          onChange={(l: string) => setSelectedGroup(l)}
           options={groupOptions}
         />
       </div>
@@ -40,7 +41,7 @@ const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer }) => {
         <Select
           id={`${layer.id}-layer-select`}
           initialSelected={selectedLayer}
-          onChange={setSelectedLayer}
+          onChange={(l: string) => setSelectedLayer(l)}
           options={layerOptions}
           selected={selectedLayer}
         />

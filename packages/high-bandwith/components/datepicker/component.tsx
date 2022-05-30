@@ -15,7 +15,7 @@ interface IDatePickerInputProps {
   placeHolderText?: string;
 }
 
-interface IReactDatePickerProps extends ReactDatePickerProps {
+export interface IReactDatePickerProps extends ReactDatePickerProps {
   disableToday?: boolean;
 }
 

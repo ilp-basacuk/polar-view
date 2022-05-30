@@ -1,13 +1,14 @@
 import { Story } from '@storybook/react/types-6-0';
-import FilterCheck, { IFilterCheck } from './component';
+import FilterCheck from './component';
 import React from 'react';
+import type { IFilterCheck } from './types';
 
 export default {
   title: 'Components/FilterCheck',
   component: FilterCheck,
 };
 
-const Template: Story<IFilterCheck> = ({ ...args }: any) => (
+const Template: Story<IFilterCheck> = ({ ...args }) => (
   <div className="w-[300px]">
     <FilterCheck {...args} />
   </div>

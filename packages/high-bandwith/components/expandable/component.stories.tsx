@@ -1,5 +1,5 @@
 import { Story } from '@storybook/react/types-6-0';
-import Expandable from './component';
+import Expandable, { IExpandable } from './component';
 import React from 'react';
 
 export default {
@@ -7,7 +7,7 @@ export default {
   component: Expandable,
 };
 
-const Template: Story<any> = ({ ...args }: any) => <Expandable {...args} />;
+const Template: Story<IExpandable> = ({ ...args }: IExpandable) => <Expandable {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

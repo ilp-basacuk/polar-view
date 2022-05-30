@@ -3,14 +3,14 @@ import format from 'date-fns/format';
 import React from 'react';
 import Tooltip from '../tooltip';
 
-interface IDaySlider {
+export interface IDaySliderProps {
   startDate?: Date;
   onChange?: (date: Date) => void;
 }
 
 const Days = Array.from({ length: 30 }, (x, i) => i);
 
-const DaySlider: React.FC<IDaySlider> = ({ startDate, onChange }) => {
+const DaySlider: React.FC<IDaySliderProps> = ({ startDate, onChange }) => {
   const onDayChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {

@@ -4,9 +4,10 @@ import { useAppDispatch } from 'store/hooks';
 import { updateLayer } from 'store/features/layerGroups/slice';
 import GroupedDropdowns from './grouped-dropdowns';
 import Legend from 'components/legend';
+import type { LayerGroup, GroupedLayer, SingleLayer } from 'types';
 
 interface CheckboxGroupProps {
-  layerGroup: any,
+  layerGroup: LayerGroup,
 }
 
 const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
@@ -14,11 +15,11 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
 
   return (
     <div>
-      {layerGroup.layers.map(layer => (
+      {layerGroup.layers.map((layer: (GroupedLayer | SingleLayer)) => (
         <>
           <FilterCheck
             label={layer.label}
-            bullet={layer.color}
+            bullet={layer.type !== 'grouped-dropdown' ? layer.color : null}
             checkboxProps={{
               checked: layer.checked,
               onChange: () => {
@@ -37,7 +38,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
               ],
             }}
           />
-          {layer.checked && layer.groups && <GroupedDropdowns layer={layer} />}
+          {layer.checked && layer.type === 'grouped-dropdown' && layer.groups && layer.layers && <GroupedDropdowns layer={layer} />}
           {layer.checked && <Legend layer={layer} />}
         </>
       ))}
