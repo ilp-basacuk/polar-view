@@ -2,6 +2,7 @@ import { FC } from 'react';
 import type { SideBarAction } from '../types';
 import { useAppSelector } from 'store/hooks';
 import Legend from 'components/legend';
+import { SingleLayer, GroupedLayer, Layer } from 'types';
 
 interface DividerProps {
   label?: string;
@@ -17,11 +18,15 @@ interface SideBarLegendViewProps {
   onChange?: (params: SideBarAction) => void;
 }
 
+const isGroupedLayer = (layer: Layer): layer is GroupedLayer => {
+  return (layer as GroupedLayer).type === 'grouped-dropdown';
+}
+
 const SidebarLegendView: FC<SideBarLegendViewProps> = () => {
   const layerGroups = useAppSelector(state => state.layerGroups.data);
   const activeLayers = layerGroups.map(layerGroup => layerGroup.layers.map(layer => {
     if (!layer.checked) return null;
-    if (layer.type === 'grouped-dropdown') return layer.layers.find(groupedLayer => groupedLayer.checked) || null;
+    if (isGroupedLayer(layer)) return layer.layers.find(groupedLayer => groupedLayer.checked) || null;
     return layer;
   }).filter(Boolean)).flat();
   const renderLayerLegend = (layer) => {

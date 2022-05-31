@@ -7,7 +7,7 @@ export interface AnchorButtonProps {
   className?: string;
   cut?: 'right-bottom' | 'right-top' | 'left-top' | 'none';
   size?: 'small' | 'medium' | 'large';
-  component?: FC;
+  component?: any;
 }
 
 // Button props
