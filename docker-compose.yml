@@ -6,3 +6,5 @@ services:
       - 3000:3000
     command: yarn workspace @polar-view/high-bandwith
     container_name: polar-view
+    environment:
+      - NEXT_PUBLIC_LOW_BANDWITH_URL=http://localhost:8080
