@@ -11,6 +11,7 @@ packages/low-bandwith/node_modules/
 /coverage
 
 # next.js
+.next
 packages/high-bandwith/.next
 packages/high-bandwith/out
 
