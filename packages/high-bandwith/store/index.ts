@@ -1,11 +1,9 @@
-import ui from 'store/features/ui/slice';
 import layerGroups from 'store/features/layerGroups/slice';
 
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 
 const staticReducers = {
-  ui,
   layerGroups
 };
 
