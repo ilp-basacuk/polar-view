@@ -57,10 +57,11 @@ const DatePicker: React.FC<IReactDatePickerProps> = ({
         setCurrentDate(date);
         onChange(date, event);
       }}
+      portalId="date-picker"
       onCalendarOpen={() => setisCalendarOpen(true)}
       onCalendarClose={() => setisCalendarOpen(false)}
-      className="text-white"
-      calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b bg-navyblue"
+      className="text-white z-50"
+      calendarClassName="text-white border border-mainblue p-2 w-52 relative cut-r-b bg-navyblue z-50"
       customInput={
         <DatePickerInput
           startDate={currentDate}

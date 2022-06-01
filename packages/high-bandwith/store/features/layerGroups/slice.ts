@@ -1,19 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import presets from 'constants/presets.json';
-import layersConfig from 'constants/layersConfig.json';
 import type { LayerGroup } from 'types';
 
-// Define a type for the slice state
+// Json files should be imported with require:
+// https://stackoverflow.com/a/50708719
 
+const layersConfig = require('constants/layersConfig.json');
+const presets = require ('constants/presets.json');
+
+// Define a type for the slice state
 interface LayerGroupsState {
   data: LayerGroup[];
   activePreset: string;
 }
 
 // Define the initial state using that type
-// TODO: Fix type
 const initialState: LayerGroupsState = {
-  // @ts-ignore
   data: layersConfig,
   activePreset: null,
 };

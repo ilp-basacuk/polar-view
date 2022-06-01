@@ -23,7 +23,8 @@
     "id": "sar-subset",
     "url": "https://geos.polarview.aq/geoserver/polarview/wms?",
     "params": {
-      "layers": "polarview:SARSUBSET"
+      "layers": "polarview:SARSUBSET",
+      "time": "2021-05-01"
   },
     "tileSize": 710
   },

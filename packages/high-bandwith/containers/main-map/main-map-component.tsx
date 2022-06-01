@@ -1,21 +1,12 @@
 /* eslint-disable no-restricted-properties */
-import { FC, useMemo, useCallback } from 'react';
-import Layer from 'components/layer';
+import { FC, useMemo } from 'react';
 
 import Map from 'components/map';
 
-import LAYERS from 'constants/layers.json';
 import { MainMapProps } from './types';
 import { useAppSelector } from 'store/hooks';
 
 const DEFAULT_LAYER_IDS : string[] = ['graticule', 'land-mask'];
-
-const renderLayers = (layerIds: string[]) => layerIds.map(renderLayer);
-const renderLayer = (layerId) => {
-  const layer = LAYERS.find(layer => layer.id === layerId);
-  if (!layer) return null;
-  return <Layer key={layer.id} {...layer} />;
-};
 
 const MainMap: FC<MainMapProps> = () => {
   const layerGroups = useAppSelector(state => state.layerGroups.data);
@@ -25,12 +16,8 @@ const MainMap: FC<MainMapProps> = () => {
     [layerGroups]
   );
 
-  const renderMapLayers = useCallback(() => renderLayers([
-    ...DEFAULT_LAYER_IDS,
-    ...activeLayerIds
-  ]), [activeLayerIds]);
 
-  return <Map projection="antarctic">{renderMapLayers()}</Map>;
+  return <Map projection="antarctic" basemapIds={DEFAULT_LAYER_IDS} layerIds={activeLayerIds} />
 };
 
 export default MainMap;

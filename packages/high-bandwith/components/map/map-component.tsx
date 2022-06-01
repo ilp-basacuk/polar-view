@@ -1,13 +1,16 @@
 /* eslint-disable no-restricted-properties */
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo, useEffect, useState } from 'react';
 
-import { MapContainer, ScaleControl, useMapEvents } from 'react-leaflet';
+import { MapContainer, ScaleControl, useMapEvents, useMap } from 'react-leaflet';
 
 import * as L from 'leaflet';
 
 import { getProjection } from './projections';
 import { MapProps } from './types';
 import ZoomControl from './zoom-control';
+import LatLonText from './lat-lon-text';
+import LeafletWmsSource from './leaflet-wms-source';
+import { useLayerManager } from './map-hooks';
 
 const MIN_ZOOM = 0.25;
 const MAX_ZOOM = 5;
@@ -16,28 +19,43 @@ const ARCTIC_CENTER = L.latLng(90, 135);
 const ANTARCTIC_CENTER = L.latLng(-90, 0);
 const MAX_BOUNDS_ANTARCTIC = L.latLngBounds(L.latLng(-37, -46), L.latLng(-26, 135));
 
-const LatLonText: FC<{}> = () => {
-  const [lat, setLat] = useState<number | undefined>();
-  const [lon, setLon] = useState<number | undefined>();
-  useMapEvents({
-    mousemove(e) {
-      setLat(Math.round(e.latlng.lat * 100) / 100);
-      setLon(Math.round(e.latlng.lng * 100) / 100);
-    },
-  });
-  return (
-    <div className="absolute bottom-8 right-3 w-40 text-mainblue z-50">
-      Long: {lon}, Lat: {lat}
-    </div>
-  );
+const MapReference = ({ setMap }) => {
+  const map = useMap();
+  useEffect(() => {
+    setMap(map)
+  }, [map])
+  return null;
 };
 
-const Map: FC<MapProps> = ({ projection = 'artic', children }) => {
+const MapInteraction = ({ onClick }) => {
+  useMapEvents({
+    click(e) {
+      onClick(e)
+    },
+  });
+  return null;
+}
+
+const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerIds }) => {
+  const [sources, setSources] = useState<{ [key: string] : typeof LeafletWmsSource }>();
+  const [map, setMap] = useState();
+  const [activeLayerIds, setActiveLayerIds] = useState<string[]>([]);
+
   const crs = useMemo(() => getProjection(projection, MAX_ZOOM, TILE_SIZE), [projection]);
   const center = useMemo(
     () => (projection === 'artic' ? ARCTIC_CENTER : ANTARCTIC_CENTER),
     [projection]
   );
+
+  const onClick = (e) => {
+    if (sources) {
+      sources['sar-subset'].identify(e); // TODO: Example for now
+    }
+  }
+
+  useLayerManager(map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds);
+
+console.log('acrivve', activeLayerIds, map);
   return (
     <MapContainer
       key={`map-${projection}`}
@@ -52,9 +70,11 @@ const Map: FC<MapProps> = ({ projection = 'artic', children }) => {
       maxBounds={projection === 'antarctic' ? MAX_BOUNDS_ANTARCTIC : undefined}
     >
       {children}
+      <MapReference setMap={setMap} />
       <ZoomControl minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
       <ScaleControl position="bottomright" />
       <LatLonText />
+      <MapInteraction onClick={onClick}/>
     </MapContainer>
   );
 };

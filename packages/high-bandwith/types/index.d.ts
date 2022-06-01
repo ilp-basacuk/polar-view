@@ -21,6 +21,7 @@ export interface Layer {
   type: 'checkbox' | 'dropdown' | 'grouped-dropdown' | 'grouped-dropdown-selection';
   group?: string;
   color?:  Color;
+  params?: {[key: string] : any }
   download?: `https://${string}`;
 }
 

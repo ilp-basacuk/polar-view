@@ -1,4 +1,7 @@
 {
+  "sar-subset": {
+    "type": "time"
+  },
   "ice-met-norway": {
     "type": "categorical",
     "items": [

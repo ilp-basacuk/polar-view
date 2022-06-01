@@ -24,7 +24,8 @@ const Home: React.FC = () => (
         <Menu />
       </div>
       <MainMap />
-      <SideBar className="z-50" />
+      <div id="date-picker" className="relative z-50" />
+      <SideBar className="z-40" />
     </div>
   </div>
 );
