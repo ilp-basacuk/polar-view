@@ -9,7 +9,7 @@ const LeafletWmsSource = LeafletWms.Source.extend({
     }
     this.getFeatureInfo(
       e.containerPoint, e.latlng, layers,
-      (latLng, info) => console.log(latLng, info)
+      (latLng, info) => console.info(latLng, info)
     );
   }
 });

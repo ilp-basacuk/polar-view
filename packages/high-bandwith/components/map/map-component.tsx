@@ -48,14 +48,13 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
   );
 
   const onClick = (e) => {
-    if (sources) {
+    if (sources && sources['sar-subset']) {
       sources['sar-subset'].identify(e); // TODO: Example for now
     }
   }
 
   useLayerManager(map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds);
 
-console.log('acrivve', activeLayerIds, map);
   return (
     <MapContainer
       key={`map-${projection}`}
