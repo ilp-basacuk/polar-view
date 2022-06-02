@@ -11,8 +11,8 @@ const Home = () => (
     <Logo />
 		<Menu />
     <div className="h-screen w-full flex flex-col items-center justify-center z-10" style={{ backgroundImage: `url(${curves})` }}>
-      <a href={`${HIGH_BANDWITH_URL}/artic`} disabled>
-        <h2 className="text-white text-4xl lg:text-9xl uppercase tracking-widest font-extralight hover:scale-150 transition">Artic</h2>
+      <a href="/#">
+        <h2 className="text-mainblue text-4xl lg:text-9xl uppercase tracking-widest font-extralight hover:scale-150 transition">Artic</h2>
       </a>
       <div className="text-mainblue uppercase my-16">
         Explore one of the poles
