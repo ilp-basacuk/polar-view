@@ -44,24 +44,32 @@ export const LinkAnchor: FC<AnchorProps> = ({
   cut = 'right-bottom',
   size = 'large',
   ...restProps
-}: AnchorProps) => (
-  <Link href={href} {...anchorLinkProps}>
-    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
-      <a
-        className={buildClassName({
-          className,
-          disabled,
-          theme,
-          cut,
-          size,
-        })}
-        {...restProps}
-      >
-        {children}
-      </a>
-    </span>
-  </Link>
-);
+}: AnchorProps) => {
+  const renderAnchor = () => (
+    <a
+      className={buildClassName({
+        className,
+        disabled,
+        theme,
+        cut: theme === 'info' ? 'none' : cut,
+        size,
+      })}
+      {...restProps}
+    >
+      {children}
+    </a>
+  )
+  return (<Link href={href} {...anchorLinkProps}>
+      {theme === 'info' ?
+        renderAnchor()
+      :
+        <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+          {renderAnchor()}
+        </span>
+      }
+    </Link>
+  );
+};
 
 export const Anchor: FC<AnchorProps> = ({
   children,
@@ -78,23 +86,26 @@ export const Anchor: FC<AnchorProps> = ({
   if (disabled) {
     return <span {...restProps}>{children}</span>;
   }
-  return (
-    <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
-      <a
-        href={href}
-        className={buildClassName({
-          className,
-          disabled,
-          theme,
-          cut,
-          size,
-        })}
-        {...restProps}
-      >
-        {children}
-      </a>
-    </span>
+  const renderAnchor = () => (
+    <a
+      href={href}
+      className={buildClassName({
+        className,
+        disabled,
+        theme,
+        cut: theme === 'info' ? 'none' : cut,
+        size,
+      })}
+      {...restProps}
+    >
+      {children}
+    </a>
   );
+  return theme === 'info' ? renderAnchor()
+    :
+      <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+        {renderAnchor()}
+      </span>;
 };
 
 export const Button: FC<ButtonProps> = ({
@@ -108,23 +119,26 @@ export const Button: FC<ButtonProps> = ({
   ...restProps
 }: ButtonProps) => {
   const Component = component;
-  return (
-    <span className={`btn-wrapper w-full ${CUT_MAP[cut]}`}>
-      <Component
-        className={buildClassName({
-          className,
-          disabled,
-          theme,
-          cut,
-          size,
-        })}
-        disabled={disabled}
-        {...restProps}
-      >
-        {children}
-      </Component>
-    </span>
+  const renderButton = () => (
+    <Component
+      className={buildClassName({
+        className,
+        disabled,
+        theme,
+        cut: theme === 'info' ? 'none' : cut,
+        size,
+      })}
+      disabled={disabled}
+      {...restProps}
+    >
+      {children}
+    </Component>
   );
+  return theme === 'info' ? renderButton()
+  :
+    <span className={`btn-wrapper w-full ${CUT_MAP[cut]}`}>
+      {renderButton()}
+    </span>;
 };
 
 export const LinkButton: Overload = (props: ButtonProps | AnchorProps) => {

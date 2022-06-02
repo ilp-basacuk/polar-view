@@ -3,6 +3,7 @@ import Expandable from 'components/expandable';
 import CheckboxGroup from '../groups/checkbox-group';
 import { useAppSelector, useAppDispatch } from 'store/hooks';
 import { activatePreset } from 'store/features/layerGroups/slice';
+import Button from 'components/button';
 
 const SidebarEditView: FC = () => {
   const layerGroups = useAppSelector(state => state.layerGroups.data);
@@ -30,7 +31,12 @@ const SidebarEditView: FC = () => {
             checked: activePreset === layerGroup.id,
             onChange: () => handleRadioChange(layerGroup.id)
           }}
-          content={<CheckboxGroup layerGroup={layerGroup} />}
+          content={<>
+            <CheckboxGroup layerGroup={layerGroup} />
+            <div className="flex items-end justify-end">
+              <Button theme="info" size="medium" className="mt-2 -mb-2 -mr-2" onClick={() => console.info('Open modal')}>Info</Button>
+            </div>
+          </>}
           activeLayersNumber={layerGroup.layers.filter(l => l.checked).length || null}
           first={i === 0}
           last={i === layerGroups.length - 1}

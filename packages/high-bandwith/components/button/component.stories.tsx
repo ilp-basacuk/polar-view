@@ -9,7 +9,7 @@ export default {
     theme: {
       control: {
         type: 'select',
-        options: ['primary', 'secondary'],
+        options: ['primary', 'secondary', 'info'],
       },
     },
   },
