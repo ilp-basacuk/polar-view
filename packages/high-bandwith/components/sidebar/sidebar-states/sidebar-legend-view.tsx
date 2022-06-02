@@ -8,7 +8,7 @@ interface DividerProps {
   label?: string;
 }
 const Divider: FC<DividerProps> = ({ label }) => (
-  <div className="flex items-center">
+  <div className="flex items-center mb-2">
     <div className="bg-softerblue h-px flex-1" />
     {label && <div className="text-tiny text-mainblue uppercase font-bolder ml-2">{label}</div>}
   </div>
@@ -24,18 +24,28 @@ const isGroupedLayer = (layer: Layer): layer is GroupedLayer => {
 
 const SidebarLegendView: FC<SideBarLegendViewProps> = () => {
   const layerGroups = useAppSelector(state => state.layerGroups.data);
-  const activeLayers = layerGroups.map(layerGroup => layerGroup.layers.map(layer => {
-    if (!layer.checked) return null;
-    if (isGroupedLayer(layer)) return layer.layers.find(groupedLayer => groupedLayer.checked) || null;
-    return layer;
-  }).filter(Boolean)).flat();
-  const renderLayerLegend = (layer) => {
+  const activeLayers = layerGroups.map(layerGroup => {
+    const layerGroupActiveLayers = layerGroup.layers.map(layer => {
+      if (!layer.checked) return null;
+      if (isGroupedLayer(layer)) return layer.layers.find(groupedLayer => groupedLayer.checked) || null;
+      return layer;
+    }).filter(Boolean);
+    return layerGroupActiveLayers.length ? { [layerGroup.id]: layerGroupActiveLayers } : null;
+  }).filter(Boolean);
+
+  console.log(activeLayers)
+  const renderLayerLegend = (layerGroup: LayerGroup) => {
     return (
-      <div key={`legend-item-${layer.id}`}>
-        <Divider label={layer.label} />
-        <Legend layer={layer} />
-      </div>
-    );
+      Object.keys(layerGroup).map((layerGroupId: string) => (
+        <div key={`legend-group-${layerGroupId}`}>
+          <Divider label={layerGroupId} />
+          {layerGroup[layerGroupId].map((layer: Layer) => (
+            <div key={`legend-item-${layerGroupId}`}>
+              <Legend layer={layer} />
+            </div>
+           ))}
+        </div>
+      )))
   };
 
   return (
