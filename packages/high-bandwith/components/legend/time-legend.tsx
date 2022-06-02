@@ -4,6 +4,7 @@ import DateRangePicker from 'components/daterange/component';
 import { updateLayer } from 'store/features/layerGroups/slice';
 import { useAppDispatch } from 'store/hooks';
 import layers from 'constants/layers.json';
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 
 const layerGroups : LayerGroup[] = require('constants/layerGroups.json');
 
@@ -15,6 +16,8 @@ const parseTime = (time: string) => {
   const [startDate, endDate] = time.split('/');
   return { startDate, endDate };
 }
+
+const stringifyDate = (date) => date && format(date, 'yyyy-MM-dd');
 
 const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
   const { time } = layer.params || {};
@@ -38,7 +41,6 @@ const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
 
   const setDate = ({ startDate, endDate }) => {
     const layerGroup: LayerGroup = layerGroups.find(group => group.layers.some(l => l.id === layer.id));
-
     dispatch(updateLayer({
       layerGroupId: layerGroup.id,
       layer: { ...layer, params: { ...layer.params, time: `${startDate}/${endDate}` }}
@@ -48,13 +50,14 @@ const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
     <div className="mb-3">
       <div className="mb-3">
         <DateRangePicker
-          startDate={date?.startDate ? new Date(date?.startDate) : null}
-          endDate={date?.endDate ? new Date(date.endDate) : null}
+          startDate={date?.startDate ? new Date(Date.parse(date?.startDate)) : null}
+          endDate={date?.endDate ? new Date(Date.parse(date.endDate)) : null}
           startPlaceHolder="Start Date"
           endPlaceHolder="End Date"
           onChange={(startDate, endDate) => {
             if (startDate && endDate) {
-              setDate({ startDate, endDate });
+
+              setDate({ startDate: stringifyDate(startDate), endDate: stringifyDate(endDate) });
             }
           }}
         />
