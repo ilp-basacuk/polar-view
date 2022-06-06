@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-properties */
-import { FC, useMemo, useEffect, useState } from 'react';
-
+import { FC, useMemo, useEffect, useState, useRef } from 'react';
 import { MapContainer, ScaleControl, useMapEvents, useMap } from 'react-leaflet';
+import Tooltip from 'components/tooltip';
 
 import * as L from 'leaflet';
 
@@ -40,6 +40,17 @@ const MapInteraction = ({ onClick }) => {
 const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerIds }) => {
   const [sources, setSources] = useState<{ [key: string] : typeof LeafletWmsSource }>();
   const [map, setMap] = useState();
+  const [tooltipInfo, setTooltipInfo] = useState<{ [key: string] : any }>(null);
+  const tooltipRef = useRef(null);
+
+  useEffect(() => {
+    if (tooltipRef.current && tooltipInfo) {
+      tooltipRef.current.open();
+    }
+    if (tooltipRef.current && !tooltipInfo) {
+      tooltipRef.current.close();
+    }
+  }, [tooltipInfo, tooltipRef]);
   const [activeLayerIds, setActiveLayerIds] = useState<string[]>([]);
 
   const crs = useMemo(() => getProjection(projection, MAX_ZOOM, TILE_SIZE), [projection]);
@@ -50,9 +61,10 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
 
   const onClick = (e) => {
     if (sources && sources['sar-subset']) {
-      sources['sar-subset'].identify(e); // TODO: Example for now
+      sources['sar-subset'].identify(e).then((info) => info.features && info.features.length > 0 && setTooltipInfo({...info.features[0].properties, layerId: info.layerId }));
     }
   }
+
   const layerGroups = useAppSelector(state => state.layerGroups.data);
   const layerParams = useMemo(() => (
     layerGroups.reduce((acc, layerGroup) => {
@@ -68,25 +80,43 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
   useLayerManager({ map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds, layerParams });
 
   return (
-    <MapContainer
-      key={`map-${projection}`}
-      className="w-full h-full"
-      crs={crs}
-      center={center}
-      zoom={MIN_ZOOM}
-      minZoom={MIN_ZOOM}
-      maxZoom={MAX_ZOOM}
-      attributionControl={false}
-      zoomControl={false}
-      maxBounds={projection === 'antarctic' ? MAX_BOUNDS_ANTARCTIC : undefined}
-    >
-      {children}
-      <MapReference setMap={setMap} />
-      <ZoomControl minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
-      <ScaleControl position="bottomright" />
-      <LatLonText />
-      <MapInteraction onClick={onClick}/>
-    </MapContainer>
+    <>
+      <MapContainer
+        key={`map-${projection}`}
+        className="w-full h-full"
+        crs={crs}
+        center={center}
+        zoom={MIN_ZOOM}
+        minZoom={MIN_ZOOM}
+        maxZoom={MAX_ZOOM}
+        attributionControl={false}
+        zoomControl={false}
+        maxBounds={projection === 'antarctic' ? MAX_BOUNDS_ANTARCTIC : undefined}
+      >
+        {children}
+        <MapReference setMap={setMap} />
+        <ZoomControl minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
+        <ScaleControl position="bottomright" />
+        <LatLonText />
+        <MapInteraction onClick={onClick}/>
+      </MapContainer>
+      <Tooltip
+        ref={tooltipRef}
+        content={
+          <div className="px-10">
+            <div>
+              {tooltipInfo && tooltipInfo.filename}
+            </div>
+            <div>
+              {tooltipInfo && tooltipInfo.layerId}
+            </div>
+            <div>
+              {tooltipInfo && tooltipInfo.acqtime}
+            </div>
+          </div>
+        }
+      />
+    </>
   );
 };
 
