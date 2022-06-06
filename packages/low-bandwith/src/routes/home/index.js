@@ -2,7 +2,7 @@ import { Link } from 'preact-router/match';
 import { useState, useMemo } from 'react';
 import Menu from '../../components/menu';
 import Logo from '../../components/logo';
-import curves from '../../assets/curves.svg';
+import curves from '../../assets/curves.png';
 
 const HIGH_BANDWITH_URL = process.env.HIGH_BANDWITH_URL;
 
@@ -22,12 +22,12 @@ const Home = () => {
         <img className="absolute" src="/assets/compass.svg" />
         <img className={`absolute transform ${compassClass} transition duration-250`} src="/assets/compass-mark.svg" />
       </div>
-      <div className="absolute h-full w-full flex items-center justify-center z-0" style={{ backgroundImage: `url(${curves})` }} />
+      <div className="absolute h-full w-full" style={{ backgroundImage: `url(${curves})` }} />
       <div className="relative h-full w-full flex items-center justify-center z-20">
         <div className="flex flex-col -mt-20 items-center justify-center z-20">
           <a className="pb-10 cursor-not-allowed" href="/#">
             <h2 className="hover:scale-250 transition z-20" onMouseEnter={() => setHoveredTitle('arctic')} onMouseLeave={() => setHoveredTitle(null)}>
-              <img src="/assets/arctic.svg" />
+              <img src="/assets/ar.svg" />
             </h2>
           </a>
           <div className="text-mainblue uppercase my-16">
@@ -35,12 +35,12 @@ const Home = () => {
           </div>
           <a className="pt-10" href={`${HIGH_BANDWITH_URL}/antarctic`}>
             <h2 className="hover:scale-250 transition" onMouseEnter={() => setHoveredTitle('antarctic')} onMouseLeave={() => setHoveredTitle(null)}>
-              <img src="/assets/antarctic.svg" />
+              <img src="/assets/an.svg" />
             </h2>
           </a>
         </div>
       </div>
-      <div className="absolute bottom-10 w-full flex justify-center align-center">
+      <div className="absolute bottom-10 w-full flex justify-center align-center z-30">
         <div className="text-mainblue uppercase tracking-widest text-center">
           <div>
             Have a low bandwidth connection?
