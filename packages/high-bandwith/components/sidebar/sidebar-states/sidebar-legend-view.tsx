@@ -2,7 +2,7 @@ import { FC } from 'react';
 import type { SideBarAction } from '../types';
 import { useAppSelector } from 'store/hooks';
 import Legend from 'components/legend';
-import { SingleLayer, GroupedLayer, Layer } from 'types';
+import { GroupedLayer, Layer } from 'types';
 
 interface DividerProps {
   label?: string;
@@ -34,7 +34,7 @@ const SidebarLegendView: FC<SideBarLegendViewProps> = () => {
   }).filter(Boolean);
 
   console.log(activeLayers)
-  const renderLayerLegend = (layerGroup: LayerGroup) => {
+  const renderLayerLegend = (layerGroup) => {
     return (
       Object.keys(layerGroup).map((layerGroupId: string) => (
         <div key={`legend-group-${layerGroupId}`}>

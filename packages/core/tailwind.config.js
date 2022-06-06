@@ -15,6 +15,9 @@ module.exports = {
       fontSize: {
         tiny: ["0.625rem", { lineHeight: "0.625rem", letterSpacing: "0.1rem" }],
       },
+      scale: {
+        '250': '2.5',
+      }
     },
     colors: {
       navyblue: "#0B1D32",

@@ -1,0 +1,11 @@
+<svg width="638" height="638" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#Frame 150__a)">
+    <path fill="#0B1D32" stroke="#27A2F8" d="m4.707 316.029 16.263-16.263 16.264 16.263-16.264 16.263z" />
+    <path fill="#fff" d="m12.485 316.029 8.485-8.485 8.486 8.485-8.486 8.485z" />
+  </g>
+  <defs>
+    <clipPath id="Frame 150__a">
+      <path fill="#fff" transform="matrix(0 -1 1 0 4 333)" d="M0 0h34v614H0z" />
+    </clipPath>
+  </defs>
+</svg>
