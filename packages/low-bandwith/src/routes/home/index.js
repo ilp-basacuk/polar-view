@@ -26,7 +26,7 @@ const Home = () => {
       <div className="relative h-full w-full flex items-center justify-center z-20">
         <div className="flex flex-col -mt-20 items-center justify-center z-20">
           <a className="pb-10 cursor-not-allowed" href="/#">
-            <h2 className="hover:scale-250 transition z-20" onMouseEnter={() => setHoveredTitle('artic')} onMouseLeave={() => setHoveredTitle(null)}>
+            <h2 className="hover:scale-250 transition z-20" onMouseEnter={() => setHoveredTitle('arctic')} onMouseLeave={() => setHoveredTitle(null)}>
               <img src="/assets/arctic.svg" />
             </h2>
           </a>
@@ -34,7 +34,7 @@ const Home = () => {
             Explore one of the poles
           </div>
           <a className="pt-10" href={`${HIGH_BANDWITH_URL}/antarctic`}>
-            <h2 className="hover:scale-250 transition" onMouseEnter={() => setHoveredTitle('-rotate-90')} onMouseLeave={() => setHoveredTitle(null)}>
+            <h2 className="hover:scale-250 transition" onMouseEnter={() => setHoveredTitle('antarctic')} onMouseLeave={() => setHoveredTitle(null)}>
               <img src="/assets/antarctic.svg" />
             </h2>
           </a>
