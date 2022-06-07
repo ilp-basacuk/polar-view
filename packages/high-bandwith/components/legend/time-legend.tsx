@@ -3,10 +3,10 @@ import { Layer, LayerGroup } from 'types';
 import DateRangePicker from 'components/daterange/component';
 import { updateLayer } from 'store/features/layerGroups/slice';
 import { useAppDispatch } from 'store/hooks';
-import layers from 'constants/layers.json';
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { stringifyDate } from 'utils/date';
 
-const layerGroups : LayerGroup[] = require('constants/layerGroups.json');
+const layers = require('constants/layers.json');
+const layerGroups : LayerGroup[] = require('constants/layer-groups.json');
 
 interface TimeLegendProps {
   layer: Layer,
@@ -16,8 +16,6 @@ const parseTime = (time: string) => {
   const [startDate, endDate] = time.split('/');
   return { startDate, endDate };
 }
-
-const stringifyDate = (date) => date && format(date, 'yyyy-MM-dd');
 
 const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
   const { time } = layer.params || {};
@@ -56,7 +54,6 @@ const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
           endPlaceHolder="End Date"
           onChange={(startDate, endDate) => {
             if (startDate && endDate) {
-
               setDate({ startDate: stringifyDate(startDate), endDate: stringifyDate(endDate) });
             }
           }}

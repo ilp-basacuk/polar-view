@@ -1,10 +1,9 @@
 /* eslint-disable no-restricted-properties */
-import { FC, useMemo, useEffect, useState, useRef } from 'react';
+import { FC, useMemo, useEffect, useState } from 'react';
 import { MapContainer, ScaleControl, useMapEvents, useMap } from 'react-leaflet';
-import Tooltip from 'components/tooltip';
-
 import * as L from 'leaflet';
-
+import Tooltip from 'components/tooltip';
+import TooltipContent from 'containers/tooltip-content';
 import { getProjection } from './projections';
 import { MapProps } from './types';
 import ZoomControl from './zoom-control';
@@ -33,6 +32,10 @@ const MapInteraction = ({ onClick }) => {
     click(e) {
       onClick(e)
     },
+    // Use for different events:
+    // mousemove(e) {
+    //   onMouseMove(e)
+    // }
   });
   return null;
 }
@@ -41,43 +44,42 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
   const [sources, setSources] = useState<{ [key: string] : typeof LeafletWmsSource }>();
   const [map, setMap] = useState();
   const [tooltipInfo, setTooltipInfo] = useState<{ [key: string] : any }>(null);
-  const tooltipRef = useRef(null);
+  const [tooltipPosition, setTooltipPosition] = useState<{ x: number, y: number }>(null);
 
-  useEffect(() => {
-    if (tooltipRef.current && tooltipInfo) {
-      tooltipRef.current.open();
-    }
-    if (tooltipRef.current && !tooltipInfo) {
-      tooltipRef.current.close();
-    }
-  }, [tooltipInfo, tooltipRef]);
   const [activeLayerIds, setActiveLayerIds] = useState<string[]>([]);
+
+  const layerGroups = useAppSelector(state => state.layerGroups.data);
 
   const crs = useMemo(() => getProjection(projection, MAX_ZOOM, TILE_SIZE), [projection]);
   const center = useMemo(
     () => (projection === 'artic' ? ARCTIC_CENTER : ANTARCTIC_CENTER),
     [projection]
   );
-
+  const layersWithImages = useMemo(() => (
+    layerGroups.reduce((acc, layerGroup) => {
+      layerGroup.layers.forEach(layer => {
+        if (layer.hasImages) acc.push(layer.id);
+      });
+      return acc;
+    }, [])
+    ), [layerGroups]);
   const onClick = (e) => {
-    if (sources && sources['sar-subset']) {
-      sources['sar-subset'].identify(e).then((info) => info.features && info.features.length > 0 && setTooltipInfo({...info.features[0].properties, layerId: info.layerId }));
+    setTooltipInfo(null);
+    const firstImageSourceId = sources && Object.keys(sources).find(layerId => layersWithImages.includes(layerId));
+    if (firstImageSourceId) {
+      const identifyPromise = sources[firstImageSourceId].identify(e);
+      if (identifyPromise) {
+        identifyPromise.then((info) => {
+          if (info?.features?.length > 0) {
+            setTooltipInfo({...info.features[0].properties, layerId: info.layerId });
+            setTooltipPosition({ x: e.containerPoint.x, y: e.containerPoint.y });
+          }
+        })
+      }
     }
   }
 
-  const layerGroups = useAppSelector(state => state.layerGroups.data);
-  const layerParams = useMemo(() => (
-    layerGroups.reduce((acc, layerGroup) => {
-      layerGroup.layers.forEach(layer => {
-        if(layer.params) {
-          acc[layer.id] = layer.params;
-        }
-      });
-      return acc;
-    }, {})
-  ), [layerGroups])
-
-  useLayerManager({ map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds, layerParams });
+  useLayerManager({ map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds, layerGroups });
 
   return (
     <>
@@ -98,24 +100,18 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
         <ZoomControl minZoom={MIN_ZOOM} maxZoom={MAX_ZOOM} />
         <ScaleControl position="bottomright" />
         <LatLonText />
-        <MapInteraction onClick={onClick}/>
+        <MapInteraction onClick={onClick} />
       </MapContainer>
       <Tooltip
-        ref={tooltipRef}
-        content={
-          <div className="px-10">
-            <div>
-              {tooltipInfo && tooltipInfo.filename}
-            </div>
-            <div>
-              {tooltipInfo && tooltipInfo.layerId}
-            </div>
-            <div>
-              {tooltipInfo && tooltipInfo.acqtime}
-            </div>
-          </div>
-        }
-      />
+        followCursor="initial"
+        interactive
+        placement="auto"
+        visible={!!tooltipInfo}
+        content={<TooltipContent tooltipInfo={tooltipInfo} />}
+      >
+        {/* Dummy invisible component for the tooltip positioning on click */}
+        <span className="absolute h-24 w-24" style={{ left: tooltipPosition?.x, top: tooltipPosition?.y }}/>
+      </Tooltip>
     </>
   );
 };

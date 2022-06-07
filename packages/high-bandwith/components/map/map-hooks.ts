@@ -1,12 +1,12 @@
 /* eslint-disable no-restricted-properties */
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import LeafletWmsSource from './leaflet-wms-source';
 import { Layer } from 'types';
 
 const LAYERS = require('constants/layers.json');
 
 // This hook adds and removes layers from the map depending on the activeLayerIds
-export const useLayerManager = ({ map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds, layerParams }) => {
+export const useLayerManager = ({ map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds, layerGroups }) => {
   const getParamsToChange = (layerParams: Layer, sources: typeof LeafletWmsSource.source) => (
     Object.keys(layerParams).reduce((acc, layerId) => {
       if (activeLayerIds.includes(layerId)){
@@ -24,6 +24,17 @@ export const useLayerManager = ({ map, setSources, basemapIds, layerIds, activeL
       return acc;
     }, {})
   );
+
+  const layerParams = useMemo(() => (
+    layerGroups.reduce((acc, layerGroup) => {
+      layerGroup.layers.forEach(layer => {
+        if(layer.params) {
+          acc[layer.id] = layer.params;
+        }
+      });
+      return acc;
+    }, {})
+  ), [layerGroups])
 
   useEffect(() => {
     const DEFAULT_LAYER_PARAMS = {
@@ -44,12 +55,12 @@ export const useLayerManager = ({ map, setSources, basemapIds, layerIds, activeL
           ...params
         }
       );
-      setSources({ ...sources,
-        [layerConfig.id]: layerSource
-      });
 
       layerSource.addSubLayer(layerConfig.params.layers);
       layerSource.addTo(map);
+
+      return { [layerConfig.id]: layerSource };
+
     }
 
     const removeLayers = (layerIds: string[]) => {
@@ -71,14 +82,18 @@ export const useLayerManager = ({ map, setSources, basemapIds, layerIds, activeL
 
     const addLayers = (layerIds: string[]) => {
       const notIncludedLayerIds = layerIds.filter(id => !activeLayerIds.includes(id));
+      let sourcesAdded = {};
       if (notIncludedLayerIds.length) {
-        notIncludedLayerIds.forEach((id: string) => {
+        notIncludedLayerIds.map((id: string) => {
           const layerConfigToAdd = LAYERS.find(layer => layer.id === id);
+
           if (layerConfigToAdd) {
-            addLayerToMap(layerConfigToAdd);
+            const newSource = addLayerToMap(layerConfigToAdd);
+            sourcesAdded = {...sourcesAdded, ...newSource };
           }
         });
         setActiveLayerIds(activeLayerIds.concat(notIncludedLayerIds));
+        setSources({ ...sources, ...sourcesAdded });
       }
     };
 

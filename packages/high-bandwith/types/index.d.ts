@@ -23,6 +23,7 @@ export interface Layer {
   color?:  Color;
   params?: {[key: string] : any }
   download?: `https://${string}`;
+  hasImages?: boolean; // This is just for the MVP, we should find another way to check if the layers can be downloaded
 }
 
 export interface SingleLayer extends Layer {

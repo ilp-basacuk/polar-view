@@ -2,7 +2,7 @@
   {
     "label": "SAR Imagery", "id": "sar-imagery", "selected": false,
     "layers": [
-      { "id": "sar-subset", "label": "SAR Subset", "checked": false, "type": "checkbox", "color": "orange" }
+      { "id": "sar-subset", "label": "SAR Subset", "checked": false, "type": "checkbox", "color": "orange",  "hasImages": true }
     ]
   },
   {

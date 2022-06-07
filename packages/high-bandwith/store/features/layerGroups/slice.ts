@@ -4,7 +4,7 @@ import type { LayerGroup } from 'types';
 // Json files should be imported with require:
 // https://stackoverflow.com/a/50708719
 
-const layersConfig = require('constants/layersConfig.json');
+const layersConfig = require('constants/layers-config.json');
 const presets = require ('constants/presets.json');
 
 // Define a type for the slice state

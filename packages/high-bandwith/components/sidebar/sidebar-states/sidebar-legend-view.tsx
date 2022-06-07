@@ -33,7 +33,6 @@ const SidebarLegendView: FC<SideBarLegendViewProps> = () => {
     return layerGroupActiveLayers.length ? { [layerGroup.id]: layerGroupActiveLayers } : null;
   }).filter(Boolean);
 
-  console.log(activeLayers)
   const renderLayerLegend = (layerGroup) => {
     return (
       Object.keys(layerGroup).map((layerGroupId: string) => (
