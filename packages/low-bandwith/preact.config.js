@@ -2,6 +2,7 @@
 const webpack  = require('webpack');
 const tailwind = require("preact-cli-tailwind");
 const { parsed } = require('dotenv').config();
+const path = require("path");
 
 module.exports = (config, env, helpers) => {
   config = tailwind(config, env, helpers);
@@ -19,6 +20,7 @@ module.exports = (config, env, helpers) => {
   // Compatibility with react
   config.resolve.alias = {
     ...config.resolve.alias,
+    src: path.resolve(__dirname, "src"),
     'react': 'preact-compat',
     'react-dom': 'preact-compat'
   };
