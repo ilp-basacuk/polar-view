@@ -16,6 +16,8 @@ export const useTableData = ({
     return fetch(
       `https://geos.polarview.aq/geoserver/polarview/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=polarview:vw_lowbw_s1&outputFormat=application%2Fjson&viewparams=${paramsParsed}`
     ).then(res => res.json())
+  }, {
+    keepPreviousData: true,
   });
 
   const { data } = query;

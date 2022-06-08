@@ -16,8 +16,8 @@ const Table: FunctionalComponent<TableProps> = ({
 }: TableProps) => {
   const { data } = useTableData({
     params: {
-      aoi: 'Antarctic Peninsula',
-      dayslookback: 1,
+      aoi: params.aoi,
+      dayslookback: params.dayslookback,
       limit: 100,
       offset: 0,
     }
@@ -37,7 +37,7 @@ const Table: FunctionalComponent<TableProps> = ({
       </thead>
       <tbody>
         {data.map((item) => (
-          <tr className='w-full border-b border-dotted last-of-type:border-none border-mainblue'>
+          <tr key={item.id} className='w-full border-b border-dotted last-of-type:border-none border-mainblue'>
             <td className='py-5 align-top'>
               <div className='w-full text-right text-mainblue'>
                 {item.acqtime}
@@ -45,12 +45,20 @@ const Table: FunctionalComponent<TableProps> = ({
             </td>
             <td className='py-5 align-top'>
               <div className="flex justify-end w-full">
-                <img src={item.urlfootprint} />
+                <img
+                  key={item.urlfootprint}
+                  src={item.urlfootprint}
+                  alt={item.productname}
+                />
               </div>
             </td>
             <td className='py-5 align-top'>
               <div className="flex justify-end w-full">
-                <img src={item.urlpreview} />
+                <img
+                  key={item.urlpreview}
+                  src={item.urlpreview}
+                  alt={item.productname}
+                />
               </div>
             </td>
             <td className='py-5 align-top'>

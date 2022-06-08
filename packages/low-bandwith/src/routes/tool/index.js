@@ -1,4 +1,5 @@
 import { Link } from 'preact-router/match';
+import { useState } from 'preact/hooks';
 import Logo from 'src/components/logo';
 import Menu from 'src/components/menu';
 
@@ -6,6 +7,13 @@ import Select from 'src/components/select';
 import Table from 'src/components/table';
 
 const Tool = () => {
+  const [params, setParams] = useState({
+    zone: 'antarctic',
+    dataset: 'dataset-1',
+    dayslookback: '1',
+    aoi: 'Antarctic Peninsula',
+  });
+
   return (
     <div className="relative w-full min-h-screen py-32 bg-navyblue">
       <Logo />
@@ -18,10 +26,17 @@ const Tool = () => {
           </span>
           {
             <Select
+              selected={params.zone}
               options={[
-                { value: 'artic', label: 'Artic' },
                 { value: 'antarctic', label: 'Antarctic' },
+                { value: 'artic', label: 'Artic', disabled: true },
               ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  zone: v
+                })
+              }}
             />
           }
           <span>
@@ -29,10 +44,18 @@ const Tool = () => {
           </span>
           {
             <Select
+              selected={params.dataset}
               options={[
-                { value: 'dataset-1', label: 'Dataset-1' },
-                { value: 'dataset-2', label: 'Dataset-2' },
+                { value: 'dataset-1', label: 'SAR High-res imagery' },
+                { value: 'dataset-2', label: 'Sea ice concentration', disabled: true },
+                { value: 'dataset-2', label: 'Stage of development', disabled: true },
               ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  dataset: v
+                })
+              }}
             />
           }
           <span>
@@ -40,10 +63,22 @@ const Tool = () => {
           </span>
           {
             <Select
+              selected={params.dayslookback}
               options={[
-                { value: 'last-24-hours', label: 'last 24 hours' },
-                { value: 'last-23-hours', label: 'last 23 hours' },
+                { value: '1', label: 'last 24 hours' },
+                { value: '2', label: 'last 2 days' },
+                { value: '3', label: 'last 3 days' },
+                { value: '4', label: 'last 4 days' },
+                { value: '5', label: 'last 5 days' },
+                { value: '6', label: 'last 6 days' },
+                { value: '7', label: 'last 7 days' },
               ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  dayslookback: v
+                })
+              }}
             />
           }
           <span>
@@ -51,16 +86,25 @@ const Tool = () => {
           </span>
           {
             <Select
+              selected={params.aoi}
               options={[
-                { value: 'artic', label: 'Artic' },
-                { value: 'antarctic', label: 'Antarctic' },
+                { value: 'Antarctic Peninsula', label: 'Antarctic Peninsula' },
+                { value: 'Weddell Sea', label: 'Weddell Sea' },
               ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  aoi: v
+                })
+              }}
             />
           }
         </div>
 
         <div className='w-full max-w-5xl px-10 mx-auto mt-20'>
-          <Table />
+          <Table
+            params={params}
+          />
         </div>
       </main>
 
