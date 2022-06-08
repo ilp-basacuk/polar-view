@@ -5,8 +5,9 @@ interface SelectProps {
   options: {
     label: string;
     value: string;
+    disabled?: boolean;
   }[];
-  selected: string;
+  selected: string | number;
   onChange: (value: string) => void;
 }
 
@@ -33,7 +34,7 @@ const Select: FunctionalComponent<SelectProps> = ({
 
   return (
     <div className='relative inline'>
-      <span className='inline py-0 text-5xl bg-transparent border-0 border-b border-mainblue'>{SELECTION?.label || '...'}</span>
+      <span className='inline py-0 text-5xl text-white bg-transparent border-0 border-b border-mainblue'>{SELECTION?.label || '...'}</span>
       <select
         className='absolute top-0 left-0 w-full h-full opacity-0 appearance-none'
         value={selection}
@@ -42,7 +43,13 @@ const Select: FunctionalComponent<SelectProps> = ({
         <option disabled value="">Select ...</option>
 
         {options.map((option) => (
-          <option className='text-base' value={option.value}>{option.label}</option>
+          <option
+            className='text-base'
+            value={option.value}
+            disabled={option.disabled}
+          >
+            {option.label}
+          </option>
         ))}
       </select>
     </div>
