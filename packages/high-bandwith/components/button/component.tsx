@@ -148,7 +148,7 @@ export const LinkButton: Overload = (props: ButtonProps | AnchorProps) => {
   // We consider a link button when href attribute exits
   if (hasHref(props)) {
     const { href } = props;
-    if (href.startsWith('http')) {
+    if (href && href.startsWith('http')) {
       return <Anchor {...props} />;
     }
     return <LinkAnchor {...props} />;
