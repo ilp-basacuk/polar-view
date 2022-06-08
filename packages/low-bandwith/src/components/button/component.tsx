@@ -18,6 +18,7 @@ const SIZE_MAP = {
   small: 'h-4',
   medium: 'h-6',
   large: 'h-8',
+  none: '',
 };
 
 // Guard to check if href exists in props
