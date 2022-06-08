@@ -83,7 +83,7 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
     <>
       <MapContainer
         key={`map-${projection}`}
-        className="w-full h-full"
+        className="z-0 w-full h-full"
         crs={crs}
         center={center}
         zoom={MIN_ZOOM}
@@ -100,6 +100,7 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
         <LatLonText />
         <MapInteraction onClick={onClick}/>
       </MapContainer>
+
       <Tooltip
         ref={tooltipRef}
         content={
