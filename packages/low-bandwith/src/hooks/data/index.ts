@@ -1,9 +1,10 @@
+import { useMemo } from 'preact/hooks';
 import { useQuery } from 'react-query';
 
-export const useToolData = ({
+export const useTableData = ({
   params,
 }) => {
-  const { data } = useQuery(["tool", JSON.stringify(params)], () => {
+  const query = useQuery(["tool", JSON.stringify(params)], () => {
     const paramsParsed = Object.keys(params).reduce((acc, key) => {
       acc = [
         ...acc,
@@ -17,7 +18,21 @@ export const useToolData = ({
     ).then(res => res.json())
   });
 
+  const { data } = query;
+
+  const parsedData = useMemo(() => {
+    if (!data?.features) return [];
+
+    return data.features.map(feature => {
+      return {
+        ...feature.properties,
+        id: feature.id,
+      }
+    })
+  }, [data]);
+
   return {
-    data
+    ...query,
+    data: parsedData,
   };
 };
