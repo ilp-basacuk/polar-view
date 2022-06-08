@@ -7,12 +7,9 @@ import { FocusScope } from '@react-aria/focus';
 import { useOverlay, usePreventScroll, useModal, OverlayContainer } from '@react-aria/overlays';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Icon from 'components/icon';
-
-import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
-
 import { CONTENT_CLASSES, OVERLAY_CLASSES } from './constants';
 import type { ModalProps } from './types';
+import Button from 'components/button';
 
 export const Modal: FC<ModalProps> = ({
   title,
@@ -65,21 +62,27 @@ export const Modal: FC<ModalProps> = ({
                 <motion.div
                   initial={{
                     opacity: 0,
-                    y: '-60%',
-                    x: '-50%',
+                    ...size !== 'full' && {
+                      y: '-60%',
+                      x: '-50%',
+                    }
                   }}
                   animate={{
                     opacity: 1,
-                    y: '-50%',
-                    x: '-50%',
+                    ...size !== 'full' && {
+                      y: '-50%',
+                      x: '-50%',
+                    },
                     transition: {
                       delay: 0.125,
                     },
                   }}
                   exit={{
                     opacity: 0,
-                    y: '-60%',
-                    x: '-50%',
+                    ...size !== 'full' && {
+                      y: '-60%',
+                      x: '-50%',
+                    },
                     transition: {
                       delay: 0,
                     },
@@ -89,19 +92,6 @@ export const Modal: FC<ModalProps> = ({
                     maxHeight: '90%',
                   }}
                 >
-                  {dismissable && (
-                    <div className="relative">
-                      <button
-                        type="button"
-                        onClick={onDismiss}
-                        className="absolute flex items-center px-4 py-4 text-sm text-gray-300 right-4 -top-4 focus:text-black hover:text-black"
-                      >
-                        <span className="text-xs">Close</span>
-                        <Icon icon={CLOSE_SVG} className="inline-block w-3 h-3 ml-2 text-black" />
-                      </button>
-                    </div>
-                  )}
-
                   {/* Children */}
                   {Children.map(children, (child) => {
                     if (isValidElement(child)) {
@@ -111,6 +101,22 @@ export const Modal: FC<ModalProps> = ({
                     }
                     return null;
                   })}
+
+                  {dismissable && (
+                    <div className="relative flex justify-center w-full mt-10">
+                      <div>
+                        <Button
+                          theme="primary"
+                          type="button"
+                          onClick={onDismiss}
+                          className="flex items-center px-4 py-4 text-sm text-gray-300 focus:text-black hover:text-black"
+                        >
+                          <span className="text-xs">Close</span>
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+
                 </motion.div>
               </div>
             </FocusScope>
