@@ -31,12 +31,6 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
                 );
               },
             }}
-            menuProps={{
-              items: [
-                { text: 'DOWNLOAD', value: 'download' },
-                { text: 'COLOR SETTINGS', value: 'color' },
-              ],
-            }}
           />
           {layer.checked && layer.type === 'grouped-dropdown' && layer.groups && layer.layers && <GroupedDropdowns layer={layer} />}
           {layer.checked && <Legend layer={layer} />}

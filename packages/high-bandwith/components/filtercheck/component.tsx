@@ -1,7 +1,5 @@
 import Checkbox, { CheckboxProps } from 'components/forms/checkbox/component';
 import React from 'react';
-import Menu, { MenuProps } from 'components/menu/component';
-import MenuButton from 'components/menu/menubutton';
 import cx from 'classnames';
 import type { IFilterCheck } from './types';
 
@@ -19,7 +17,6 @@ const COLOR_MAP = {
 const FilterCheck: React.FC<IFilterCheck> = ({
   label,
   bullet,
-  menuProps,
   checkboxProps,
   labelColor = 'white',
 }) => {
@@ -33,13 +30,8 @@ const FilterCheck: React.FC<IFilterCheck> = ({
         {bullet && <div className={bulletClass} />}
         <div className={`text-sm text-${labelColor}`}>{label}</div>
       </div>
-      {(menuProps || checkboxProps) && (
+      {(checkboxProps) && (
         <div className="flex">
-          {menuProps && (
-            <Menu {...menuProps}>
-              <MenuButton />
-            </Menu>
-          )}
           {checkboxProps && (
             <div className="ml-1">
               <Checkbox {...checkboxProps} />
