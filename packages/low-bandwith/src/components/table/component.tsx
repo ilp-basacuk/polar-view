@@ -4,21 +4,21 @@ import Button from '../button';
 import Loading from '../loading';
 
 interface TableProps {
-  params: {
+  filters: {
     aoi: string;
     dayslookback: 1 | 2 | 3 | 4 | 5 | 6 | 7;
-    limit: number;
-    offset: number;
+    dataset: string;
+    zone: string;
   }
 }
 
 const Table: FunctionalComponent<TableProps> = ({
-  params
+  filters
 }: TableProps) => {
   const { data, isFetching } = useTableData({
     params: {
-      aoi: params.aoi,
-      dayslookback: params.dayslookback,
+      aoi: filters.aoi,
+      dayslookback: filters.dayslookback,
       limit: 100,
       offset: 0,
     }
