@@ -253,7 +253,7 @@
   @supports (backdrop-filter: blur(4px)) {
     .bg-blur {
       @apply bg-opacity-20;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(20px);
     }
   }
 }
@@ -265,21 +265,21 @@
   @apply flex justify-between;
 }
 .react-datepicker__day--keyboard-selected {
-  @apply bg-mainblue text-white;
+  @apply text-white bg-mainblue;
 }
 .react-datepicker__day--outside-month,
 .react-datepicker__day--disabled {
   @apply text-softerblue;
 }
 .react-datepicker__day--selected {
-  @apply bg-mainblue text-white;
+  @apply text-white bg-mainblue;
 }
 
 input.radio:hover + div span {
-  @apply bg-softerblue block;
+  @apply block bg-softerblue;
 }
 input.radio:checked + div span {
-  @apply bg-white border-solid block;
+  @apply block bg-white border-solid;
 }
 input.radio:checked:hover + div span {
   @apply w-3 h-3;
@@ -292,17 +292,17 @@ input.checkbox:hover + div span {
   @apply block bg-softerblue;
 }
 input.checkbox:checked + div {
-  @apply border-mainblue border-solid;
+  @apply border-solid border-mainblue;
 }
 input.checkbox:checked + div span {
   @apply block;
 }
 input.checkbox:checked:hover + div span {
-  @apply bg-white w-3 h-3;
+  @apply w-3 h-3 bg-white;
 }
 
 .dayslider-radio:checked + div {
-  @apply bg-mainblue block;
+  @apply block bg-mainblue;
 }
 .dayslider-radio:hover + div {
   @apply border border-mainblue;
