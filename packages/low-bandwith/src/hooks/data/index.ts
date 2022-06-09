@@ -18,6 +18,7 @@ export const useTableData = ({
     ).then(res => res.json())
   }, {
     keepPreviousData: true,
+    refetchOnWindowFocus: false,
   });
 
   const { data } = query;
