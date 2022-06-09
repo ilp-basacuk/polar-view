@@ -1,83 +1,121 @@
 import { Link } from 'preact-router/match';
-import sarMock from '../../assets/sar_mock.png'
-import previewMock from '../../assets/preview_mock.png'
-import Logo from '../../components/logo';
-import Menu from '../../components/menu';
-import Button from '../../components/button';
+import { useState } from 'preact/hooks';
+import Logo from 'src/components/logo';
+import Menu from 'src/components/menu';
 
-const renderSelect = () => (
-  <select className="align-middle">
-    <option value="artic">Artic</option>
-    <option value="antarctic">Antarctic</option>
-  </select>
-);
+import Select from 'src/components/select';
+import Table from 'src/components/table';
 
-const Tool = () => (
-  <div className="bg-navyblue h-screen w-full relative">
-    <Logo />
-		<Menu />
-    <main className="w-full h-4/5 flex flex-col justify-center items-center">
-      <div className="container text-mainblue text-center text-5xl">
-        <span>
-          Showing images of the {' '}
-        </span>
-        {renderSelect()}
-        <span>
-          {' '} using the dataset {' '}
-        </span>
-        {renderSelect()}
-        <span>
-          {' '} from the {' '}
-        </span>
-        {renderSelect()}
-        <span>
-          {' '} in the area of the {' '}
-        </span>
-        {renderSelect()}
-      </div>
-      <div className="container mt-10 grid grid-cols-4 text-white text-sm">
-        <div>
-          <div className="uppercase text-right mb-2">Date</div>
-          <div className="uppercase text-right text-mainblue h-24">2022-03-01 11:18:50.943089</div>
+const Tool = () => {
+  const [params, setParams] = useState({
+    zone: 'antarctic',
+    dataset: 'dataset-1',
+    dayslookback: '1',
+    aoi: 'Antarctic Peninsula',
+  });
+
+  return (
+    <div className="relative w-full min-h-screen py-32 bg-navyblue">
+      <Logo />
+      <Menu />
+
+      <main className="w-full">
+        <div className="container max-w-6xl px-10 mx-auto text-2xl text-center md:leading-tight md:text-5xl text-mainblue">
+          <span>
+            Showing images of the {' '}
+          </span>
+          {
+            <Select
+              selected={params.zone}
+              options={[
+                { value: 'antarctic', label: 'Antarctic' },
+                { value: 'artic', label: 'Artic', disabled: true },
+              ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  zone: v
+                })
+              }}
+            />
+          }
+          <span>
+            {' '} using the dataset {' '}
+          </span>
+          {
+            <Select
+              selected={params.dataset}
+              options={[
+                { value: 'dataset-1', label: 'SAR High-res imagery' },
+                { value: 'dataset-2', label: 'Sea ice concentration', disabled: true },
+                { value: 'dataset-2', label: 'Stage of development', disabled: true },
+              ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  dataset: v
+                })
+              }}
+            />
+          }
+          <span>
+            {' '} from the {' '}
+          </span>
+          {
+            <Select
+              selected={params.dayslookback}
+              options={[
+                { value: '1', label: 'last 24 hours' },
+                { value: '2', label: 'last 2 days' },
+                { value: '3', label: 'last 3 days' },
+                { value: '4', label: 'last 4 days' },
+                { value: '5', label: 'last 5 days' },
+                { value: '6', label: 'last 6 days' },
+                { value: '7', label: 'last 7 days' },
+              ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  dayslookback: v
+                })
+              }}
+            />
+          }
+          <span>
+            {' '} in the area of the {' '}
+          </span>
+          {
+            <Select
+              selected={params.aoi}
+              options={[
+                { value: 'Antarctic Peninsula', label: 'Antarctic Peninsula' },
+                { value: 'Weddell Sea', label: 'Weddell Sea' },
+              ]}
+              onChange={(v) => {
+                setParams({
+                  ...params,
+                  aoi: v
+                })
+              }}
+            />
+          }
         </div>
-        <div>
-          <div className="uppercase text-right mb-2">SAR footprint</div>
-          <div className="h-24 flex justify-end">
-            <img src={sarMock} />
-          </div>
+
+        <div className='w-full max-w-6xl px-10 mx-auto mt-20'>
+          <Table
+            params={params}
+          />
         </div>
-        <div>
-          <div className="uppercase text-right mb-2">Preview</div>
-          <div className="h-24 flex justify-end">
-            <img src={previewMock} />
-          </div>
-        </div>
-        <div>
-          <div className="uppercase text-right mb-2">Download</div>
-          <div className="h-24 flex flex-col justify-end">
-            <Button containerClassName="flex justify-end">
-              JPEG2000 (reduced resolution)
-              0.4MB
-            </Button>
-            <Button containerClassName="flex justify-end">
-              JPEG2000 (reduced resolution)
-              5.2MB
-            </Button>
-            <Button containerClassName="flex justify-end">
-              JPEG2000 (reduced resolution)
-              5.2MB
-            </Button>
-          </div>
-        </div>
-      </div>
-    </main>
-    <footer className="w-full flex justify-center items-center">
-      <p className="container text-mainblue border border-mainblue border-dotted p-6">
-        This page offers a simplified presentation of results designed for low bandwidth connections. If you prefer more sophisticated query options and result presentation, please select a pole in the homepage to use the{' '}
-        <Link href="/" className="text-white underline">high-bandwidth tool</Link>
-      </p>
-    </footer>
-  </div>
-);
+      </main>
+
+      <footer className="w-full max-w-6xl px-10 mx-auto mt-20">
+        <p className="container p-6 border border-dotted text-mainblue border-mainblue">
+          This page offers a simplified presentation of results designed for low bandwidth connections. If you prefer more sophisticated query options and result presentation, please select a pole in the homepage to use the{' '}
+          <Link href="/" className="text-white underline">high-bandwidth tool</Link>
+        </p>
+      </footer>
+    </div>
+  )
+};
 
 export default Tool;
