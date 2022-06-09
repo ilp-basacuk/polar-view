@@ -37,7 +37,7 @@ const FilterCheck: FC<IFilterCheck> = ({
         <div className="flex items-end">
           {downloadURL && (
             <button
-              className="p-0.5 mr-1"
+              className="mr-1 text-mainblue hover:text-white"
               onClick={() => window.open(downloadURL, '_blank')}
             >
               <DownloadIcon />
