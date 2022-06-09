@@ -6,17 +6,12 @@
   "author": "David Inga <david.inga@vizzuality.com>",
   "license": "MIT",
   "private": true,
+  "installConfig": {
+    "hoistingLimits": "none"
+  },
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "**/fork-ts-checker-webpack-plugin",
-      "**fork-ts-checker-webpack-plugin**",
-      "**/tailwindcss",
-      "**tailwindcss**",
-      "**/fs-extra",
-      "**fs-extra**"
     ]
   },
   "scripts": {
@@ -25,13 +20,13 @@
     "core": "yarn workspace @polar-view/core"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.22.0",
-    "@typescript-eslint/parser": "5.22.0",
-    "autoprefixer": "10.4.5",
-    "eslint": "8.14.0",
-    "postcss": "8.4.13",
-    "tailwindcss": "3.0.24",
-    "typescript": "4.6.3"
+    "@typescript-eslint/eslint-plugin": "5.27.1",
+    "@typescript-eslint/parser": "5.27.1",
+    "autoprefixer": "10.4.7",
+    "eslint": "8.17.0",
+    "postcss": "8.4.14",
+    "tailwindcss": "3.1.1",
+    "typescript": "4.7.3"
   },
   "resolutions": {
     "@types/react": "^17.0.2",
