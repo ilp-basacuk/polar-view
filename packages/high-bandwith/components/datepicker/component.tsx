@@ -1,5 +1,5 @@
 import Button from 'components/button';
-import IconButton from 'components/iconbutton';
+import IconButton from 'components/icon-button';
 import ChevronDown from 'components/icons/chevron-down';
 import ChevronLeft from 'components/icons/chevron-left';
 import ChevronRight from 'components/icons/chevron-right';

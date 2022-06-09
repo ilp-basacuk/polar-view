@@ -2,6 +2,78 @@
   "sar-subset": {
     "type": "time"
   },
+  "sea-ice-concentration": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "sea-ice-thickness": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "marginal-ice-zone": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "artic-overview": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "bering-sea": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "okhotsk": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "caspian-sea": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "antarctic-peninusla-east": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
+  "antarctic-peninusla-west": {
+    "type": "categorical",
+    "items": [
+      { "label": "Label 1", "color": "#787878"},
+      { "label": "Label 2", "color": "#FF0100"},
+      { "label": "Label 3", "color": "#FEAD00"}
+    ]
+  },
   "ice-met-norway": {
     "type": "categorical",
     "items": [

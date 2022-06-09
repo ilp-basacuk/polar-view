@@ -19,16 +19,6 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Sentinal-2',
   bullet: 'yellow',
-  menuProps: {
-    onClick: (item) => {
-      console.info('clicked', item);
-      return true;
-    },
-    items: [
-      { text: 'DOWNLOAD', value: 'download' },
-      { text: 'COLOR SETTINGS', value: 'color' },
-    ],
-  },
   checkboxProps: {
     onChange: (event) => {
       console.info(event.target.checked);
@@ -41,16 +31,6 @@ export const Examples1: React.FC = () => (
     <FilterCheck
       label="Sentinal-2"
       bullet="yellow"
-      menuProps={{
-        onClick: (item) => {
-          console.info('clicked', item);
-          return true;
-        },
-        items: [
-          { text: 'DOWNLOAD', value: 'download' },
-          { text: 'COLOR SETTINGS', value: 'color' },
-        ],
-      }}
       checkboxProps={{
         onChange: (event) => {
           console.info(event);
@@ -61,16 +41,6 @@ export const Examples1: React.FC = () => (
     <FilterCheck
       label="Radarsat-2"
       bullet="purple"
-      menuProps={{
-        onClick: (item) => {
-          console.info('clicked', item);
-          return true;
-        },
-        items: [
-          { text: 'DOWNLOAD', value: 'download' },
-          { text: 'COLOR SETTINGS', value: 'color' },
-        ],
-      }}
       checkboxProps={{
         onChange: (event) => {
           console.info(event);
@@ -81,16 +51,6 @@ export const Examples1: React.FC = () => (
     <FilterCheck
       label="Cosmo SkyMed"
       bullet="green"
-      menuProps={{
-        onClick: (item) => {
-          console.info('clicked', item);
-          return true;
-        },
-        items: [
-          { text: 'DOWNLOAD', value: 'download' },
-          { text: 'COLOR SETTINGS', value: 'color' },
-        ],
-      }}
       checkboxProps={{
         checked: true,
         onChange: (event) => {

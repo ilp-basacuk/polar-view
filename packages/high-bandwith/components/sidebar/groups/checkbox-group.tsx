@@ -20,6 +20,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
           <FilterCheck
             label={layer.label}
             bullet={layer.type !== 'grouped-dropdown' ? layer.color : null}
+            downloadURL={layer.downloadURL}
             checkboxProps={{
               checked: layer.checked,
               onChange: () => {
@@ -30,12 +31,6 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
                   })
                 );
               },
-            }}
-            menuProps={{
-              items: [
-                { text: 'DOWNLOAD', value: 'download' },
-                { text: 'COLOR SETTINGS', value: 'color' },
-              ],
             }}
           />
           {layer.checked && layer.type === 'grouped-dropdown' && layer.groups && layer.layers && <GroupedDropdowns layer={layer} />}

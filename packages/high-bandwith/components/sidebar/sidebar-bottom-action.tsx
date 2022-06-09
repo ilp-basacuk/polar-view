@@ -26,6 +26,7 @@ const SidebarBottomAction: FC<SideBarActionProps> = ({ view, setView }) => (
         setView(view === SIDEBAR_VIEW.EDIT ? SIDEBAR_VIEW.LEGEND : SIDEBAR_VIEW.EDIT);
       }}
       className="w-full bg-mainblue flex items-center pl-4 h-7 text-seabed hover:border hover:border-t-0 hover:border-mainblue"
+      containerClassName="w-full"
     >
       {view === SIDEBAR_VIEW.EDIT ? 'SHOW AS A LEGEND' : 'EDIT LAYERS'}
     </Button>

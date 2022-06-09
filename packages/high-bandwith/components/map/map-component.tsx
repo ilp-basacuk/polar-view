@@ -71,7 +71,7 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
       if (identifyPromise) {
         identifyPromise.then((info) => {
           if (info?.features?.length > 0) {
-            setTooltipInfo({...info.features[0].properties, layerId: info.layerId });
+            setTooltipInfo({...info.features[0].properties, layerCode: info.layerCode });
             setTooltipPosition({ x: e.containerPoint.x, y: e.containerPoint.y });
           }
         })

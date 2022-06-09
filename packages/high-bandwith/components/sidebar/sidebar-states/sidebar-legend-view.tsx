@@ -1,18 +1,10 @@
 import { FC } from 'react';
+import cx from 'classnames';
 import type { SideBarAction } from '../types';
 import { useAppSelector } from 'store/hooks';
 import Legend from 'components/legend';
+import Divider from 'components/divider';
 import { GroupedLayer, Layer } from 'types';
-
-interface DividerProps {
-  label?: string;
-}
-const Divider: FC<DividerProps> = ({ label }) => (
-  <div className="flex items-center mb-2">
-    <div className="bg-softerblue h-px flex-1" />
-    {label && <div className="text-tiny text-mainblue uppercase font-bolder ml-2">{label}</div>}
-  </div>
-);
 
 interface SideBarLegendViewProps {
   onChange?: (params: SideBarAction) => void;
@@ -40,7 +32,19 @@ const SidebarLegendView: FC<SideBarLegendViewProps> = () => {
           <Divider label={layerGroupId} />
           {layerGroup[layerGroupId].map((layer: Layer) => (
             <div key={`legend-item-${layerGroupId}`}>
-              <Legend layer={layer} />
+              <div className="text-mainblue">
+                <span className={cx(
+                  'w-2 h-2 mr-2 ml-1 inline-block rounded-full border',
+                  {
+                    [`border-transparent bg-${layer.color}`]:  layer.color,
+                    [`border-mainblue bg-transparent`]:  !layer.color
+                  }
+                )}/>
+                {layer.label}
+              </div>
+              <div className="ml-4 my-1">
+                <Legend layer={layer} />
+              </div>
             </div>
            ))}
         </div>

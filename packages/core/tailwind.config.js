@@ -23,6 +23,7 @@ module.exports = {
       navyblue: "#0B1D32",
       mainblue: "#27A2F8",
       white: "#FFFFFF",
+      black: "#000",
       navybluesoft: "rgba(11, 29, 50, 0.2)",
       softerblue: "rgba(39, 162, 248, 0.4)",
       middleblue: "#004869",
