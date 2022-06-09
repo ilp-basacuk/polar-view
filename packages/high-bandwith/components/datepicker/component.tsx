@@ -13,21 +13,23 @@ interface IDatePickerInputProps {
   startDate: Date;
   isCalendarOpen: boolean;
   placeHolderText?: string;
+  showValue?: boolean;
 }
 
 export interface IReactDatePickerProps extends ReactDatePickerProps {
   disableToday?: boolean;
+  showValue?: boolean;
 }
 
 type Ref = HTMLButtonElement;
 
 const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
-  ({ onClick, startDate, isCalendarOpen, placeHolderText }, ref) => {
-    const formatedDate = startDate ? format(startDate, 'dd/MM/yyyy') : placeHolderText;
+  ({ onClick, startDate, isCalendarOpen, placeHolderText, showValue = true }, ref) => {
+    const formatedDate = showValue && startDate ? format(startDate, 'dd/MM/yyyy') : placeHolderText;
     return (
       <button
         type="button"
-        className="border border-mainblue text-white text-xs py-1 px-2 active:bg-softerblue flex content-center"
+        className="border border-mainblue text-white text-xs py-1 px-2 w-full justify-between active:bg-softerblue flex content-center uppercase"
         onClick={onClick}
         ref={ref}
       >
@@ -46,6 +48,7 @@ const DatePicker: React.FC<IReactDatePickerProps> = ({
   onChange,
   placeholderText,
   disableToday,
+  showValue = true,
   ...others
 }: IReactDatePickerProps) => {
   const [currentDate, setCurrentDate] = React.useState(startDate);
@@ -58,6 +61,8 @@ const DatePicker: React.FC<IReactDatePickerProps> = ({
         onChange(date, event);
       }}
       portalId="date-picker"
+      onClickOutside={()=> setisCalendarOpen(false)}
+      selected={showValue ? currentDate : null}
       onCalendarOpen={() => setisCalendarOpen(true)}
       onCalendarClose={() => setisCalendarOpen(false)}
       className="text-white z-50"
@@ -67,6 +72,7 @@ const DatePicker: React.FC<IReactDatePickerProps> = ({
           startDate={currentDate}
           isCalendarOpen={isCalendarOpen}
           placeHolderText={placeholderText}
+          showValue={showValue}
         />
       }
       todayButton={

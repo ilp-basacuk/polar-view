@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react';
 import { Layer, LayerGroup } from 'types';
-import DateRangePicker from 'components/daterange/component';
+import { add } from 'date-fns';
+import DatePickerCombo from 'components/datepickercombo';
 import { updateLayer } from 'store/features/layerGroups/slice';
 import { useAppDispatch } from 'store/hooks';
 import { stringifyDate } from 'utils/date';
@@ -37,28 +38,31 @@ const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
   }, [time]);
 
 
-  const setDate = ({ startDate, endDate }) => {
+  const setDate = ({ startDate, endDate = null }) => {
     const layerGroup: LayerGroup = layerGroups.find(group => group.layers.some(l => l.id === layer.id));
     dispatch(updateLayer({
       layerGroupId: layerGroup.id,
-      layer: { ...layer, params: { ...layer.params, time: `${startDate}/${endDate}` }}
+      layer: { ...layer, params: { ...layer.params, time: endDate ? `${startDate}/${endDate}` : startDate }}
     }))
   }
+
   return (
     <div className="mb-3">
-      <div className="mb-3">
-        <DateRangePicker
-          startDate={date?.startDate ? new Date(Date.parse(date?.startDate)) : null}
-          endDate={date?.endDate ? new Date(Date.parse(date.endDate)) : null}
-          startPlaceHolder="Start Date"
-          endPlaceHolder="End Date"
-          onChange={(startDate, endDate) => {
-            if (startDate && endDate) {
-              setDate({ startDate: stringifyDate(startDate), endDate: stringifyDate(endDate) });
+        <DatePickerCombo
+          onChange={(dateOrLastDays: Date | number) => {
+            const isDate = dateOrLastDays instanceof Date;
+            if (isDate) {
+              setDate({ startDate: stringifyDate(dateOrLastDays) });
+            } else {
+              const startDate = stringifyDate(add(new Date(), { days: dateOrLastDays }));
+              setDate({ startDate, endDate: stringifyDate(new Date()) });
             }
           }}
+          dateProps={{
+            placeholderText: "Select a date",
+            startDate: date?.startDate ? new Date(Date.parse(date?.startDate)) : null,
+          }}
         />
-      </div>
     </div>
   );
 }
