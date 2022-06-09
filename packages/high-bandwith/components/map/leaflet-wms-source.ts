@@ -49,18 +49,23 @@ const LeafletWmsSource = LeafletWms.Source.extend({
 
     const url = this._url + L.Util.getParamString(params, this._url, true);
     this.showWaiting();
-    return fetch(url).then((result) => {
-      this.hideWaiting();
-      if (result.status !== 200) {
-        return;
-      }
-      return result.json();
-    }).then(text => {
-      if (text.features && text.features.length > 0) {
-        return { features: text.features, layerCode: wmsParams.layers };
-      }
-      return null;
-    });
+    try {
+      return fetch(url).then((result) => {
+        this.hideWaiting();
+        if (result.status !== 200) {
+          return;
+        }
+        return result.json();
+      }).then(text => {
+        if (text.features && text.features.length > 0) {
+          return { features: text.features, layerCode: wmsParams.layers };
+        }
+        return null;
+      });
+    } catch (error) {
+      console.error('Error', error)
+    }
+
   },
   'identify': function(e) {
     const layers = this.getIdentifyLayers();
