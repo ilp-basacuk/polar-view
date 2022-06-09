@@ -57,7 +57,7 @@ const LeafletWmsSource = LeafletWms.Source.extend({
       return result.json();
     }).then(text => {
       if (text.features && text.features.length > 0) {
-        return { features: text.features, layerId: wmsParams.layers };
+        return { features: text.features, layerCode: wmsParams.layers };
       }
       return null;
     });

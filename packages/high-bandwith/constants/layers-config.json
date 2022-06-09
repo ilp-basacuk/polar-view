@@ -2,7 +2,42 @@
   {
     "label": "SAR Imagery", "id": "sar-imagery", "selected": false,
     "layers": [
-      { "id": "sar-subset", "label": "SAR Subset", "checked": false, "type": "checkbox", "color": "orange",  "hasImages": true }
+      { "id": "sar-subset", "label": "SAR Subset", "checked": false, "type": "checkbox", "color": "orange",  "hasImages": true, "downloadTemplates": [
+        {
+          "image": "https://www.polarview.aq/images/107_S1pngthumbnaillarge/S1A_EW_GRDM_1SSH_20220606T224730_B867_S_1.tn_large.png",
+          "type": "thumbnail"
+        },
+        {
+          "image": "https://www.polarview.aq/images/104_S1geotiff/{filename}.tif.tar.gz",
+          "caption": "GeoTIFF (compressed)",
+          "type": "download"
+        },
+          {
+            "image": "https://www.polarview.aq/images/106_S1jpgsmall/{month}/{filename}.jpg",
+            "caption": "JPG (reduced resolution)",
+            "type": "download"
+          },
+          {
+            "image": "https://www.polarview.aq/images/105_S1jpgfull/{filename}.final.jpg",
+            "caption": "JPG (full resolution)",
+            "type": "download"
+          },
+          {
+            "image": "https://www.polarview.aq/images/112_S1jpeg2000small8bit/{filename}.8bit.sm.jp2",
+            "caption": "JPEG2000 (reduced resolution, 8bit)",
+            "type": "download"
+          },
+          {
+            "image": "https://www.polarview.aq/images/113_S1jpeg2000full16bit/{month}/{filename}.16bit.jp2",
+            "caption": "JPEG2000 file (16 bit)",
+            "type": "download"
+          },
+          {
+            "image": "http://bslmagb.nerc-bas.ac.uk/iwsviewer/?image=DataPolarview/111_S1jpeg2000_{month}/{filename}.8bit.jp2",
+            "caption": "JPEG2000 file (lossy)",
+            "type": "explore"
+          }
+      ] }
     ]
   },
   {

@@ -3,17 +3,8 @@ import cx from 'classnames';
 import type { SideBarAction } from '../types';
 import { useAppSelector } from 'store/hooks';
 import Legend from 'components/legend';
+import Divider from 'components/divider';
 import { GroupedLayer, Layer } from 'types';
-
-interface DividerProps {
-  label?: string;
-}
-const Divider: FC<DividerProps> = ({ label }) => (
-  <div className="flex items-center mb-2">
-    <div className="bg-softerblue h-px flex-1" />
-    {label && <div className="text-tiny text-mainblue uppercase font-bolder ml-2">{label}</div>}
-  </div>
-);
 
 interface SideBarLegendViewProps {
   onChange?: (params: SideBarAction) => void;
