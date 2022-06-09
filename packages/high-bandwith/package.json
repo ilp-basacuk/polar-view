@@ -2,16 +2,6 @@
   "name": "@polar-view/high-bandwith",
   "version": "0.2.0",
   "private": true,
-  "workspaces": {
-    "nohoist": [
-      "**/fork-ts-checker-webpack-plugin",
-      "**fork-ts-checker-webpack-plugin**",
-      "**/tailwindcss",
-      "**tailwindcss**",
-      "**/fs-extra",
-      "**fs-extra**"
-    ]
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
