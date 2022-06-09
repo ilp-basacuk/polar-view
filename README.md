@@ -40,4 +40,4 @@ will run the dev environment from the high bandwidth version
 
 ## Deployment
 
-This project is initally deployed on the vercel platform but any alternative host could be used. The current setup uses 4 different deploys two for the two main applications and two for their respective storybooks with the correspondant documentation.
+This project is initally deployed on the vercel platform but any alternative host could be used. The current setup uses three different deploys two for the two main applications and the storybook with the components documentation.
