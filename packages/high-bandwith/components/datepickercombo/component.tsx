@@ -78,6 +78,7 @@ const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
       disableToday={disableToday}
       showValue={!valIsNumber}
       selected={!valIsNumber && value && new Date(value)}
+      maxDate={new Date()}
       calendarContainer={(props) => (
         <DatePickerComboContainer {...props} options={options} onChange={onDateChange} />
       )}

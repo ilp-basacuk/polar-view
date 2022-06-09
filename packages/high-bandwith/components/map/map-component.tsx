@@ -112,7 +112,7 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
         content={<TooltipContent tooltipInfo={tooltipInfo} />}
       >
         {/* Dummy invisible component for the tooltip positioning on click */}
-        <span className={cx('h-24 w-24 display-none', { 'absolute': !!tooltipInfo })} style={{ left: tooltipPosition?.x, top: tooltipPosition?.y }}/>
+        <span className={cx('h-2 w-2 display-none', { 'absolute': !!tooltipInfo })} style={{ left: tooltipPosition?.x, top: tooltipPosition?.y }}/>
       </Tooltip>
     </>
   );
