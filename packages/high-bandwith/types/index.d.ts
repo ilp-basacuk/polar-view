@@ -22,7 +22,7 @@ export interface Layer {
   group?: string;
   color?:  Color;
   params?: {[key: string] : any }
-  download?: `https://${string}`;
+  downloadURL?: `https://${string}`;
   hasImages?: boolean; // This is just for the MVP, we should find another way to check if the layers can be downloaded
 }
 

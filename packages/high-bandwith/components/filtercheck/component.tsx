@@ -1,6 +1,8 @@
-import Checkbox, { CheckboxProps } from 'components/forms/checkbox/component';
-import React from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
+import Checkbox from 'components/forms/checkbox/component';
+import DownloadIcon from 'components/icons/download';
+
 import type { IFilterCheck } from './types';
 
 const COLOR_MAP = {
@@ -14,10 +16,11 @@ const COLOR_MAP = {
   green: 'bg-green',
 };
 
-const FilterCheck: React.FC<IFilterCheck> = ({
+const FilterCheck: FC<IFilterCheck> = ({
   label,
   bullet,
   checkboxProps,
+  downloadURL,
   labelColor = 'white',
 }) => {
   const bulletClass = cx({
@@ -30,15 +33,27 @@ const FilterCheck: React.FC<IFilterCheck> = ({
         {bullet && <div className={bulletClass} />}
         <div className={`text-sm text-${labelColor}`}>{label}</div>
       </div>
-      {(checkboxProps) && (
-        <div className="flex">
-          {checkboxProps && (
-            <div className="ml-1">
-              <Checkbox {...checkboxProps} />
+      {(downloadURL || checkboxProps) &&
+        <div className="flex items-end">
+          {downloadURL && (
+            <button
+              className="p-0.5 mr-1"
+              onClick={() => window.open(downloadURL, '_blank')}
+            >
+              <DownloadIcon />
+            </button>
+          )}
+          {(checkboxProps) && (
+            <div className="flex">
+              {checkboxProps && (
+                <div className="ml-1">
+                  <Checkbox {...checkboxProps} />
+                </div>
+              )}
             </div>
           )}
         </div>
-      )}
+      }
     </div>
   );
 };

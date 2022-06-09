@@ -25,7 +25,7 @@ const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'hre
 
 function buildClassName({ className, disabled, theme, cut, size }) {
   return cx({
-    'btn flex items-center justify-center text-tiny font-bolder p-2 w-full uppercase': true,
+    'btn flex items-center justify-center text-tiny font-bolder p-2 uppercase': true,
     [THEME[theme]]: true,
     [CUT_MAP[cut]]: true,
     [SIZE_MAP[size]]: true,
@@ -39,6 +39,7 @@ export const LinkAnchor: FC<AnchorProps> = ({
   children,
   theme = 'primary',
   className,
+  containerClassName,
   disabled,
   href,
   cut = 'right-bottom',
@@ -63,7 +64,7 @@ export const LinkAnchor: FC<AnchorProps> = ({
       {theme === 'info' ?
         renderAnchor()
       :
-        <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+        <span className={`btn-wrapper cursor-pointer ${containerClassName} ${CUT_MAP[cut]}`}>
           {renderAnchor()}
         </span>
       }
@@ -75,6 +76,7 @@ export const Anchor: FC<AnchorProps> = ({
   children,
   theme = 'primary',
   className,
+  containerClassName,
   disabled,
   href,
   cut = 'right-bottom',
@@ -103,7 +105,7 @@ export const Anchor: FC<AnchorProps> = ({
   );
   return theme === 'info' ? renderAnchor()
     :
-      <span className={`btn-wrapper cursor-pointer ${CUT_MAP[cut]}`}>
+      <span className={`btn-wrapper cursor-pointer ${containerClassName} ${CUT_MAP[cut]}`}>
         {renderAnchor()}
       </span>;
 };
@@ -112,6 +114,7 @@ export const Button: FC<ButtonProps> = ({
   children,
   theme = 'primary',
   className,
+  containerClassName,
   disabled,
   cut = 'right-bottom',
   size = 'large',
@@ -136,7 +139,7 @@ export const Button: FC<ButtonProps> = ({
   );
   return theme === 'info' ? renderButton()
   :
-    <span className={`btn-wrapper w-full ${CUT_MAP[cut]}`}>
+    <span className={`btn-wrapper ${containerClassName} ${CUT_MAP[cut]}`}>
       {renderButton()}
     </span>;
 };

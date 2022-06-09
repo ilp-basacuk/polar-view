@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import Iconbutton from 'components/iconbutton';
+import Iconbutton from 'components/icon-button';
 import DoubleRightArrow from 'components/icons/double-right-arrow';
 import cx from 'classnames';
 import type { SideBarProps } from './types';
