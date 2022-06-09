@@ -24,8 +24,6 @@ const Table: FunctionalComponent<TableProps> = ({
     }
   });
 
-  console.log(data);
-
   return (
     <div className='relative'>
       <Loading

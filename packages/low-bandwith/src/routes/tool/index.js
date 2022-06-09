@@ -20,7 +20,7 @@ const Tool = () => {
       <Menu />
 
       <main className="w-full">
-        <div className="container max-w-5xl px-10 mx-auto text-5xl leading-tight text-center text-mainblue">
+        <div className="container max-w-6xl px-10 mx-auto text-2xl text-center md:leading-tight md:text-5xl text-mainblue">
           <span>
             Showing images of the {' '}
           </span>
@@ -101,14 +101,14 @@ const Tool = () => {
           }
         </div>
 
-        <div className='w-full max-w-5xl px-10 mx-auto mt-20'>
+        <div className='w-full max-w-6xl px-10 mx-auto mt-20'>
           <Table
             params={params}
           />
         </div>
       </main>
 
-      <footer className="w-full max-w-5xl px-10 mx-auto mt-20">
+      <footer className="w-full max-w-6xl px-10 mx-auto mt-20">
         <p className="container p-6 border border-dotted text-mainblue border-mainblue">
           This page offers a simplified presentation of results designed for low bandwidth connections. If you prefer more sophisticated query options and result presentation, please select a pole in the homepage to use the{' '}
           <Link href="/" className="text-white underline">high-bandwidth tool</Link>
