@@ -24,7 +24,7 @@ const DefaultRangeOptions = [
   { label: 'LAST 30 DAYS.', value: -30 },
 ];
 
-const DatePickerComboContainer = ({ children, options, onChange }) => {
+const DatePickerComboContainer: FC<IReactDatePickerComboProps> = ({ children, options, onChange }) => {
   return (
     <div className="flex border border-mainblue bg-navyblue">
       <div className="text-white text-tiny p-2">
@@ -80,7 +80,7 @@ const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
       selected={!valIsNumber && value && new Date(value)}
       maxDate={new Date()}
       calendarContainer={(props) => (
-        <DatePickerComboContainer {...props} options={options} onChange={onDateChange} />
+        <DatePickerComboContainer options={options} onChange={onDateChange} />
       )}
       {...others}
     />
