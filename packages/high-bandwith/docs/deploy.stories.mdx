@@ -4,5 +4,6 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Deploy
 
-- VERCEL for developing
-- DOCKER for staging and production
+The deploy process is done on Vercel. This is an automated deploy that takes directly the github repository and deploys it to the Vercel server.
+The deployment is done in three different instances (high-bandwith, low-bandwith and storybook).
+The environment variables of production and the configuration is managed on the vercel config online.
