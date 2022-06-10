@@ -80,7 +80,7 @@ const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
       selected={!valIsNumber && value && new Date(value)}
       maxDate={new Date()}
       calendarContainer={(props) => (
-        <DatePickerComboContainer options={options} onChange={onDateChange} />
+        <DatePickerComboContainer {...props} options={options} onChange={onDateChange} />
       )}
       {...others}
     />
