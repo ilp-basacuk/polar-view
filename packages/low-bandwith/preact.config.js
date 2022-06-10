@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const webpack  = require('webpack');
 const tailwind = require("preact-cli-tailwind");
 const { parsed } = require('dotenv').config();

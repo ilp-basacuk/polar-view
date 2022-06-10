@@ -12,20 +12,21 @@ const SideBar: FC<SideBarProps> = ({ className }) => {
   const [view, setView] = useState<SIDEBAR_VIEW>(SIDEBAR_VIEW.EDIT);
 
   return (
-    <div className={cx("bg-navyblue w-72 absolute left-6 bottom-12", className)}>
+    <div className={cx('bg-navyblue w-72 absolute left-6 bottom-12', className)}>
       {view === SIDEBAR_VIEW.EDIT && <SidebarEditView />}
       {view === SIDEBAR_VIEW.LEGEND && <SidebarLegendView />}
       {view === SIDEBAR_VIEW.MINIMIZED ? (
-          <Iconbutton
-            onClick={() => {
-              setView(SIDEBAR_VIEW.EDIT);
-            }}
-            theme="secondary"
-            icon={DoubleRightArrow}
-            iconStroke="#fff"
-          />
-        ) : <SidebarBottomAction view={view} setView={setView} />
-      }
+        <Iconbutton
+          onClick={() => {
+            setView(SIDEBAR_VIEW.EDIT);
+          }}
+          theme="secondary"
+          icon={DoubleRightArrow}
+          iconStroke="#fff"
+        />
+      ) : (
+        <SidebarBottomAction view={view} setView={setView} />
+      )}
     </div>
   );
 };

@@ -40,8 +40,10 @@ const DatePickerInput = React.forwardRef<Ref, IDatePickerInputProps>(
         </span>
       </button>
     );
-  }
+  },
 );
+
+DatePickerInput.displayName = 'DatePickerInput';
 
 const DatePicker: React.FC<IReactDatePickerProps> = ({
   startDate,
@@ -61,7 +63,7 @@ const DatePicker: React.FC<IReactDatePickerProps> = ({
         onChange(date, event);
       }}
       portalId="date-picker"
-      onClickOutside={()=> setisCalendarOpen(false)}
+      onClickOutside={() => setisCalendarOpen(false)}
       selected={showValue ? currentDate : null}
       onCalendarOpen={() => setisCalendarOpen(true)}
       onCalendarClose={() => setisCalendarOpen(false)}

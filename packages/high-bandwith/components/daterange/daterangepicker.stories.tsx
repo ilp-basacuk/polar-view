@@ -8,8 +8,8 @@ export default {
 };
 
 const Template: Story<IDateRangePicker> = ({ ...args }: IDateRangePicker) => {
-  const [startDate, setStartDate] = React.useState(null)
-  const [endDate, setEndDate] = React.useState(null)
+  const [startDate, setStartDate] = React.useState(null);
+  const [endDate, setEndDate] = React.useState(null);
   return (
     <div className="w-[300px]">
       <DateRangePicker

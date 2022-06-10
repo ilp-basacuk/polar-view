@@ -1,19 +1,19 @@
-import LeafletWms from "leaflet.wms";
-import * as L from "leaflet";
+import LeafletWms from 'leaflet.wms';
+import * as L from 'leaflet';
 
 // This extends the LeafletWms source onjet to tweak the functionality on click
 const LeafletWmsSource = LeafletWms.Source.extend({
-  'getFeatureInfo': async function(point) {
+  getFeatureInfo: async function (point) {
     let wmsParams;
 
     if (this.options.untiled) {
-        // Use existing overlay
-        wmsParams = this._overlay.wmsParams;
+      // Use existing overlay
+      wmsParams = this._overlay.wmsParams;
     } else {
-        // Create overlay instance to leverage updateWmsParams
-        const overlay = this.createOverlay(true);
-        overlay.updateWmsParams(this._map);
-        wmsParams = overlay.wmsParams;
+      // Create overlay instance to leverage updateWmsParams
+      const overlay = this.createOverlay(true);
+      overlay.updateWmsParams(this._map);
+      wmsParams = overlay.wmsParams;
     }
 
     const size = this._map.getSize();
@@ -41,7 +41,7 @@ const LeafletWmsSource = LeafletWms.Source.extend({
       width: size.x,
       layers: wmsParams.layers,
       query_layers: wmsParams.layers,
-      info_format: 'application/json'
+      info_format: 'application/json',
     };
 
     params[params.version === '1.3.0' ? 'i' : 'x'] = point.x;
@@ -50,30 +50,31 @@ const LeafletWmsSource = LeafletWms.Source.extend({
     const url = this._url + L.Util.getParamString(params, this._url, true);
     this.showWaiting();
     try {
-      return fetch(url).then((result) => {
-        this.hideWaiting();
-        if (result.status !== 200) {
-          return;
-        }
-        return result.json();
-      }).then(text => {
-        if (text.features && text.features.length > 0) {
-          return { features: text.features, layerCode: wmsParams.layers };
-        }
-        return null;
-      });
+      return fetch(url)
+        .then((result) => {
+          this.hideWaiting();
+          if (result.status !== 200) {
+            return;
+          }
+          return result.json();
+        })
+        .then((text) => {
+          if (text.features && text.features.length > 0) {
+            return { features: text.features, layerCode: wmsParams.layers };
+          }
+          return null;
+        });
     } catch (error) {
-      console.error('Error', error)
+      console.error('Error', error);
     }
-
   },
-  'identify': function(e) {
+  identify: function (e) {
     const layers = this.getIdentifyLayers();
     if (!layers.length) {
       return;
     }
     return this.getFeatureInfo(e.containerPoint);
-  }
+  },
 });
 
 export default LeafletWmsSource;

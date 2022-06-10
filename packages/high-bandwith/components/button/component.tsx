@@ -59,15 +59,16 @@ export const LinkAnchor: FC<AnchorProps> = ({
     >
       {children}
     </a>
-  )
-  return (<Link href={href} {...anchorLinkProps}>
-      {theme === 'info' ?
+  );
+  return (
+    <Link href={href} {...anchorLinkProps}>
+      {theme === 'info' ? (
         renderAnchor()
-      :
+      ) : (
         <span className={`btn-wrapper cursor-pointer ${containerClassName} ${CUT_MAP[cut]}`}>
           {renderAnchor()}
         </span>
-      }
+      )}
     </Link>
   );
 };
@@ -103,11 +104,13 @@ export const Anchor: FC<AnchorProps> = ({
       {children}
     </a>
   );
-  return theme === 'info' ? renderAnchor()
-    :
-      <span className={`btn-wrapper cursor-pointer ${containerClassName} ${CUT_MAP[cut]}`}>
-        {renderAnchor()}
-      </span>;
+  return theme === 'info' ? (
+    renderAnchor()
+  ) : (
+    <span className={`btn-wrapper cursor-pointer ${containerClassName} ${CUT_MAP[cut]}`}>
+      {renderAnchor()}
+    </span>
+  );
 };
 
 export const Button: FC<ButtonProps> = ({
@@ -137,11 +140,11 @@ export const Button: FC<ButtonProps> = ({
       {children}
     </Component>
   );
-  return theme === 'info' ? renderButton()
-  :
-    <span className={`btn-wrapper ${containerClassName} ${CUT_MAP[cut]}`}>
-      {renderButton()}
-    </span>;
+  return theme === 'info' ? (
+    renderButton()
+  ) : (
+    <span className={`btn-wrapper ${containerClassName} ${CUT_MAP[cut]}`}>{renderButton()}</span>
+  );
 };
 
 export const LinkButton: Overload = (props: ButtonProps | AnchorProps) => {

@@ -52,10 +52,10 @@ export const Colors = () => {
 export const Typography = () => {
   return (
     <table className="table-auto text-white w-full">
-      <tbody className=''>
+      <tbody className="">
         <tr>
-          <td className='border border-white p-3'>text-xs</td>
-          <td className='border border-white p-3'>
+          <td className="border border-white p-3">text-xs</td>
+          <td className="border border-white p-3">
             <div className="text-xs">Lorem Ipsum</div>
           </td>
         </tr>

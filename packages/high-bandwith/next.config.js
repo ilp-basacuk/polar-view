@@ -3,28 +3,26 @@ const withPlugins = require('next-compose-plugins');
 const withOptimizedImages = require('next-optimized-images');
 
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  reactStrictMode: true,
   webpack: (config) => {
     config.node = {
-      fs: 'empty'
+      fs: 'empty',
     };
 
     return config;
-  }
+  },
 };
 
 module.exports = withPlugins(
   [
     withOptimizedImages({
-      optimizeImages: false
+      optimizeImages: false,
     }),
     {
       images: {
-        disableStaticImages: true
-      }
-    }
+        disableStaticImages: true,
+      },
+    },
   ],
-  nextConfig
+  nextConfig,
 );

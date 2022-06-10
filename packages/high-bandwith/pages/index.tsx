@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Link from 'next/link';
 
 const RedirectComponent: React.FC = () => (
   <div>
@@ -9,9 +10,9 @@ const RedirectComponent: React.FC = () => (
     </Head>
     <div className="w-full h-screen p-10">
       Go to{' '}
-       <a className="text-mainblue" href="/antarctic">
-         Antarctic
-      </a>
+      <Link href="/antarctic">
+        <a className="text-mainblue">Antarctic</a>
+      </Link>
     </div>
   </div>
 );

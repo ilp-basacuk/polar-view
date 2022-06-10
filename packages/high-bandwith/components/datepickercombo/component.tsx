@@ -24,7 +24,11 @@ const DefaultRangeOptions = [
   { label: 'LAST 30 DAYS.', value: -30 },
 ];
 
-const DatePickerComboContainer: FC<IReactDatePickerComboProps> = ({ children, options, onChange }) => {
+const DatePickerComboContainer: FC<IReactDatePickerComboProps> = ({
+  children,
+  options,
+  onChange,
+}) => {
   return (
     <div className="flex border border-mainblue bg-navyblue">
       <div className="text-white text-tiny p-2">
@@ -46,7 +50,7 @@ const DatePickerComboContainer: FC<IReactDatePickerComboProps> = ({ children, op
 };
 
 const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
-  dateProps = { onChange: () => {} },
+  dateProps = { onChange: () => undefined },
   options = DefaultRangeOptions,
   onChange,
 }: IReactDatePickerComboProps) => {
@@ -70,7 +74,7 @@ const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
     <DatePicker
       onSelect={(date) => onDateChange(date)}
       open={open}
-      onChange={() => {}}
+      onChange={() => undefined}
       onInputClick={() => setOpen(true)}
       onCalendarOpen={() => setOpen(true)}
       onCalendarClose={() => setOpen(false)}

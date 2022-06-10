@@ -28,7 +28,7 @@ context('Cypress.Commands', () => {
         // we don't want to change the subject so
         // we return whatever was passed in
         return subject;
-      }
+      },
     );
 
     // @ts-ignore TS2339

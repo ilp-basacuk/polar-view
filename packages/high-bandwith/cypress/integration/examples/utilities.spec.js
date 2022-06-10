@@ -29,7 +29,7 @@ context('Utilities', () => {
       Cypress.Blob.imgSrcToDataURL(
         'https://example.cypress.io/assets/img/javascript-logo.png',
         undefined,
-        'anonymous'
+        'anonymous',
       ).then((dataUrl) => {
         // create an <img> element and set its src to the dataUrl
         const img = Cypress.$('<img />', { src: dataUrl });
@@ -40,7 +40,7 @@ context('Utilities', () => {
         $div.append(img);
 
         cy.get('.utility-blob img').click().should('have.attr', 'src', dataUrl);
-      })
+      }),
     );
   });
 
@@ -102,7 +102,7 @@ context('Utilities', () => {
       waitOneSecond().then((str) => {
         expect(str).to.eq('foo');
         expect(waited).to.be.true;
-      })
+      }),
     );
   });
 });

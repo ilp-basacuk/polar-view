@@ -33,7 +33,7 @@ const FilterCheck: FC<IFilterCheck> = ({
         {bullet && <div className={bulletClass} />}
         <div className={`text-sm text-${labelColor}`}>{label}</div>
       </div>
-      {(downloadURL || checkboxProps) &&
+      {(downloadURL || checkboxProps) && (
         <div className="flex items-end">
           {downloadURL && (
             <button
@@ -43,7 +43,7 @@ const FilterCheck: FC<IFilterCheck> = ({
               <DownloadIcon />
             </button>
           )}
-          {(checkboxProps) && (
+          {checkboxProps && (
             <div className="flex">
               {checkboxProps && (
                 <div className="ml-1">
@@ -53,7 +53,7 @@ const FilterCheck: FC<IFilterCheck> = ({
             </div>
           )}
         </div>
-      }
+      )}
     </div>
   );
 };

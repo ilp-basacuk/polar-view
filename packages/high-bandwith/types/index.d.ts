@@ -12,7 +12,15 @@ export interface Group {
   id: string;
 }
 
-export type Color = 'red' | 'orange' | 'yellow' | 'sky' | 'gray' | 'purple' | 'green' | `#${string}`;
+export type Color =
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'sky'
+  | 'gray'
+  | 'purple'
+  | 'green'
+  | `#${string}`;
 
 export interface Layer {
   id: string;
@@ -20,10 +28,10 @@ export interface Layer {
   label: string;
   type: 'checkbox' | 'dropdown' | 'grouped-dropdown' | 'grouped-dropdown-selection';
   group?: string;
-  color?:  Color;
-  params?: {[key: string] : any }
+  color?: Color;
+  params?: { [key: string]: any };
   downloadURL?: `https://${string}`;
-  downloadTemplates?: { image: string, caption: string }[];
+  downloadTemplates?: { image: string; caption: string }[];
   hasImages?: boolean; // This is just for the MVP, we should find another way to check if the layers can be downloaded
 }
 

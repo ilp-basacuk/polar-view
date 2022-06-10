@@ -51,7 +51,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
         onChange(value);
       }
     },
-    [onChange]
+    [onChange],
   );
 
   if (multiple) {

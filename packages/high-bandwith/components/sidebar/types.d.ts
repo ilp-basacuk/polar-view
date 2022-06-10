@@ -11,8 +11,8 @@ export interface ISeaIceState {
 }
 
 export interface IIceChartsState {
-  CHILINENANTARCTIC: { value: string | string[] },
-  ANTARCTICPENINSULA: { value: string | string[] },
+  CHILINENANTARCTIC: { value: string | string[] };
+  ANTARCTICPENINSULA: { value: string | string[] };
 }
 
 export interface ISidebarState {

@@ -1,15 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const forms = require("@tailwindcss/forms");
 
 const lineClamp = require("./lib/tailwind/line-clamp");
 
 
 module.exports = {
-  darkMode: "media", // or 'media' or 'class'
-  // purge: {
-  //   enabled: process.env.NODE_ENV !== "development",
-  //   content: ["./**/*.ts", "./**/*.tsx", "./styles/global.css"],
-  // },
+  darkMode: "media",
   theme: {
     extend: {
       fontSize: {

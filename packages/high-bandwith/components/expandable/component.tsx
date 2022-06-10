@@ -41,7 +41,11 @@ const Expandable: React.FC<IExpandable> = ({
           <Icon stroke="white" />
         </span>
         <span className="ml-2 uppercase">{label}</span>
-        {activeLayersNumber && <span className="ml-1 h-3 w-3 pl-0.5 bg-white text-navyblue text-center rounded-full flex items-center justify-center">{activeLayersNumber}</span>}
+        {activeLayersNumber && (
+          <span className="ml-1 h-3 w-3 pl-0.5 bg-white text-navyblue text-center rounded-full flex items-center justify-center">
+            {activeLayersNumber}
+          </span>
+        )}
         <span className="flex-1 h-[1px] bg-middleblue mx-2" />
         <span className="radio">
           <RadioButton {...radioButtonProps} />

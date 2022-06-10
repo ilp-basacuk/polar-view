@@ -28,19 +28,16 @@ const LegendItem: React.FC<LegendItemProps> = ({ label, color, image }) => {
   return (
     <div className="flex items-center p-1">
       <div className="flex items-center">
-        {image &&
+        {image && (
           <div
             className={cx(bulletClass, 'bg-cover')}
             style={{ backgroundImage: `url('/images/legend/${image}')` }}
           />
-        }
-        {color &&
-          <div
-            className={bulletClass}
-            style={!COLOR_MAP[color] && { backgroundColor: color }}
-          />
-        }
-        </div>
+        )}
+        {color && (
+          <div className={bulletClass} style={!COLOR_MAP[color] && { backgroundColor: color }} />
+        )}
+      </div>
       <div className="flex">
         <div className="relative">
           <div className="flex items-center">
