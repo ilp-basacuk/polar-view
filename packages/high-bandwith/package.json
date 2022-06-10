@@ -118,7 +118,11 @@
     "webpack": "^5.71.0"
   },
   "resolutions": {
-    "@storybook/react@npm:6.3.2/webpack": "^5.71.0"
+    "@storybook/react/webpack": "^5",
+    "@storybook/core-common/webpack": "^5",
+    "@storybook/core-server/webpack": "^5",
+    "@storybook/builder-webpack4/webpack": "^5",
+    "@storybook/manager-webpack4/webpack": "^5"
   },
   "husky": {
     "pre-commit": "yarn lint"
