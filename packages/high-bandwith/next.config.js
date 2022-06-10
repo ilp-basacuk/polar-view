@@ -3,9 +3,6 @@ const withPlugins = require('next-compose-plugins');
 const withOptimizedImages = require('next-optimized-images');
 
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   reactStrictMode: true,
   webpack: (config) => {
     config.node = {
