@@ -15,7 +15,7 @@ const Menu : FunctionalComponent = () => (
       className="border-l-0 px-4"
       theme="primary"
       cut="right-bottom"
-      href="/about"
+      href="#"
     >
       ABOUT
     </Button>
