@@ -2,8 +2,7 @@ import { FC } from 'react';
 import LegendItem from 'components/legend/legend-item';
 import { Layer } from 'types';
 import TimeLegend from './time-legend';
-
-const legends = require('constants/legends.json');
+import legends from 'constants/legends.json';
 
 interface LegendProps {
   layer: Layer;

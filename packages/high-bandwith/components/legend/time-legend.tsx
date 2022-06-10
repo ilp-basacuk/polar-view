@@ -6,8 +6,8 @@ import { updateLayer } from 'store/features/layerGroups/slice';
 import { useAppDispatch } from 'store/hooks';
 import { stringifyDate } from 'utils/date';
 
-const layers = require('constants/layers.json');
-const layerGroups: LayerGroup[] = require('constants/layer-groups.json');
+import layers from 'constants/layers.json';
+import layerGroupsJSON from 'constants/layer-groups.json';
 
 interface TimeLegendProps {
   layer: Layer;
@@ -38,6 +38,7 @@ const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
   }, [time]);
 
   const setDate = ({ startDate, endDate = null }) => {
+    const layerGroups = layerGroupsJSON as LayerGroup[];
     const layerGroup: LayerGroup = layerGroups.find((group) =>
       group.layers.some((l) => l.id === layer.id),
     );

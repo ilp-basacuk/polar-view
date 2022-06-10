@@ -2,7 +2,7 @@ import { useState, FC } from 'react';
 
 import { useMapEvents } from 'react-leaflet';
 
-const LatLonText: FC<{}> = () => {
+const LatLonText: FC = () => {
   const [lat, setLat] = useState<number | undefined>();
   const [lon, setLon] = useState<number | undefined>();
   useMapEvents({

@@ -1,6 +1,6 @@
 import { IconProps } from './types';
 
-export default ({ size = 12, stroke = '#27A2F8' }: IconProps) => (
+const ChevronLeftIcon: React.FC<IconProps> = ({ size = 12, stroke = '#27A2F8' }: IconProps) => (
   <svg
     width={size}
     height={size}
@@ -15,3 +15,5 @@ export default ({ size = 12, stroke = '#27A2F8' }: IconProps) => (
     />
   </svg>
 );
+
+export default ChevronLeftIcon;

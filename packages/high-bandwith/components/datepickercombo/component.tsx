@@ -50,7 +50,7 @@ const DatePickerComboContainer: FC<IReactDatePickerComboProps> = ({
 };
 
 const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
-  dateProps = { onChange: () => {} },
+  dateProps = { onChange: () => undefined },
   options = DefaultRangeOptions,
   onChange,
 }: IReactDatePickerComboProps) => {
@@ -74,7 +74,7 @@ const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
     <DatePicker
       onSelect={(date) => onDateChange(date)}
       open={open}
-      onChange={() => {}}
+      onChange={() => undefined}
       onInputClick={() => setOpen(true)}
       onCalendarOpen={() => setOpen(true)}
       onCalendarClose={() => setOpen(false)}

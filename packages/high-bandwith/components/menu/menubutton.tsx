@@ -23,4 +23,6 @@ const MenuButton = React.forwardRef<HTMLButtonElement, IMenuButtonProps>(({ acti
   );
 });
 
+MenuButton.displayName = 'MenuButton';
+
 export default MenuButton;

@@ -2,8 +2,7 @@
 import { useEffect, useMemo } from 'react';
 import LeafletWmsSource from './leaflet-wms-source';
 import { Layer } from 'types';
-
-const LAYERS = require('constants/layers.json');
+import LAYERS from 'constants/layers.json';
 
 // This hook adds and removes layers from the map depending on the activeLayerIds
 export const useLayerManager = ({

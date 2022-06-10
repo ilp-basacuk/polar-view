@@ -32,6 +32,10 @@ export const SelectToggle: FC<SelectToggleProps> = ({
     return `${selectedItems.length} items selected`;
   }, [selectedItems, placeholder, getEnabledOptions]);
 
+  const restProps = multiple
+    ? getToggleButtonProps(getDropdownProps({ preventKeyAction: opened }))
+    : getToggleButtonProps();
+
   return (
     <button
       type="button"
@@ -43,8 +47,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
           true,
         'border-l-0 border-r-0': opened,
       })}
-      {...(!multiple && getToggleButtonProps())}
-      {...(multiple && getToggleButtonProps(getDropdownProps({ preventKeyAction: opened })))}
+      {...(restProps || {})}
     >
       {prefix && (
         <span

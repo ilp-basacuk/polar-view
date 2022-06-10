@@ -51,6 +51,6 @@ export interface SelectToggleProps extends SelectStatusProps, SelectDataProps, S
   className?: string;
   opened: boolean;
   selectedItems: SelectOptionProps[];
-  getToggleButtonProps: (e?: unknown) => void;
-  getDropdownProps?: (e?: unknown) => void;
+  getToggleButtonProps: (e?: unknown) => Record<string, unknown>;
+  getDropdownProps?: (e?: unknown) => Record<string, unknown>;
 }
