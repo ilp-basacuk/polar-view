@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   core: {
-    builder: "webpack5",
+    builder: 'webpack5',
   },
   staticDirs: ['../public'],
   stories: [
@@ -58,8 +58,9 @@ module.exports = {
                 },
               },
             ],
-          }
-      }]
+          },
+        },
+      ],
     });
 
     return config;

@@ -49,11 +49,9 @@ packages/high-bandwith/.env.production.local
 
 # Yarn
 .yarn/*
-!.yarn/patches
-!.yarn/plugins
 !.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+!.yarn/plugins
+.pnp.*
 
 # typescript
 tsconfig.tsbuildinfo

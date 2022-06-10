@@ -19,7 +19,7 @@ export const Layer: FC<LayerProps> = ({
 }: LayerProps) => (
   <WMSTileLayer
     url={url}
-    params={{...DEFAULT_LAYER_PARAMS, ...params}}
+    params={{ ...DEFAULT_LAYER_PARAMS, ...params }}
     minZoom={minZoom || 0}
     tileSize={tileSize}
     className={className}

@@ -23,15 +23,15 @@ const MAX_BOUNDS_ANTARCTIC = L.latLngBounds(L.latLng(-37, -46), L.latLng(-26, 13
 const MapReference = ({ setMap }) => {
   const map = useMap();
   useEffect(() => {
-    setMap(map)
-  }, [map])
+    setMap(map);
+  }, [map]);
   return null;
 };
 
 const MapInteraction = ({ onClick }) => {
   useMapEvents({
     click(e) {
-      onClick(e)
+      onClick(e);
     },
     // Use for different events:
     // mousemove(e) {
@@ -39,48 +39,60 @@ const MapInteraction = ({ onClick }) => {
     // }
   });
   return null;
-}
+};
 
 const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerIds }) => {
-  const [sources, setSources] = useState<{ [key: string] : typeof LeafletWmsSource }>();
+  const [sources, setSources] = useState<{ [key: string]: typeof LeafletWmsSource }>();
   const [map, setMap] = useState();
-  const [tooltipInfo, setTooltipInfo] = useState<{ [key: string] : any }>(null);
-  const [tooltipPosition, setTooltipPosition] = useState<{ x: number, y: number }>(null);
+  const [tooltipInfo, setTooltipInfo] = useState<{ [key: string]: any }>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number }>(null);
 
   const [activeLayerIds, setActiveLayerIds] = useState<string[]>([]);
 
-  const layerGroups = useAppSelector(state => state.layerGroups.data);
+  const layerGroups = useAppSelector((state) => state.layerGroups.data);
 
   const crs = useMemo(() => getProjection(projection, MAX_ZOOM, TILE_SIZE), [projection]);
   const center = useMemo(
     () => (projection === 'artic' ? ARCTIC_CENTER : ANTARCTIC_CENTER),
-    [projection]
+    [projection],
   );
-  const layersWithImages = useMemo(() => (
-    layerGroups.reduce((acc, layerGroup) => {
-      layerGroup.layers.forEach(layer => {
-        if (layer.hasImages) acc.push(layer.id);
-      });
-      return acc;
-    }, [])
-    ), [layerGroups]);
+  const layersWithImages = useMemo(
+    () =>
+      layerGroups.reduce((acc, layerGroup) => {
+        layerGroup.layers.forEach((layer) => {
+          if (layer.hasImages) acc.push(layer.id);
+        });
+        return acc;
+      }, []),
+    [layerGroups],
+  );
   const onClick = (e) => {
     setTooltipInfo(null);
-    const firstImageSourceId = sources && Object.keys(sources).find(layerId => layersWithImages.includes(layerId));
+    const firstImageSourceId =
+      sources && Object.keys(sources).find((layerId) => layersWithImages.includes(layerId));
     if (firstImageSourceId) {
       const identifyPromise = sources[firstImageSourceId].identify(e);
       if (identifyPromise) {
         identifyPromise.then((info) => {
           if (info?.features?.length > 0) {
-            setTooltipInfo({...info.features[0].properties, layerCode: info.layerCode });
+            setTooltipInfo({ ...info.features[0].properties, layerCode: info.layerCode });
             setTooltipPosition({ x: e.containerPoint.x, y: e.containerPoint.y });
           }
-        })
+        });
       }
     }
-  }
+  };
 
-  useLayerManager({ map, setSources, basemapIds, layerIds, activeLayerIds, sources, setActiveLayerIds, layerGroups });
+  useLayerManager({
+    map,
+    setSources,
+    basemapIds,
+    layerIds,
+    activeLayerIds,
+    sources,
+    setActiveLayerIds,
+    layerGroups,
+  });
 
   return (
     <>
@@ -112,7 +124,10 @@ const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerId
         content={<TooltipContent tooltipInfo={tooltipInfo} />}
       >
         {/* Dummy invisible component for the tooltip positioning on click */}
-        <span className={cx('h-2 w-2 display-none', { 'absolute': !!tooltipInfo })} style={{ left: tooltipPosition?.x, top: tooltipPosition?.y }}/>
+        <span
+          className={cx('h-2 w-2 display-none', { absolute: !!tooltipInfo })}
+          style={{ left: tooltipPosition?.x, top: tooltipPosition?.y }}
+        />
       </Tooltip>
     </>
   );

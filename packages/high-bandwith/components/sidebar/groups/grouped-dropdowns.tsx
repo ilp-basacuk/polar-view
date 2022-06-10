@@ -6,14 +6,24 @@ import useChangeEffect from 'components/hooks/useChangeState';
 import { GroupedLayer } from 'types';
 
 interface GroupedDropdownsProps {
-  layer: GroupedLayer,
+  layer: GroupedLayer;
 }
 
-const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer } : GroupedDropdownsProps) => {
-  const [selectedGroup, setSelectedGroup] = useState<string | null>(layer.layers.find(l => l.checked)?.group || null)
-  const [selectedLayer, setSelectedLayer] = useState<string | null>(layer.layers.find(l => l.checked)?.id || null);
-  const groupOptions = layer.groups.map(group => ({ label: group.label, value: group.id }));
-  const layerOptions = useMemo(() => layer.layers.filter(l => l.group === selectedGroup).map(l => ({ label: l.label, value: l.id })), [selectedGroup]);
+const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer }: GroupedDropdownsProps) => {
+  const [selectedGroup, setSelectedGroup] = useState<string | null>(
+    layer.layers.find((l) => l.checked)?.group || null,
+  );
+  const [selectedLayer, setSelectedLayer] = useState<string | null>(
+    layer.layers.find((l) => l.checked)?.id || null,
+  );
+  const groupOptions = layer.groups.map((group) => ({ label: group.label, value: group.id }));
+  const layerOptions = useMemo(
+    () =>
+      layer.layers
+        .filter((l) => l.group === selectedGroup)
+        .map((l) => ({ label: l.label, value: l.id })),
+    [selectedGroup],
+  );
 
   useChangeEffect(() => {
     setSelectedLayer(null);
@@ -21,10 +31,15 @@ const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer } : GroupedDropdown
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(updateLayer({
-      layerGroupId: layer.id, // Layer group id should be always the same as the layer id for grouped layers
-      layer: { ...layer, layers: layer.layers.map(l => ({ ...l, checked: l.id === selectedLayer })) }
-    }))
+    dispatch(
+      updateLayer({
+        layerGroupId: layer.id, // Layer group id should be always the same as the layer id for grouped layers
+        layer: {
+          ...layer,
+          layers: layer.layers.map((l) => ({ ...l, checked: l.id === selectedLayer })),
+        },
+      }),
+    );
   }, [selectedLayer]);
 
   return (
@@ -48,5 +63,5 @@ const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer } : GroupedDropdown
       </div>
     </>
   );
-}
+};
 export default GroupedDropdowns;

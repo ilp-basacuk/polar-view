@@ -28,7 +28,7 @@ export const Modal: FC<ModalProps> = ({
       isOpen: open,
       onClose: onDismiss,
     },
-    containerRef
+    containerRef,
   );
   const { modalProps } = useModal();
   const { dialogProps } = useDialog({ 'aria-label': title }, containerRef);
@@ -62,27 +62,27 @@ export const Modal: FC<ModalProps> = ({
                 <motion.div
                   initial={{
                     opacity: 0,
-                    ...size !== 'full' && {
+                    ...(size !== 'full' && {
                       y: '-60%',
                       x: '-50%',
-                    }
+                    }),
                   }}
                   animate={{
                     opacity: 1,
-                    ...size !== 'full' && {
+                    ...(size !== 'full' && {
                       y: '-50%',
                       x: '-50%',
-                    },
+                    }),
                     transition: {
                       delay: 0.125,
                     },
                   }}
                   exit={{
                     opacity: 0,
-                    ...size !== 'full' && {
+                    ...(size !== 'full' && {
                       y: '-60%',
                       x: '-50%',
-                    },
+                    }),
                     transition: {
                       delay: 0,
                     },
@@ -116,7 +116,6 @@ export const Modal: FC<ModalProps> = ({
                       </div>
                     </div>
                   )}
-
                 </motion.div>
               </div>
             </FocusScope>

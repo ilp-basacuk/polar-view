@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Story } from '@storybook/react/types-6-0';
-import DaySlider, { IDaySliderProps }  from './component';
+import DaySlider, { IDaySliderProps } from './component';
 import format from 'date-fns/format';
 
 export default {

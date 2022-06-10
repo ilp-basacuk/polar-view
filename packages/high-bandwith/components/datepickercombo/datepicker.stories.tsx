@@ -6,7 +6,9 @@ export default {
   component: DatePickerCombo,
 };
 
-const Template: Story<IReactDatePickerComboProps> = ({ ...args }: IReactDatePickerComboProps) => <DatePickerCombo {...args} />;
+const Template: Story<IReactDatePickerComboProps> = ({ ...args }: IReactDatePickerComboProps) => (
+  <DatePickerCombo {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {

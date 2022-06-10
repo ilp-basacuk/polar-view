@@ -66,7 +66,7 @@ export const MultiSelect: FC<SelectProps> = ({
         : []),
       ...options.map((o) => ({ ...o, checkbox: true, enabled: true })),
     ],
-    [options, clearSelectionActive, clearSelectionLabel, batchSelectionActive, batchSelectionLabel]
+    [options, clearSelectionActive, clearSelectionLabel, batchSelectionActive, batchSelectionLabel],
   );
 
   const getOptionsEnabled = useMemo(() => {
@@ -293,7 +293,7 @@ export const MultiSelect: FC<SelectProps> = ({
             </ul>
           </Menu>
         </div>,
-        document.body
+        document.body,
       )}
     </div>
   );

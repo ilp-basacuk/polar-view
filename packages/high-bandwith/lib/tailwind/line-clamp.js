@@ -23,5 +23,5 @@ module.exports = plugin(
         3: 3,
       },
     },
-  }
+  },
 );

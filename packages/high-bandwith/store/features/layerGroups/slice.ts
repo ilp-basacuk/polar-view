@@ -5,7 +5,7 @@ import type { LayerGroup } from 'types';
 // https://stackoverflow.com/a/50708719
 
 const layersConfig = require('constants/layers-config.json');
-const presets = require ('constants/presets.json');
+const presets = require('constants/presets.json');
 
 // Define a type for the slice state
 interface LayerGroupsState {
@@ -27,41 +27,41 @@ export const layerGroupSlice = createSlice({
       ...state,
       data: action.payload,
     }),
-    updateLayer: (state, action: PayloadAction<{ layerGroupId: string, layer }>) => {
+    updateLayer: (state, action: PayloadAction<{ layerGroupId: string; layer }>) => {
       const { layerGroupId, layer } = action.payload;
-      const updatedData = state.data.map(existingLayerGroup => existingLayerGroup.id === layerGroupId ?
-        {
-          ...existingLayerGroup,
-          layers: existingLayerGroup.layers.map(existingLayer => existingLayer.id === layer.id ? layer : existingLayer)
-        } : existingLayerGroup
+      const updatedData = state.data.map((existingLayerGroup) =>
+        existingLayerGroup.id === layerGroupId
+          ? {
+              ...existingLayerGroup,
+              layers: existingLayerGroup.layers.map((existingLayer) =>
+                existingLayer.id === layer.id ? layer : existingLayer,
+              ),
+            }
+          : existingLayerGroup,
       );
 
       return {
         ...state,
         data: updatedData,
         activePreset: null, // Deselect the preset whenever any other layers are selected or deselected
-      }
+      };
     },
     activatePreset: (state, action: PayloadAction<{ presetId: string }>) => {
       const { presetId } = action.payload;
       const selectedPreset = presets[presetId];
-      const updatedData = state.data.map(layerGroup => (
-        {
-          ...layerGroup,
-          layers: layerGroup.layers.map(layer => (
-            {
-              ...layer,
-              checked: selectedPreset[layerGroup.id]?.includes(layer.id) ? true : false
-            }
-          ))
-        }
-      ));
+      const updatedData = state.data.map((layerGroup) => ({
+        ...layerGroup,
+        layers: layerGroup.layers.map((layer) => ({
+          ...layer,
+          checked: selectedPreset[layerGroup.id]?.includes(layer.id) ? true : false,
+        })),
+      }));
 
       return {
         ...state,
         data: updatedData,
         activePreset: presetId,
-      }
+      };
     },
   },
 });

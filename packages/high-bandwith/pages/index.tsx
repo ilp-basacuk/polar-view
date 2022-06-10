@@ -9,8 +9,8 @@ const RedirectComponent: React.FC = () => (
     </Head>
     <div className="w-full h-screen p-10">
       Go to{' '}
-       <a className="text-mainblue" href="/antarctic">
-         Antarctic
+      <a className="text-mainblue" href="/antarctic">
+        Antarctic
       </a>
     </div>
   </div>

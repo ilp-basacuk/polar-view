@@ -4,7 +4,7 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 
 const staticReducers = {
-  layerGroups
+  layerGroups,
 };
 
 const asyncReducers = {};

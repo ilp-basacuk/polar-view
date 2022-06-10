@@ -20,7 +20,7 @@ export const getProjection = (projection: string, MAX_ZOOM, TILE_SIZE) => {
           [-4194304, -4194304],
           [4194304, 4194304],
         ]),
-      }
+      },
     );
   }
 
@@ -36,7 +36,7 @@ export const getProjection = (projection: string, MAX_ZOOM, TILE_SIZE) => {
           [-4194304, -4194304],
           [4194304, 4194304],
         ]),
-      }
+      },
     );
   }
 

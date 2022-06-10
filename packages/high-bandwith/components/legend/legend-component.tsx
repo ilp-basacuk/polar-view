@@ -6,7 +6,7 @@ import TimeLegend from './time-legend';
 const legends = require('constants/legends.json');
 
 interface LegendProps {
-  layer: Layer,
+  layer: Layer;
 }
 
 const Legend: FC<LegendProps> = ({ layer }) => {
@@ -15,7 +15,7 @@ const Legend: FC<LegendProps> = ({ layer }) => {
 
   if (legend.type === 'time') {
     return <TimeLegend layer={layer} />;
-  };
+  }
 
   if (legend.type === 'gradient') {
     return (
@@ -27,7 +27,7 @@ const Legend: FC<LegendProps> = ({ layer }) => {
         </div>
       </div>
     );
-  };
+  }
 
   return (
     <>
@@ -36,5 +36,5 @@ const Legend: FC<LegendProps> = ({ layer }) => {
       ))}
     </>
   );
-}
+};
 export default Legend;

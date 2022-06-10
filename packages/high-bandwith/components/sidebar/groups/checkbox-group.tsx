@@ -7,7 +7,7 @@ import Legend from 'components/legend';
 import type { LayerGroup, GroupedLayer, SingleLayer } from 'types';
 
 interface CheckboxGroupProps {
-  layerGroup: LayerGroup,
+  layerGroup: LayerGroup;
 }
 
 const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
@@ -15,7 +15,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
 
   return (
     <div>
-      {layerGroup.layers.map((layer: (GroupedLayer | SingleLayer)) => (
+      {layerGroup.layers.map((layer: GroupedLayer | SingleLayer) => (
         <div key={layer.id}>
           <FilterCheck
             label={layer.label}
@@ -27,13 +27,15 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({ layerGroup }) => {
                 dispatch(
                   updateLayer({
                     layerGroupId: layerGroup.id,
-                    layer: { ...layer, checked: !layer.checked }
-                  })
+                    layer: { ...layer, checked: !layer.checked },
+                  }),
                 );
               },
             }}
           />
-          {layer.checked && layer.type === 'grouped-dropdown' && layer.groups && layer.layers && <GroupedDropdowns layer={layer} />}
+          {layer.checked && layer.type === 'grouped-dropdown' && layer.groups && layer.layers && (
+            <GroupedDropdowns layer={layer} />
+          )}
           {layer.checked && <Legend layer={layer} />}
         </div>
       ))}
