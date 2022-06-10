@@ -4,6 +4,7 @@
 /node_modules
 packages/high-bandwith/node_modules
 packages/low-bandwith/node_modules/
+packages/core/node_modules/
 /.pnp
 .pnp.js
 

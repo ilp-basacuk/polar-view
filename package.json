@@ -6,9 +6,6 @@
   "author": "David Inga <david.inga@vizzuality.com>",
   "license": "MIT",
   "private": true,
-  "installConfig": {
-    "hoistingLimits": "none"
-  },
   "workspaces": {
     "packages": [
       "packages/*"
