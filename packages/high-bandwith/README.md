@@ -33,6 +33,37 @@ To learn more about this project, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+
+## Testing
+
+For the high-bandwith version of the app we are using [cypress](https://www.cypress.io/), which is and end-to-end (e2e) testing library but also allows unit testing.
+
+The e2e tests examples are on the cypress/integration folder and the unit tests under cypress/unit.
+
+### How to run the tests
+
+To open the cypress GUI use
+```bash
+yarn high cypress:open
+```
+
+or for the unit tests
+
+```bash
+yarn high cypress:unit:open
+```
+
+Also you can run the tests on headless mode with the following commands:
+```bash
+yarn high cypress:run
+```
+
+and
+
+```bash
+yarn high cypress:unit:run
+```
+
 ## Deploy on Vercel
 
 First, we recommend to read the guideline about [how to use Vercel](https://vizzuality.github.io/frontismos/docs/guidelines/vercel/).
