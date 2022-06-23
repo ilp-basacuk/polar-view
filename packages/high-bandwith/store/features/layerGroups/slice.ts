@@ -15,7 +15,7 @@ interface LayerGroupsState {
 }
 
 // Define the initial state using that type
-const initialState: LayerGroupsState = {
+export const initialState: LayerGroupsState = {
   data: layersConfig,
   activePreset: null,
 };
