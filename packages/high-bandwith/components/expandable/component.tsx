@@ -1,4 +1,5 @@
 import React from 'react';
+import kebabCase from 'lodash/kebabCase';
 import ChevronDown from '../icons/chevron-down';
 import ChevronUp from '../icons/chevron-up';
 import RadioButton from '../forms/radio';
@@ -42,7 +43,10 @@ const Expandable: React.FC<IExpandable> = ({
         </span>
         <span className="ml-2 uppercase">{label}</span>
         {activeLayersNumber && (
-          <span className="ml-1 h-3 w-3 pl-0.5 bg-white text-navyblue text-center rounded-full flex items-center justify-center">
+          <span
+            id={`layers-number-${kebabCase(label)}`}
+            className="ml-1 h-3 w-3 pl-0.5 bg-white text-navyblue text-center rounded-full flex items-center justify-center"
+          >
             {activeLayersNumber}
           </span>
         )}

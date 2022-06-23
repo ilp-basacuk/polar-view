@@ -24,7 +24,7 @@ const MapReference = ({ setMap }) => {
   const map = useMap();
   useEffect(() => {
     setMap(map);
-  }, [map]);
+  }, [map, setMap]);
   return null;
 };
 

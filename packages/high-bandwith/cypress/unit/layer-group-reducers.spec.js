@@ -1,14 +1,21 @@
-import { updateLayerReducer } from  'store/features/layerGroups/slice';
+import { updateLayerReducer } from 'store/features/layerGroups/slice';
 
 const layersConfig = [
   {
-    "label": "First Group", "id": "first-group", "selected": false,
-    "layers": [
-      { "id": "layer-1", "label": "Example Layer 1", "checked": false,  "type": "checkbox", "downloadURL": "https://www.exampledownloadurl.com/1" },
-    ]
-  }
+    label: 'First Group',
+    id: 'first-group',
+    selected: false,
+    layers: [
+      {
+        id: 'layer-1',
+        label: 'Example Layer 1',
+        checked: false,
+        type: 'checkbox',
+        downloadURL: 'https://www.exampledownloadurl.com/1',
+      },
+    ],
+  },
 ];
-
 
 describe('Update layer reducer', () => {
   const initialState = {
@@ -16,21 +23,25 @@ describe('Update layer reducer', () => {
     activePreset: null,
   };
 
-  const updatedLayer = { "id": "layer-1", "label": "Example Layer 1", "checked": true,  "type": "checkbox", "downloadURL": "https://www.exampledownloadurl.com/1" };
+  const updatedLayer = {
+    id: 'layer-1',
+    label: 'Example Layer 1',
+    checked: true,
+    type: 'checkbox',
+    downloadURL: 'https://www.exampledownloadurl.com/1',
+  };
   const updatedLayerData = [
     {
       ...layersConfig[0],
-      "layers": [
-        updatedLayer,
-      ]
-    }
+      layers: [updatedLayer],
+    },
   ];
 
   const updatedState = {
     data: updatedLayerData,
-    activePreset: null
+    activePreset: null,
   };
-  const action = { payload:  { layerGroupId: 'first-group', layer: updatedLayer } };
+  const action = { payload: { layerGroupId: 'first-group', layer: updatedLayer } };
 
   it('should update the layer', () => {
     expect(updateLayerReducer(initialState, action)).to.deep.equal(updatedState);
@@ -44,5 +55,4 @@ describe('Update layer reducer', () => {
 
     expect(updateLayerReducer(initialStateWithActivePreset, action)).to.deep.equal(updatedState);
   });
-
 });

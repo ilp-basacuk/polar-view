@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { LayerGroup, Layer } from 'types';
+import type { LayerGroup } from 'types';
 
 // Json files should be imported with require:
 // https://stackoverflow.com/a/50708719
@@ -14,13 +15,16 @@ interface LayerGroupsState {
 }
 
 // Define the initial state using that type
-const initialState: LayerGroupsState = {
+export const initialState: LayerGroupsState = {
   data: layersConfig,
   activePreset: null,
 };
 
 // Exported only for testing purposes
-export const updateLayerReducer = (state, action: PayloadAction<{ layerGroupId: string; layer: Layer }>) => {
+export const updateLayerReducer = (
+  state,
+  action: PayloadAction<{ layerGroupId: string; layer }>,
+) => {
   const { layerGroupId, layer } = action.payload;
   const updatedData = state.data.map((existingLayerGroup) =>
     existingLayerGroup.id === layerGroupId
