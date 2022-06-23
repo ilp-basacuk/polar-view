@@ -40,6 +40,11 @@ For the high-bandwith version of the app we are using [cypress](https://www.cypr
 
 The e2e tests examples are on the cypress/integration folder and the unit tests under cypress/unit.
 
+You can find two example tests on:
+
+- cypress/intgration/sidebar.spec.js tests for some user case selecting one preset on the sidebar.
+- cypress/unit/layer-group-reducers.spec.js test a layer group reducer to be sure that it has updated a layer correctly.
+
 ### How to run the tests
 
 To open the cypress GUI use
