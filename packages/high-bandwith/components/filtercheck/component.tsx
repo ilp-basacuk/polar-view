@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import cx from 'classnames';
+import kebabCase from 'lodash/kebabCase';
 import Checkbox from 'components/forms/checkbox/component';
 import DownloadIcon from 'components/icons/download';
 
@@ -47,7 +48,7 @@ const FilterCheck: FC<IFilterCheck> = ({
             <div className="flex">
               {checkboxProps && (
                 <div className="ml-1">
-                  <Checkbox {...checkboxProps} />
+                  <Checkbox {...checkboxProps} id={`check-${kebabCase(label)}`} />
                 </div>
               )}
             </div>

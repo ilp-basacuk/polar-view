@@ -9,6 +9,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({ id, name, label, ...props })
     <div className="flex items-center">
       <input
         type="checkbox"
+        id={id}
         className="checkbox opacity-0 absolute w-full h-full cursor-pointer"
         name={name}
         {...props}
