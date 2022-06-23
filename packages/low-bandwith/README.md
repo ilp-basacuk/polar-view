@@ -26,6 +26,14 @@ Test the production build locally
 yarn low serve
 ```
 
+## Testing
+
+For the high-bandwith version of the app we are using [jest](https://jestjs.io/).
+
+The tests examples are on the tests folder and their file name should end with test.js
+
+### How to run the tests
+
 Run tests with jest and enzyme
 
 ```bash

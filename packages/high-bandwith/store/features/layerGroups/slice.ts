@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { LayerGroup } from 'types';
+import type { LayerGroup, Layer } from 'types';
 
 // Json files should be imported with require:
 // https://stackoverflow.com/a/50708719
@@ -19,6 +19,27 @@ const initialState: LayerGroupsState = {
   activePreset: null,
 };
 
+// Exported only for testing purposes
+export const updateLayerReducer = (state, action: PayloadAction<{ layerGroupId: string; layer: Layer }>) => {
+  const { layerGroupId, layer } = action.payload;
+  const updatedData = state.data.map((existingLayerGroup) =>
+    existingLayerGroup.id === layerGroupId
+      ? {
+          ...existingLayerGroup,
+          layers: existingLayerGroup.layers.map((existingLayer) =>
+            existingLayer.id === layer.id ? layer : existingLayer,
+          ),
+        }
+      : existingLayerGroup,
+  );
+
+  return {
+    ...state,
+    data: updatedData,
+    activePreset: null, // Deselect the preset whenever any other layers are selected or deselected
+  };
+};
+
 export const layerGroupSlice = createSlice({
   name: 'layerGroups',
   initialState,
@@ -27,25 +48,7 @@ export const layerGroupSlice = createSlice({
       ...state,
       data: action.payload,
     }),
-    updateLayer: (state, action: PayloadAction<{ layerGroupId: string; layer }>) => {
-      const { layerGroupId, layer } = action.payload;
-      const updatedData = state.data.map((existingLayerGroup) =>
-        existingLayerGroup.id === layerGroupId
-          ? {
-              ...existingLayerGroup,
-              layers: existingLayerGroup.layers.map((existingLayer) =>
-                existingLayer.id === layer.id ? layer : existingLayer,
-              ),
-            }
-          : existingLayerGroup,
-      );
-
-      return {
-        ...state,
-        data: updatedData,
-        activePreset: null, // Deselect the preset whenever any other layers are selected or deselected
-      };
-    },
+    updateLayer: updateLayerReducer,
     activatePreset: (state, action: PayloadAction<{ presetId: string }>) => {
       const { presetId } = action.payload;
       const selectedPreset = presets[presetId];
