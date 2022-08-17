@@ -65,9 +65,9 @@ const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
 
   useEffect(() => {
     onChange?.(value);
-  }, [value]);
+  }, [value, onChange]);
 
-  const { startDate, onChange: _onChange, placeholderText, disableToday, ...others } = dateProps;
+  const { placeholderText, disableToday, ...others } = dateProps;
   const placeholder = valIsNumber ? options.find((m) => m.value == value).label : placeholderText;
 
   return (

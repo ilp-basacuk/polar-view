@@ -21,6 +21,7 @@ export const Tooltip: FC<TooltipProps> = ({
   const onMount = useCallback(() => {
     scale.set(1);
     opacity.set(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onHide = useCallback(({ unmount }) => {
@@ -33,6 +34,7 @@ export const Tooltip: FC<TooltipProps> = ({
 
     scale.set(0.95);
     opacity.set(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

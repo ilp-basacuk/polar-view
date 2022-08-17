@@ -44,6 +44,7 @@ const MapInteraction = ({ onClick }) => {
 const Map: FC<MapProps> = ({ projection = 'artic', children, basemapIds, layerIds }) => {
   const [sources, setSources] = useState<{ [key: string]: typeof LeafletWmsSource }>();
   const [map, setMap] = useState();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [tooltipInfo, setTooltipInfo] = useState<{ [key: string]: any }>(null);
   const [tooltipPosition, setTooltipPosition] = useState<{ x: number; y: number }>(null);
 

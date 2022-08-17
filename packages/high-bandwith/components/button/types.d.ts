@@ -8,6 +8,7 @@ export interface AnchorButtonProps {
   containerClassName?: string;
   cut?: 'right-bottom' | 'right-top' | 'left-top' | 'none';
   size?: 'small' | 'medium' | 'large';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component?: any;
 }
 

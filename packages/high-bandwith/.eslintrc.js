@@ -13,5 +13,7 @@ module.exports = {
         usePrettierrc: true,
       },
     ],
+    'import/no-anonymous-default-export': 'off',
+    '@next/next/no-img-element': 'off',
   },
 };

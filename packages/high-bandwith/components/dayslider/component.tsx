@@ -17,7 +17,7 @@ const DaySlider: React.FC<IDaySliderProps> = ({ startDate, onChange }) => {
         onChange(addDays(startDate, Number(event.target.value)));
       }
     },
-    [onChange],
+    [onChange, startDate],
   );
 
   return (

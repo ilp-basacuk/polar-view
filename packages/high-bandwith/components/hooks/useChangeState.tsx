@@ -1,5 +1,6 @@
 import React from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useChangeEffect = (onChange: React.EffectCallback, dependencies: ReadonlyArray<any>) => {
   const [firstRender, setFirstRender] = React.useState(true);
   React.useEffect(() => {
@@ -8,6 +9,7 @@ const useChangeEffect = (onChange: React.EffectCallback, dependencies: ReadonlyA
     } else {
       onChange();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 };
 

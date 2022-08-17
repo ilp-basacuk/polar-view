@@ -15,23 +15,6 @@ export const useLayerManager = ({
   setActiveLayerIds,
   layerGroups,
 }) => {
-  const getParamsToChange = (layerParams: Layer, sources: typeof LeafletWmsSource.source) =>
-    Object.keys(layerParams).reduce((acc, layerId) => {
-      if (activeLayerIds.includes(layerId)) {
-        const currentParams = sources[layerId].options;
-        const newParams = layerParams[layerId];
-        Object.keys(newParams).forEach((paramKey) => {
-          if (currentParams[paramKey] !== newParams[paramKey]) {
-            if (!acc[layerId]) {
-              acc[layerId] = {};
-            }
-            acc[layerId][paramKey] = newParams[paramKey];
-          }
-        });
-      }
-      return acc;
-    }, {});
-
   const layerParams = useMemo(
     () =>
       layerGroups.reduce((acc, layerGroup) => {
@@ -52,6 +35,23 @@ export const useLayerManager = ({
       transparent: true,
       tiled: true,
     };
+
+    const getParamsToChange = (layerParams: Layer, sources: typeof LeafletWmsSource.source) =>
+      Object.keys(layerParams).reduce((acc, layerId) => {
+        if (activeLayerIds.includes(layerId)) {
+          const currentParams = sources[layerId].options;
+          const newParams = layerParams[layerId];
+          Object.keys(newParams).forEach((paramKey) => {
+            if (currentParams[paramKey] !== newParams[paramKey]) {
+              if (!acc[layerId]) {
+                acc[layerId] = {};
+              }
+              acc[layerId][paramKey] = newParams[paramKey];
+            }
+          });
+        }
+        return acc;
+      }, {});
 
     const addLayerToMap = (layerConfig) => {
       const params = (layerParams && layerParams[layerConfig.id]) || {};

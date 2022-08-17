@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
 export interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme: 'primary' | 'secondary';

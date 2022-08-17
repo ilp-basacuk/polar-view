@@ -2,7 +2,7 @@ import { Story } from '@storybook/react/types-6-0';
 import Button from './component';
 import { ButtonProps } from './types';
 
-export default {
+const ButtonComponent = {
   title: 'Components/Button',
   component: Button,
   argTypes: {
@@ -14,6 +14,8 @@ export default {
     },
   },
 };
+
+export default ButtonComponent;
 
 const Template: Story<ButtonProps> = ({ children, ...args }: ButtonProps) => (
   <Button {...args}>{children}</Button>

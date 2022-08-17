@@ -89,6 +89,7 @@ const SidebarEditView: FC = () => {
                         <img
                           className="p-4 border border-dotted border-mainblue"
                           src="/images/ice.png"
+                          alt="Sea Ice image"
                         />
                       </div>
                     </div>

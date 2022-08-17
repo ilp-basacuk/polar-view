@@ -22,6 +22,7 @@ const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer }: GroupedDropdowns
       layer.layers
         .filter((l) => l.group === selectedGroup)
         .map((l) => ({ label: l.label, value: l.id })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedGroup],
   );
 
@@ -40,6 +41,7 @@ const GroupedDropdowns: FC<GroupedDropdownsProps> = ({ layer }: GroupedDropdowns
         },
       }),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLayer]);
 
   return (

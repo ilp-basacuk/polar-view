@@ -35,6 +35,7 @@ const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
       }
     }
     return { startDate: null, endDate: null };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
   const setDate = ({ startDate, endDate = null }) => {
