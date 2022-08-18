@@ -48,10 +48,6 @@ export const layerGroupSlice = createSlice({
   name: 'layerGroups',
   initialState,
   reducers: {
-    setLayerGroupsData: (state, action: PayloadAction<LayerGroup[]>) => ({
-      ...state,
-      data: action.payload,
-    }),
     updateLayer: updateLayerReducer,
     activatePreset: (state, action: PayloadAction<{ presetId: string }>) => {
       const { presetId } = action.payload;
@@ -73,6 +69,6 @@ export const layerGroupSlice = createSlice({
   },
 });
 
-export const { setLayerGroupsData, updateLayer, activatePreset } = layerGroupSlice.actions;
+export const { updateLayer, activatePreset } = layerGroupSlice.actions;
 
 export default layerGroupSlice.reducer;
