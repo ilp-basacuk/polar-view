@@ -9,6 +9,8 @@ import { stringifyDate } from 'utils/date';
 import layers from 'constants/layers.json';
 import layerGroupsJSON from 'constants/layer-groups.json';
 
+const layerGroups = layerGroupsJSON as LayerGroup[];
+
 interface TimeLegendProps {
   layer: Layer;
 }
@@ -21,6 +23,10 @@ const parseTime = (time: string) => {
 const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
   const { time } = layer.params || {};
   const dispatch = useAppDispatch();
+  const layerGroup: LayerGroup = useMemo(
+    () => layerGroups.find((group) => group.layers.some((l) => l.id === layer.id)),
+    [layer],
+  );
 
   const date = useMemo(() => {
     if (time) {
@@ -39,10 +45,6 @@ const TimeLegend: FC<TimeLegendProps> = ({ layer }) => {
   }, [time]);
 
   const setDate = ({ startDate, endDate = null }) => {
-    const layerGroups = layerGroupsJSON as LayerGroup[];
-    const layerGroup: LayerGroup = layerGroups.find((group) =>
-      group.layers.some((l) => l.id === layer.id),
-    );
     dispatch(
       updateLayer({
         layerGroupId: layerGroup.id,

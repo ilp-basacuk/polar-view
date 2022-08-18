@@ -14,7 +14,7 @@ interface ReactDatePickerComboProps extends Partial<ReactDatePickerProps> {
 export interface IReactDatePickerComboProps {
   dateProps?: ReactDatePickerComboProps;
   options?: IRangeOption[];
-  onChange?: (val: Date | number) => void;
+  onChange: (val: Date | number) => void;
 }
 
 const DefaultRangeOptions = [
@@ -50,7 +50,7 @@ const DatePickerComboContainer: FC<IReactDatePickerComboProps> = ({
 };
 
 const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
-  dateProps = { onChange: () => undefined },
+  dateProps = {},
   options = DefaultRangeOptions,
   onChange,
 }: IReactDatePickerComboProps) => {
@@ -65,7 +65,8 @@ const DatePickerCombo: FC<IReactDatePickerComboProps> = ({
 
   useEffect(() => {
     onChange?.(value);
-  }, [value, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
   const { placeholderText, disableToday, ...others } = dateProps;
   const placeholder = valIsNumber ? options.find((m) => m.value == value).label : placeholderText;
