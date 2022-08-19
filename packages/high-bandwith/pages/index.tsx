@@ -6,7 +6,7 @@ const RedirectComponent: React.FC = () => (
     <Head>
       <title>Polar View</title>
     </Head>
-    <div className="w-full h-screen p-10">Go to /antartic</div>
+    <div className="w-full h-screen p-10">Go to /antarctic</div>
   </div>
 );
 
