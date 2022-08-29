@@ -8,7 +8,7 @@ module.exports = (config, env, helpers) => {
 
   // Environment variables
   const { plugin } = helpers.getPluginsByName(config, 'DefinePlugin')[0];
-  Object.keys(parsed).forEach(
+  Object.keys(parsed || {}).forEach(
     (key) => {
     plugin.definitions[`process.env.${key}`] = JSON.stringify(parsed[key]);
   });
