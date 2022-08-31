@@ -9,6 +9,9 @@ COPY packages/high-bandwith ./packages/high-bandwith
 COPY package.json yarn.lock .yarnrc.yml ./
 RUN yarn install
 
+ARG LOW_BANDWITH_URL=http://localhost:3000
+ENV NEXT_PUBLIC_LOW_BANDWITH_URL $LOW_BANDWITH_URL
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.

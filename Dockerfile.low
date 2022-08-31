@@ -9,7 +9,10 @@ COPY packages/low-bandwith ./packages/low-bandwith
 COPY package.json yarn.lock .yarnrc.yml ./
 RUN yarn install
 
+ARG HIGH_BANDWITH_URL=http://localhost:3000
+
 ENV NODE_ENV production
+ENV PREACT_APP_HIGH_BANDWITH_URL $HIGH_BANDWITH_URL
 RUN yarn workspace @polar-view/low-bandwith build
 
 EXPOSE 8080
