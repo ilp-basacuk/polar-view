@@ -3,15 +3,20 @@ FROM node:16.14-alpine3.15
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat git
 WORKDIR /app
-COPY . .
+COPY .yarn/releases ./.yarn/releases
+COPY packages/core ./packages/core
+COPY packages/low-bandwith ./packages/low-bandwith
+COPY package.json yarn.lock .yarnrc.yml ./
+RUN yarn install
 
-RUN yarn install --immutable
-RUN yarn low build
+ARG HIGH_BANDWITH_URL=http://localhost:3000
 
 ENV NODE_ENV production
-ENV HIGH_BANDWITH_URL http://localhost:3000
+ENV PREACT_APP_HIGH_BANDWITH_URL $HIGH_BANDWITH_URL
+RUN yarn workspace @polar-view/low-bandwith build
 
 EXPOSE 8080
+
 ENV PORT 8080
 
-CMD ["node", "server.js"]
+CMD ["yarn", "workspace", "@polar-view/low-bandwith", "serve", "--port 8080 --cors --single --host 0.0.0.0"]

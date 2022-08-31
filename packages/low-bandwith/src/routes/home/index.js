@@ -4,7 +4,7 @@ import Menu from '../../components/menu';
 import Logo from '../../components/logo';
 import curves from '../../assets/curves.png';
 
-const HIGH_BANDWITH_URL = process.env.HIGH_BANDWITH_URL;
+const HIGH_BANDWITH_URL = process.env.PREACT_APP_HIGH_BANDWITH_URL;
 
 const Home = () => {
   const [hoveredTitle, setHoveredTitle] = useState(null);
