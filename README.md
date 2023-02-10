@@ -1,4 +1,4 @@
-# Polar View high bandwidth
+# Polar View
 
 This repository is a monorepo using [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) and contains two different applications in three different packages on the ```packages``` directory):
 
